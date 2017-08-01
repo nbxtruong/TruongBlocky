@@ -19,7 +19,7 @@
     <div flex="8" class="toolBarSize">
         <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
             <div layout="row" class="layoutSize">
-                <div flex="85">
+                <div flex="80">
                     <div layout="row">
                         <ng-md-icon class="menuIconSize" icon="list"></ng-md-icon>
                         <img style="margin-top: 10px;" src="./images/logo.png" alt="Easy Tech" height="40">
@@ -29,17 +29,28 @@
                     </div>
                 </div>
 
-                <div flex="15">
+                <div flex="20">
                     <div layout="row">
                         <ng-md-icon flex="15" class="profilePhoto" icon="account_circle"></ng-md-icon>
-                        <div flex="75">
+                        <div flex="70">
                             <div layout="column" class="userInfoBox">
                                 <p class="userName">Truong</p>
                                 <i class="userPosition">Tenant administrator</i>
                             </div>
                         </div>
-                        <div flex="10">
-                            <ng-md-icon class="userMenu" icon="more_vert"></ng-md-icon>
+                        <div flex="15">
+                            <!-- <ng-md-icon class="userMenu" icon="more_vert"></ng-md-icon> -->
+                            <md-menu>
+                                <md-button aria-label="Open menu with custom trigger" class="md-icon-button" ng-mouseenter="$mdMenu.open()">
+                                    <ng-md-icon icon="more_vert"></ng-md-icon>
+                                </md-button>
+                                <md-menu-content width="4" ng-mouseleave="$mdMenu.close()">
+                                    <md-menu-item ng-repeat="item in vm.userMenu">
+                                        <md-button ng-click="vm.userMenulistOption(item.name, $event)">
+                                            <ng-md-icon class="userMenuIcon" icon="{{item.icon}}"></ng-md-icon>{{item.name}}
+                                        </md-button>
+                                    </md-menu-item>
+                            </md-menu>
                         </div>
                     </div>
                 </div>

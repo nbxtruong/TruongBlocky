@@ -23,10 +23,12 @@
 /* eslint-disable angular/angularelement */
 
 /*@ngInject*/
-export default function HomeController($scope) {
+export default function HomeController($scope, $mdDialog, $log) {
     var imagePath = 'img/list/60.jpeg';
 
     var vm = this
+
+    vm.userMenulistOption = userMenulistOption
 
     vm.domain = "http://localhost:8080"
 
@@ -55,6 +57,43 @@ export default function HomeController($scope) {
             icon: "forum"
         }
     ]
+
+    vm.userMenu = [{
+        name: "Profile",
+        icon: "perm_contact_calendar"
+    }, {
+        name: "Logout",
+        icon: "logout"
+    }, {
+        name: "Login",
+        icon: "login"
+    }]
+
+    function userMenulistOption(params, ev) {
+        if (params === "Login") {
+            $log.log("get in login popup")
+            $mdDialog.show({
+                targetEvent: ev,
+                template: '<md-dialog>' +
+                    '<md-dialog-actions>' +
+                    '<div layout="row">' +
+                    '<md-input-container flex>' +
+                    '<label>Username</label>' +
+                    '<input type="text" ng-model="username" required md-maxlength="20">' +
+                    '</md-input-container>' +
+                    '<md-input-container flex>' +
+                    '<label>Password</label>' +
+                    '<input type="text" ng-model="password" required md-maxlength="20">' +
+                    '</md-input-container>' +
+                    '</div>' +
+                    '<md-button ng-click="login()" class="md-primary">' +
+                    'login' +
+                    '</md-button>' +
+                    '</md-dialog-actions>' +
+                    '</md-dialog>'
+            });
+        }
+    }
 
     $scope.todos = [];
     for (var i = 0; i < 15; i++) {
