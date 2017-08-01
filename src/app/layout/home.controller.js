@@ -26,6 +26,36 @@
 export default function HomeController($scope) {
     var imagePath = 'img/list/60.jpeg';
 
+    var vm = this
+
+    vm.domain = "http://localhost:8080"
+
+    vm.navItems = [{
+            url: vm.domain + "/#/landing",
+            name: "codingLab",
+            label: "CODING LAB",
+            icon: "extension"
+        },
+        {
+            url: vm.domain + "/#/dashboards",
+            name: "dashboard",
+            label: "DASHBOARD",
+            icon: "extension"
+        },
+        {
+            url: vm.domain + "/#/examples",
+            name: "examples",
+            label: "EXAMPLES",
+            icon: "flip_to_back"
+        },
+        {
+            url: vm.domain + "/#/community",
+            name: "community",
+            label: "COMMUNITY",
+            icon: "forum"
+        }
+    ]
+
     $scope.todos = [];
     for (var i = 0; i < 15; i++) {
         $scope.todos.push({

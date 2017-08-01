@@ -15,9 +15,26 @@
     limitations under the License.
 
 -->
-<md-progress-linear class="md-warn" style="z-index: 10; max-height: 0px; width: 100%;" md-mode="indeterminate" ng-disabled="!loading"
- ng-show="loading"></md-progress-linear>
+<div layout="column" class="layoutSize">
+    <div flex="8" class="toolBarSize">
+        <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+            <ng-md-icon class="menuIconSize" icon="list"></ng-md-icon>
+            <img style="margin-top: 10px;" src="./images/logo.png" alt="Easy Tech" height="40">
+            <md-nav-item ng-repeat="item in vm.navItems" md-nav-href="{{item.url}}" name="{{item.name}}">
+                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>{{item.label}}
+            </md-nav-item>
+        </md-nav-bar>
+    </div>
+    <div flex="92">
+        <div flex layout="column" id="toast-parent" style="position: relative;">
+            <md-content ng-cloak flex layout="column" class="page-content" ui-view name="content" md-is-locked-open="true"></md-content>
+        </div>
+    </div>
+</div>
+
+<!-- <md-progress-linear class="md-warn" style="z-index: 10; max-height: 0px; width: 100%;" md-mode="indeterminate" ng-disabled="!loading"
+    ng-show="loading"></md-progress-linear>
 
 <div flex layout="column" id="toast-parent" style="position: relative;">
-	<md-content ng-cloak flex layout="column" class="page-content" ui-view name="content"></md-content>
-</div>
+    <md-content ng-cloak flex layout="column" class="page-content" ui-view name="content" md-is-locked-open="true">Thong tin</md-content>
+</div> -->

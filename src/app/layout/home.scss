@@ -13,10 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- @import "~compass-sass-mixins/lib/animate";
- 
-.toolbardemoScrollShrink .face {
-  width: 48px;
-  margin: 16px;
-  border-radius: 48px;
-  border: 1px solid #ddd; }
+
+// @import "~compass-sass-mixins/lib/animate";
+// .toolbardemoScrollShrink .face {
+//   width: 48px;
+//   margin: 16px;
+//   border-radius: 48px;
+//   border: 1px solid #ddd;
+// }
+.layoutSize {
+  width: 100%;
+}
+
+.toolBarSize {
+  width: 100%;
+}
+
+.menuIconSize {
+  margin-right: 10px;
+  margin-left: 10px;
+}
