@@ -31,14 +31,14 @@
 
                 <div flex="20">
                     <div layout="row">
-                        <ng-md-icon flex="15" class="profilePhoto" icon="account_circle"></ng-md-icon>
-                        <div flex="70">
+                        <ng-md-icon flex="20" class="profilePhoto" icon="account_circle"></ng-md-icon>
+                        <div flex="60">
                             <div layout="column" class="userInfoBox">
                                 <p class="userName">Truong</p>
                                 <i class="userPosition">Tenant administrator</i>
                             </div>
                         </div>
-                        <div flex="15">
+                        <div flex="20">
                             <!-- <ng-md-icon class="userMenu" icon="more_vert"></ng-md-icon> -->
                             <md-menu>
                                 <md-button aria-label="Open menu with custom trigger" class="md-icon-button" ng-mouseenter="$mdMenu.open()">
@@ -46,7 +46,7 @@
                                 </md-button>
                                 <md-menu-content width="4" ng-mouseleave="$mdMenu.close()">
                                     <md-menu-item ng-repeat="item in vm.userMenu">
-                                        <md-button ng-click="vm.userMenulistOption(item.name, $event)">
+                                        <md-button ng-click="vm.userMenulistOption(item.name)">
                                             <ng-md-icon class="userMenuIcon" icon="{{item.icon}}"></ng-md-icon>{{item.name}}
                                         </md-button>
                                     </md-menu-item>

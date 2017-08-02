@@ -13,21 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import './home.scss';
-
 import uiRouter from 'angular-ui-router';
 
-import HomeRoutes from './home.routes';
-import HomeController from './home.controller';
+import ProfileRoutes from './profile.routes';
+import ProfileController from './profile.controller';
 
-import blockyLanding from '../landing';
-import blockyProfile from '../profile';
-
-export default angular.module('blocky.home', [
-    uiRouter,
-    blockyLanding,
-    blockyProfile
+export default angular.module('blocky.profile', [
+    uiRouter
 ])
-    .config(HomeRoutes)
-    .controller('HomeController', HomeController)
+    .config(ProfileRoutes)
+    .controller('ProfileController', ProfileController)
     .name;

@@ -21,14 +21,20 @@
 /* eslint-enable import/no-unresolved, import/default */
 
 /* eslint-disable angular/angularelement */
+import addLoginTemplate from './login.tpl.html'
+import addLogoutTemplate from './logout.tpl.html'
 
 /*@ngInject*/
-export default function HomeController($scope, $mdDialog, $log) {
+export default function HomeController($scope, $mdDialog, $log, $document, $window) {
     var imagePath = 'img/list/60.jpeg';
 
     var vm = this
+    vm.username
+    vm.password
 
     vm.userMenulistOption = userMenulistOption
+    vm.userLogin = userLogin
+    vm.userLogout = userLogout
 
     vm.domain = "http://localhost:8080"
 
@@ -69,30 +75,44 @@ export default function HomeController($scope, $mdDialog, $log) {
         icon: "login"
     }]
 
-    function userMenulistOption(params, ev) {
+    function userMenulistOption(params) {
         if (params === "Login") {
             $log.log("get in login popup")
-            $mdDialog.show({
-                targetEvent: ev,
-                template: '<md-dialog>' +
-                    '<md-dialog-actions>' +
-                    '<div layout="row">' +
-                    '<md-input-container flex>' +
-                    '<label>Username</label>' +
-                    '<input type="text" ng-model="username" required md-maxlength="20">' +
-                    '</md-input-container>' +
-                    '<md-input-container flex>' +
-                    '<label>Password</label>' +
-                    '<input type="text" ng-model="password" required md-maxlength="20">' +
-                    '</md-input-container>' +
-                    '</div>' +
-                    '<md-button ng-click="login()" class="md-primary">' +
-                    'login' +
-                    '</md-button>' +
-                    '</md-dialog-actions>' +
-                    '</md-dialog>'
-            });
+            $mdDialog
+                .show({
+                    controller: () => this,
+                    controllerAs: 'vm',
+                    templateUrl: addLoginTemplate,
+                    parent: angular.element($document[0].body),
+                    fullscreen: true
+                })
+                .then(function () {}, function () {})
         }
+        if (params === "Logout") {
+            $log.log("get in logout popup")
+            $mdDialog
+                .show({
+                    controller: () => this,
+                    controllerAs: 'vm',
+                    templateUrl: addLogoutTemplate,
+                    parent: angular.element($document[0].body),
+                    fullscreen: true
+                })
+                .then(function () {}, function () {})
+        }
+        if (params === "Profile") {
+            $window.location.href = vm.domain + "/#/profile";
+        }
+    }
+
+    function userLogin(username, password) {
+        vm.username = username
+        vm.password = password
+        $log.log(vm.username, vm.password)
+    }
+
+    function userLogout() {
+        $log.log("You logout now.")
     }
 
     $scope.todos = [];
