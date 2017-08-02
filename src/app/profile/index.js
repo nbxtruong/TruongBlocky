@@ -13,6 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import './profile.scss';
+
 import uiRouter from 'angular-ui-router';
 
 import ProfileRoutes from './profile.routes';

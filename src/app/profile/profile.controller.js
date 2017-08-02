@@ -15,4 +15,12 @@
  */
 /*@ngInject*/
 export default function ProfileController() {
+    var vm = this
+
+    vm.userLanguages = '';
+    vm.languages = ('Vietnamese English Japan').split(' ').map(function (state) {
+        return {
+            abbrev: state
+        };
+    });
 }

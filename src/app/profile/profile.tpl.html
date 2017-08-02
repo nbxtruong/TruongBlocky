@@ -15,18 +15,51 @@
     limitations under the License.
 
 -->
-<div layout="column" layout-padding ng-cloak>
-  <md-content class="md-no-momentum">
-    <md-input-container md-no-float class="md-block">
-    <label for="">Profile</label><br>
-    <label for="">nvphuc@tma.com.vn</label>
-  </md-input-container>
+<div flex layout="column" layout-padding ng-cloak>
 
-    <md-input-container class="md-icon-float md-block">
-      <!-- Use floating label instead of placeholder -->
-      <label>Name</label>
-      <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
-      <input ng-model="user.name" type="text">
-    </md-input-container>
-  </md-content>
+  <div flex class="md-whiteframe-7dp">
+    <div layout="column">
+      <md-content class="md-no-momentum">
+        <div flex="60">
+          <md-input-container class="md-icon-float md-block">
+            <!-- Use floating label instead of placeholder -->
+            <h3>Profile</h3>
+            <h5>nvphuc@tma.com.vn</h5>
+          </md-input-container>
+
+          <md-input-container class="md-icon-float md-block">
+            <!-- Use floating label instead of placeholder -->
+            <label>Name</label>
+            <input ng-model="user.name" type="text">
+          </md-input-container>
+
+          <md-input-container>
+            <label>State</label>
+            <md-select ng-model="vm.userLanguages">
+              <md-option><em>None</em></md-option>
+              <md-option ng-repeat="state in vm.languages" ng-value="state.abbrev" ng-disabled="$index === 1">
+                {{state.abbrev}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+
+        </div>
+        <div flex="40">
+          <div layout="column">
+            <div flex>
+              <md-input-container>
+                <md-button aria-label="button-label" class="md-primary">CHANGE PASSWORD</md-button>
+              </md-input-container>
+            </div>
+
+            <div flex>
+              <md-input-container>
+                <md-button aria-label="button-label">SAVE</md-button>
+              </md-input-container>
+            </div>
+          </div>
+        </div>
+      </md-content>
+    </div>
+  </div>
 </div>
