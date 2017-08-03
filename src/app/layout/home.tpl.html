@@ -21,10 +21,10 @@
             <div flex layout="row">
                 <div flex-xs="60" flex-sm="60" flex="20">
                     <div layout="row">
-                        <div flex="20">
+                        <div flex="20" hide-gt-sm>
                             <ng-md-icon class="menuIconSize" icon="list"></ng-md-icon>
                         </div>
-                        <div flex="80">
+                        <div layout-gt-sm="100" flex="80">
                             <img style="margin-top: 10px;" src="./images/logo.png" alt="Easy Tech" height="40">
                         </div>
                     </div>
@@ -41,8 +41,8 @@
                 <div flex-xs="40" flex-xs="40" flex="20">
                     <div ng-show="vm.loginStatus">
                         <div layout="row">
-                            <div flex="80"></div>
-                            <div flex="20">
+                            <div flex="70"></div>
+                            <div flex="30">
                                 <md-button class="md-icon-button" aria-label="More" ng-click="vm.userMenulistOption(vm.loginParam)">
                                     <ng-md-icon icon="login"></ng-md-icon>
                                 </md-button>
