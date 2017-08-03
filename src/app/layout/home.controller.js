@@ -31,6 +31,8 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
     var vm = this
     vm.username
     vm.password
+    vm.loginStatus = true
+    vm.loginParam = 'Login'
 
     vm.userMenulistOption = userMenulistOption
     vm.userLogin = userLogin
@@ -70,9 +72,6 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
     }, {
         name: "Logout",
         icon: "logout"
-    }, {
-        name: "Login",
-        icon: "login"
     }]
 
     function userMenulistOption(params) {
@@ -84,7 +83,12 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
                     controllerAs: 'vm',
                     templateUrl: addLoginTemplate,
                     parent: angular.element($document[0].body),
-                    fullscreen: true
+                    fullscreen: true,
+                    scope: angular.extend($scope.$new(), {
+                        close: function () {
+                            $mdDialog.cancel();
+                        }
+                    })
                 })
                 .then(function () {}, function () {})
         }
@@ -96,7 +100,12 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
                     controllerAs: 'vm',
                     templateUrl: addLogoutTemplate,
                     parent: angular.element($document[0].body),
-                    fullscreen: true
+                    fullscreen: true,
+                    scope: angular.extend($scope.$new(), {
+                        close: function () {
+                            $mdDialog.cancel();
+                        }
+                    })
                 })
                 .then(function () {}, function () {})
         }
@@ -108,11 +117,13 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
     function userLogin(username, password) {
         vm.username = username
         vm.password = password
+        vm.loginStatus = !vm.loginStatus
         $log.log(vm.username, vm.password)
     }
 
     function userLogout() {
         $log.log("You logout now.")
+        vm.loginStatus = !vm.loginStatus
     }
 
     $scope.todos = [];

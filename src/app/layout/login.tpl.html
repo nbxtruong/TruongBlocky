@@ -11,10 +11,10 @@
             </md-input-container>
             <div layout="row">
                 <div flex>
-                    <md-button ng-click="vm.userLogin(vm.username, vm.password)" class="md-primary"> login</md-button>
+                    <md-button ng-click="vm.userLogin(vm.username, vm.password); close()" class="md-primary"> login</md-button>
                 </div>
                 <div flex>
-                    <md-button ng-click="" class="md-primary"> Cancel</md-button>
+                    <md-button ng-click="close()" class="md-primary"> Cancel</md-button>
                 </div>
             </div>
         </div>
