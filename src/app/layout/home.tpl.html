@@ -15,31 +15,41 @@
     limitations under the License.
 
 -->
-<div layout="column" class="layoutSize">
-    <div flex="8" class="toolBarSize">
+<div flex layout="column">
+    <div flex="10">
         <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-            <div layout="row" class="layoutSize">
-                <div flex="80">
+            <div flex layout="row">
+                <div flex-xs="60" flex-sm="60" flex="20">
                     <div layout="row">
-                        <ng-md-icon class="menuIconSize" icon="list"></ng-md-icon>
-                        <img style="margin-top: 10px;" src="./images/logo.png" alt="Easy Tech" height="40">
+                        <div flex="20">
+                            <ng-md-icon class="menuIconSize" icon="list"></ng-md-icon>
+                        </div>
+                        <div flex="80">
+                            <img style="margin-top: 10px;" src="./images/logo.png" alt="Easy Tech" height="40">
+                        </div>
+                    </div>
+                </div>
+
+                <div flex="60" hide-xs hide-sm>
+                    <div layout="row">
                         <md-nav-item ng-repeat="item in vm.navItems" md-nav-href="{{item.url}}" name="{{item.name}}">
                             <ng-md-icon icon="{{item.icon}}"></ng-md-icon>{{item.label}}
                         </md-nav-item>
                     </div>
                 </div>
 
-                <div flex="20">
+                <div flex-xs="40" flex-xs="40" flex="20">
                     <div layout="row">
-                        <ng-md-icon flex="20" class="profilePhoto" icon="account_circle"></ng-md-icon>
-                        <div flex="60">
+                        <ng-md-icon flex-xs="60" flex-sm="60" flex="20" class="profilePhoto" icon="account_circle"></ng-md-icon>
+
+                        <div flex="60" hide-xs hide-sm>
                             <div layout="column" class="userInfoBox">
                                 <p class="userName">Truong</p>
                                 <i class="userPosition">Tenant administrator</i>
                             </div>
                         </div>
-                        <div flex="20">
-                            <!-- <ng-md-icon class="userMenu" icon="more_vert"></ng-md-icon> -->
+
+                        <div flex-xs="40" flex-xs="40" flex="20">
                             <md-menu>
                                 <md-button aria-label="Open menu with custom trigger" class="md-icon-button" ng-mouseenter="$mdMenu.open()">
                                     <ng-md-icon icon="more_vert"></ng-md-icon>
@@ -50,6 +60,7 @@
                                             <ng-md-icon class="userMenuIcon" icon="{{item.icon}}"></ng-md-icon>{{item.name}}
                                         </md-button>
                                     </md-menu-item>
+                                </md-menu-content>
                             </md-menu>
                         </div>
                     </div>
@@ -57,7 +68,7 @@
             </div>
         </md-nav-bar>
     </div>
-    <div flex="92">
+    <div flex="90">
         <div flex layout="column" id="toast-parent" style="position: relative;">
             <md-content ng-cloak flex layout="column" class="page-content" ui-view name="content" md-is-locked-open="true"></md-content>
         </div>
