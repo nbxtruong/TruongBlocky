@@ -18,38 +18,70 @@
 <div class="maxWidth" layout="column">
     <!-- For Menubar -->
     <div flex="10" layout="row">
-        <!-- three dot -->
-        <div flex-xs="10" flex-sm="10" hide-gt-sm>
-            
-        </div>
-        <!-- For Logo -->
-        <div class="logo" flex-xs="70" flex-sm="70" flex="10">
-            
-        </div>
-        <!-- For Navibar -->
-        <div class="naviBar" flex="70" hide-xs hide-sm>
-            
-        </div>
-        <!-- For Profile -->
-        <div class="logo" flex="20" layout="row">
-            <div class="userImgs" flex-xs="50" flex-sm="50" flex="20">
-                
+        <md-toolbar class="md-hue-2" layout="row">
+            <!-- three dot -->
+            <div flex-xs="10" flex-sm="10" hide-gt-sm>
+
             </div>
-            <div hide-xs hide-sm flex="60" layout="column">
-                <div class="name" flex>
-                    
+            <!-- For Logo -->
+            <div class="logo" flex-xs="70" flex-sm="70" flex="10">
+                <img src=".\images\logo.png" alt="logo">
+            </div>
+            <!-- For Navibar -->
+            <div class="naviBar" flex="70" hide-xs hide-sm layout="row">
+
+                <div flex>
+                    <ng-md-icon icon="question_answer" size="40"></ng-md-icon>
+                    <a href="http://localhost:8080/#/landing">
+                        <md-button class="md-primary">CODING LAB</md-button>
+                    </a>
                 </div>
-                <div class="position" flex>
-                    
+                <div flex>
+                    <ng-md-icon icon="question_answer" size="40"></ng-md-icon>
+                    <a href="http://localhost:8080/#/dashboard">
+                        <md-button class="md-primary">DASHBOARD</md-button>
+                    </a>
+                </div>
+                <div flex>
+                    <ng-md-icon icon="question_answer" size="40"></ng-md-icon>
+                    <a href="http://localhost:8080/#/examples">
+                        <md-button class="md-primary">EXAMPLES</md-button>
+                    </a>
+                </div>
+                <div flex>
+                    <ng-md-icon icon="question_answer" size="40"></ng-md-icon>
+                    <a href="http://localhost:8080/#/community">
+                        <md-button class="md-primary">COMMUNITY</md-button>
+                    </a>
+                </div>
+
+            </div>
+            <!-- For Profile -->
+            <div class="logo" flex="20" layout="row">
+                <!-- For Img profile -->
+                <div layout="row" layout-align="center center" class="userImgs" flex-xs="50" flex-sm="50" flex="20">
+                    <ng-md-icon icon="question_answer"></ng-md-icon>
+                </div>
+
+                <!-- For name and position -->
+                <div hide-xs hide-sm flex="60" layout="column">
+                    <div class="name" flex>
+                        <h6>Truong</h6>
+                    </div>
+                    <div class="position" flex>
+                        <h6>Admin</h6>
+                    </div>
+                </div>
+
+                <!-- For login button -->
+                <div class="login" flex-xs="50" flex-sm="50" flex="20">
+
                 </div>
             </div>
-            <div class="login" flex-xs="50" flex-sm="50" flex="20">
-                
-            </div>
-        </div>
+        </md-toolbar>
     </div>
     <!-- For Content -->
-    <div class="content" flex="90">
-
+    <div class="" flex="90">
+        <md-content ng-cloak flex layout="column" class="page-content" ui-view name="content"></md-content>
     </div>
 </div>

@@ -42,7 +42,7 @@
 }
 
 .userImgs {
-  background-color:  yellowgreen
+  background-color: yellowgreen
 }
 
 .name {
@@ -55,4 +55,18 @@
 
 .login {
   background-color: burlywood
+}
+
+/////
+span {
+  margin-left: 20px;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+.userImgs {
+  align-items: center !important;
 }
