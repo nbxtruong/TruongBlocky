@@ -21,52 +21,89 @@
 //   border-radius: 48px;
 //   border: 1px solid #ddd;
 // }
+
+// .logo {
+//   background-color: red;
+// }
+
+// .naviBar {
+//   background-color: green;
+// }
+
+// .login {
+//   background-color: orange;
+// }
+
+// .content {
+//   background-color: blue;
+// }
+
+// .userImgs {
+//   background-color: yellowgreen
+// }
+
+// .name {
+//   background-color: gray;
+// }
+
+// .position {
+//   background-color: brown
+// }
+
+// .login {
+//   background-color: burlywood
+// }
+
+////
 .maxWidth {
   width: 100%;
 }
 
-.logo {
-  background-color: red;
-}
-
-.naviBar {
-  background-color: green;
-}
-
-.login {
-  background-color: orange;
-}
-
-.content {
-  background-color: blue;
-}
-
-.userImgs {
-  background-color: yellowgreen
-}
-
-.name {
-  background-color: gray;
-}
-
-.position {
-  background-color: brown
-}
-
-.login {
-  background-color: burlywood
-}
-
-/////
-span {
-  margin-left: 20px;
-}
-
 img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
-.userImgs {
-  align-items: center !important;
+.iconNemebarSize {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+$borderRadiusCircle: 0%;
+$objectPosition: center;
+$noBorder: 0px;
+$fontOverObject: 30px;
+$colorOverObject:white;
+$backgroundColor: green;
+$boxShadow: #555;
+$boxShadowSizeHover: 0 6px 14px 0;
+$boxShadowSizeActive: 0 6px 5px 0;
+$backgroundColorHoverActive: gray;
+$borderNoColor: white;
+.button-material-ver-1 {
+  width: 70px;
+  height: 100%;
+  border-radius: $borderRadiusCircle;
+  border: $noBorder;
+  // background-color: $backgroundColor;
+  border-color: $borderNoColor;
+  // box-shadow: $boxShadowSizeHover $boxShadow;
+  font-size: $fontOverObject;
+  color: $colorOverObject;
+  text-align: $objectPosition;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    box-shadow: $boxShadowSizeHover $backgroundColorHoverActive;
+    transform: scale(1.05);
+  }
+  &:active {
+    box-shadow: $boxShadowSizeActive $backgroundColorHoverActive;
+    transform: translateY(2px);
+  }
+}
+
+i {
+  margin-top: 20px;
+  padding-right: 50px;
+  font-size: 20px;
 }

@@ -33,38 +33,17 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
     vm.password
     vm.loginStatus = true
     vm.loginParam = 'Login'
+    vm.codingLab = 'codingLab'
+    vm.dashboard = 'dashboard'
+    vm.examples = 'examples'
+    vm.community = 'community'
 
     vm.userMenulistOption = userMenulistOption
     vm.userLogin = userLogin
     vm.userLogout = userLogout
+    vm.navibarSelect = navibarSelect
 
     vm.domain = "http://localhost:8080"
-
-    vm.navItems = [{
-            url: vm.domain + "/#/landing",
-            name: "codingLab",
-            label: "CODING LAB",
-            icon: "extension"
-        },
-        {
-            url: vm.domain + "/#/dashboards",
-            name: "dashboard",
-            label: "DASHBOARD",
-            icon: "extension"
-        },
-        {
-            url: vm.domain + "/#/examples",
-            name: "examples",
-            label: "EXAMPLES",
-            icon: "flip_to_back"
-        },
-        {
-            url: vm.domain + "/#/community",
-            name: "community",
-            label: "COMMUNITY",
-            icon: "forum"
-        }
-    ]
 
     vm.userMenu = [{
         name: "Profile",
@@ -73,6 +52,21 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
         name: "Logout",
         icon: "logout"
     }]
+
+    function navibarSelect(params) {
+        if (params === "codingLab") {
+            $window.location.href = vm.domain + "/#/landing";
+        }
+        if (params === "dashBoard") {
+            $window.location.href = vm.domain + "/#/dashboard";
+        }
+        if (params === "examples") {
+            $window.location.href = vm.domain + "/#/examples";
+        }
+        if (params === "community") {
+            $window.location.href = vm.domain + "/#/community";
+        }
+    }
 
     function userMenulistOption(params) {
         if (params === "Login") {

@@ -20,66 +20,103 @@
     <div flex="10" layout="row">
         <md-toolbar class="md-hue-2" layout="row">
             <!-- three dot -->
-            <div flex-xs="10" flex-sm="10" hide-gt-sm>
+            <!-- <div flex-xs="10" flex-sm="10" hide-gt-sm></div> -->
 
-            </div>
             <!-- For Logo -->
-            <div class="logo" flex-xs="70" flex-sm="70" flex="10">
+            <div class="logo" flex="10" hide-xs hide-sm>
                 <img src=".\images\logo.png" alt="logo">
             </div>
-            <!-- For Navibar -->
-            <div class="naviBar" flex="70" hide-xs hide-sm layout="row">
 
-                <div flex>
-                    <ng-md-icon icon="question_answer" size="40"></ng-md-icon>
-                    <a href="http://localhost:8080/#/landing">
-                        <md-button class="md-primary">CODING LAB</md-button>
-                    </a>
+            <!-- For Navibar -->
+            <div class="" flex-xs="80" flex-sm="80" flex="70" layout="row">
+
+                <!-- Navibar for desktop UI -->
+                <div flex type="button" class="button-material-ver-1" layout="row" hide-xs hide-sm ng-click="vm.navibarSelect(vm.codingLab)">
+                    <!-- <img flex="30" src=".\images\logo.png" alt="logo"> -->
+                    <ng-md-icon class="iconNemebarSize" icon="code" size="60"></ng-md-icon>
+                    <i flex="70">CODING CODE</i>
                 </div>
-                <div flex>
-                    <ng-md-icon icon="question_answer" size="40"></ng-md-icon>
-                    <a href="http://localhost:8080/#/dashboard">
-                        <md-button class="md-primary">DASHBOARD</md-button>
-                    </a>
+                <div flex type="button" class="button-material-ver-1" layout="row" hide-xs hide-sm ng-click="vm.navibarSelect(vm.dashboard)">
+                    <!-- <img flex="30" src=".\images\logo.png" alt="logo"> -->
+                    <ng-md-icon class="iconNemebarSize" icon="dashboard" size="60"></ng-md-icon>
+                    <i flex="70">DASHBOARD</i>
                 </div>
-                <div flex>
-                    <ng-md-icon icon="question_answer" size="40"></ng-md-icon>
-                    <a href="http://localhost:8080/#/examples">
-                        <md-button class="md-primary">EXAMPLES</md-button>
-                    </a>
+                <div flex type="button" class="button-material-ver-1" layout="row" hide-xs hide-sm ng-click="vm.navibarSelect(vm.examples)">
+                    <!-- <img flex="30" src=".\images\logo.png" alt="logo"> -->
+                    <ng-md-icon class="iconNemebarSize" icon="description" size="60"></ng-md-icon>
+                    <i flex="70">EXAMPLES</i>
                 </div>
-                <div flex>
-                    <ng-md-icon icon="question_answer" size="40"></ng-md-icon>
-                    <a href="http://localhost:8080/#/community">
-                        <md-button class="md-primary">COMMUNITY</md-button>
-                    </a>
+                <div flex type="button" class="button-material-ver-1" layout="row" hide-xs hide-sm ng-click="vm.navibarSelect(vm.community)">
+                    <!-- <img flex="30" src=".\images\logo.png" alt="logo"> -->
+                    <ng-md-icon class="iconNemebarSize" icon="question_answer" size="60"></ng-md-icon>
+                    <i flex="70">COMMUNITY</i>
+                </div>
+
+                <!-- Navibar for mobile UI -->
+                <div flex type="button" class="button-material-ver-1" layout="row" flex-xs="25" flex-sm="25" hide-gt-sm>
+                    <!-- <img flex src=".\images\logo.png" alt="logo"> -->
+                    <ng-md-icon class="iconNemebarSize" icon="code" size="60"></ng-md-icon>
+                </div>
+                <div flex type="button" class="button-material-ver-1" layout="row" flex-xs="25" flex-sm="25" hide-gt-sm>
+                    <!-- <img flex src=".\images\logo.png" alt="logo"> -->
+                    <ng-md-icon class="iconNemebarSize" icon="dashboard" size="60"></ng-md-icon>
+                </div>
+                <div flex type="button" class="button-material-ver-1" layout="row" flex-xs="25" flex-sm="25" hide-gt-sm>
+                    <!-- <img flex src=".\images\logo.png" alt="logo"> -->
+                    <ng-md-icon class="iconNemebarSize" icon="description" size="60"></ng-md-icon>
+                </div>
+                <div flex type="button" class="button-material-ver-1" layout="row" flex-xs="25" flex-sm="25" hide-gt-sm>
+                    <!-- <img flex src=".\images\logo.png" alt="logo"> -->
+                    <ng-md-icon class="iconNemebarSize" icon="question_answer" size="60"></ng-md-icon>
                 </div>
 
             </div>
-            <!-- For Profile -->
-            <div class="logo" flex="20" layout="row">
+
+            <!-- For Profile before login -->
+            <div ng-show="vm.loginStatus" layout="row" layout-align="end center" class="logo" flex="20" layout="row">
+                <md-button class="md-icon-button" aria-label="More" ng-click="vm.userMenulistOption(vm.loginParam)">
+                    <ng-md-icon icon="login"></ng-md-icon>
+                </md-button>
+            </div>
+
+            <!-- For Profile after login -->
+            <div ng-hide="vm.loginStatus" class="logo" flex="20" layout="row">
+
                 <!-- For Img profile -->
                 <div layout="row" layout-align="center center" class="userImgs" flex-xs="50" flex-sm="50" flex="20">
-                    <ng-md-icon icon="question_answer"></ng-md-icon>
+                    <ng-md-icon icon="account_circle"></ng-md-icon>
                 </div>
 
                 <!-- For name and position -->
                 <div hide-xs hide-sm flex="60" layout="column">
-                    <div class="name" flex>
+                    <div layout="row" layout-align="start center" class="name" flex>
                         <h6>Truong</h6>
                     </div>
-                    <div class="position" flex>
+                    <div layout="row" layout-align="start center" class="position" flex>
                         <h6>Admin</h6>
                     </div>
                 </div>
 
                 <!-- For login button -->
-                <div class="login" flex-xs="50" flex-sm="50" flex="20">
-
+                <div layout="row" layout-align="center center" class="login" flex-xs="50" flex-sm="50" flex="20">
+                    <md-menu>
+                        <md-button aria-label="Open menu with custom trigger" class="md-icon-button" ng-mouseenter="$mdMenu.open()">
+                            <ng-md-icon icon="more_vert"></ng-md-icon>
+                        </md-button>
+                        <md-menu-content width="4" ng-mouseleave="$mdMenu.close()">
+                            <md-menu-item ng-repeat="item in vm.userMenu">
+                                <md-button ng-click="vm.userMenulistOption(item.name)">
+                                    <ng-md-icon class="userMenuIcon" icon="{{item.icon}}"></ng-md-icon>{{item.name}}
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
                 </div>
+
             </div>
         </md-toolbar>
     </div>
+
     <!-- For Content -->
     <div class="" flex="90">
         <md-content ng-cloak flex layout="column" class="page-content" ui-view name="content"></md-content>
