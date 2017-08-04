@@ -15,76 +15,41 @@
     limitations under the License.
 
 -->
-<div flex layout="column">
-    <div flex="10">
-        <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-            <div flex layout="row">
-                <div flex-xs="60" flex-sm="60" flex="20">
-                    <div layout="row">
-                        <div flex="20" hide-gt-sm>
-                            <ng-md-icon class="menuIconSize" icon="list"></ng-md-icon>
-                        </div>
-                        <div layout-gt-sm="100" flex="80">
-                            <img style="margin-top: 10px;" src="./images/logo.png" alt="Easy Tech" height="40">
-                        </div>
-                    </div>
+<div class="maxWidth" layout="column">
+    <!-- For Menubar -->
+    <div flex="10" layout="row">
+        <!-- three dot -->
+        <div flex-xs="10" flex-sm="10" hide-gt-sm>
+            
+        </div>
+        <!-- For Logo -->
+        <div class="logo" flex-xs="70" flex-sm="70" flex="10">
+            
+        </div>
+        <!-- For Navibar -->
+        <div class="naviBar" flex="70" hide-xs hide-sm>
+            
+        </div>
+        <!-- For Profile -->
+        <div class="logo" flex="20" layout="row">
+            <div class="userImgs" flex-xs="50" flex-sm="50" flex="20">
+                
+            </div>
+            <div hide-xs hide-sm flex="60" layout="column">
+                <div class="name" flex>
+                    
                 </div>
-
-                <div flex="60" hide-xs hide-sm>
-                    <div layout="row">
-                        <md-nav-item ng-repeat="item in vm.navItems" md-nav-href="{{item.url}}" name="{{item.name}}">
-                            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>{{item.label}}
-                        </md-nav-item>
-                    </div>
-                </div>
-
-                <div flex-xs="40" flex-sm="40" flex="20">
-                    <div ng-show="vm.loginStatus">
-                        <div layout="row">
-                            <div flex="70"></div>
-                            <div flex="30">
-                                <md-button class="md-icon-button" aria-label="More" ng-click="vm.userMenulistOption(vm.loginParam)">
-                                    <ng-md-icon icon="login"></ng-md-icon>
-                                </md-button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div ng-hide="vm.loginStatus">
-                        <div layout="row">
-                            <ng-md-icon flex-xs="60" flex-sm="60" flex="20" class="profilePhoto" icon="account_circle"></ng-md-icon>
-
-                            <div flex="60" hide-xs hide-sm>
-                                <div layout="column" class="userInfoBox">
-                                    <p class="userName">Truong</p>
-                                    <i class="userPosition">Tenant administrator</i>
-                                </div>
-                            </div>
-
-                            <div flex-xs="40" flex-xs="40" flex="20">
-                                <md-menu>
-                                    <md-button aria-label="Open menu with custom trigger" class="md-icon-button" ng-mouseenter="$mdMenu.open()">
-                                        <ng-md-icon icon="more_vert"></ng-md-icon>
-                                    </md-button>
-                                    <md-menu-content width="4" ng-mouseleave="$mdMenu.close()">
-                                        <md-menu-item ng-repeat="item in vm.userMenu">
-                                            <md-button ng-click="vm.userMenulistOption(item.name)">
-                                                <ng-md-icon class="userMenuIcon" icon="{{item.icon}}"></ng-md-icon>{{item.name}}
-                                            </md-button>
-                                        </md-menu-item>
-                                    </md-menu-content>
-                                </md-menu>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="position" flex>
+                    
                 </div>
             </div>
-        </md-nav-bar>
-    </div>
-    <div flex="90">
-        <div flex layout="column" id="toast-parent" style="position: relative;">
-            <md-content ng-cloak flex layout="column" class="page-content" ui-view name="content" md-is-locked-open="true"></md-content>
+            <div class="login" flex-xs="50" flex-sm="50" flex="20">
+                
+            </div>
         </div>
+    </div>
+    <!-- For Content -->
+    <div class="content" flex="90">
+
     </div>
 </div>

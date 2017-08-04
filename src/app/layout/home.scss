@@ -21,41 +21,38 @@
 //   border-radius: 48px;
 //   border: 1px solid #ddd;
 // }
-.menuIconSize {
-  margin: 10px;
+.maxWidth {
+  width: 100%;
 }
 
-.profilePhoto {
-  margin-top: 10px;
-  margin-bottom: 0px;
+.logo {
+  background-color: red;
 }
 
-.userName {
-  font-style: normal;
-  font-size: 0.875em;
-  margin-top: 0px;
-  margin-bottom: 0px;
+.naviBar {
+  background-color: green;
 }
 
-.userPosition {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  font-style: italic;
-  font-size: 0.875em;
+.login {
+  background-color: orange;
 }
 
-.userInfoBox {
-  width: 130px;
+.content {
+  background-color: blue;
 }
 
-.userMenu {
-  margin-top: 10px;
+.userImgs {
+  background-color:  yellowgreen
 }
 
-.userMenuIcon {
-  margin: 0px;
+.name {
+  background-color: gray;
 }
 
-// md-content {
-//   height: 98vh;
-// }
+.position {
+  background-color: brown
+}
+
+.login {
+  background-color: burlywood
+}
