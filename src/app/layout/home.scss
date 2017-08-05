@@ -21,54 +21,31 @@
 //   border-radius: 48px;
 //   border: 1px solid #ddd;
 // }
-
 // .logo {
 //   background-color: red;
 // }
-
 // .naviBar {
 //   background-color: green;
 // }
-
 // .login {
 //   background-color: orange;
 // }
-
 // .content {
 //   background-color: blue;
 // }
-
 // .userImgs {
 //   background-color: yellowgreen
 // }
-
 // .name {
 //   background-color: gray;
 // }
-
 // .position {
 //   background-color: brown
 // }
-
 // .login {
 //   background-color: burlywood
 // }
-
 ////
-.maxWidth {
-  width: 100%;
-}
-
-img {
-  width: 100%;
-  height: 100%;
-}
-
-.iconNemebarSize {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
 $borderRadiusCircle: 0%;
 $objectPosition: center;
 $noBorder: 0px;
@@ -84,10 +61,8 @@ $borderNoColor: white;
   width: 70px;
   height: 100%;
   border-radius: $borderRadiusCircle;
-  border: $noBorder;
-  // background-color: $backgroundColor;
-  border-color: $borderNoColor;
-  // box-shadow: $boxShadowSizeHover $boxShadow;
+  border: $noBorder; // background-color: $backgroundColor;
+  border-color: $borderNoColor; // box-shadow: $boxShadowSizeHover $boxShadow;
   font-size: $fontOverObject;
   color: $colorOverObject;
   text-align: $objectPosition;
@@ -103,7 +78,20 @@ $borderNoColor: white;
 }
 
 i {
-  margin-top: 20px;
-  padding-right: 50px;
   font-size: 20px;
+  color: white;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.maxWidth {
+  width: 100%;
+}
+
+.iconNemebarSize {
+  margin-top: 0px;
+  margin-left: 0px;
 }
