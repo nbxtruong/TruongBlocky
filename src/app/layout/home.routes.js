@@ -20,7 +20,7 @@ import homeTemplate from './home.tpl.html';
 /* eslint-enable import/no-unresolved, import/default */
 
 /*@ngInject*/
-export default function HomeRoutes($stateProvider) {
+export default function HomeRoutes($stateProvider, $mdThemingProvider) {
     $stateProvider
         .state('home', {
             url: '',
@@ -36,4 +36,8 @@ export default function HomeRoutes($stateProvider) {
                 pageTitle: 'home.home'
             }
         });
+
+    $mdThemingProvider.theme('default')
+        .primaryPalette('cyan')
+        .accentPalette('cyan');
 }
