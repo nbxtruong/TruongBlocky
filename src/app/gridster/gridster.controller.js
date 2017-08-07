@@ -13,25 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import './home.scss';
-
-import uiRouter from 'angular-ui-router';
-
-import HomeRoutes from './home.routes';
-import HomeController from './home.controller';
-
-import blockyLanding from '../landing';
-import blockyProfile from '../profile';
-import blockyDashboard from '../dashboard';
-import blockyGridster from '../gridster';
-
-export default angular.module('blocky.home', [
-    uiRouter,
-    blockyLanding,
-    blockyDashboard,
-    blockyProfile,
-    blockyGridster
-])
-    .config(HomeRoutes)
-    .controller('HomeController', HomeController)
-    .name;
+/*@ngInject*/
+export default function GridsterController() {
+}

@@ -32,7 +32,7 @@ import angularJwt from 'angular-jwt';
 import 'angular-drag-and-drop-lists';
 import mdDataTable from 'angular-material-data-table';
 import ngTouch from 'angular-touch';
-import 'angular-carousel'
+import 'angular-carousel';
 
 import blockyLocales from './locale/locale.constant';
 import blockyToast from './services/toast';
