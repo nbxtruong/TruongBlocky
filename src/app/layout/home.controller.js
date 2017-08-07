@@ -34,7 +34,7 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
     vm.loginStatus = true
     vm.loginParam = 'Login'
     vm.codingLab = 'codingLab'
-    vm.dashboard = 'dashboard'
+    vm.dashBoard = 'dashBoard'
     vm.examples = 'examples'
     vm.community = 'community'
 

@@ -15,22 +15,22 @@
  */
 /* eslint-disable import/no-unresolved, import/default */
 
-import profileTemplate from './profile.tpl.html';
+import dashboardTemplate from './dashboard.tpl.html';
 
 /* eslint-enable import/no-unresolved, import/default */
 
 /*@ngInject*/
-export default function ProfileRoutes($stateProvider) {
+export default function DashboardRoutes($stateProvider) {
 
     $stateProvider
-        .state('home.profile', {
-            url: '/profile',
+        .state('home.dashboard', {
+            url: '/dashboard',
             module: 'public',
             views: {
                 "content@home": {
-                    templateUrl: profileTemplate,
+                    templateUrl: dashboardTemplate,
                     controllerAs: 'vm',
-                    controller: 'ProfileController'
+                    controller: 'DashboardController'
                 }
             },
             data: {
