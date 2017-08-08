@@ -42,10 +42,11 @@ import 'typeface-roboto';
 import 'font-awesome/css/font-awesome.min.css';
 import 'angular-material/angular-material.min.css';
 import 'angular-material-icons/angular-material-icons.css';
-import 'angular-gridster/dist/angular-gridster.min.css';
 import 'angular-hotkeys/build/hotkeys.min.css';
 import 'angular-carousel/dist/angular-carousel.min.css';
 import '../scss/main.scss';
+import '../../node_modules/angular-gridster2/dist/gridster.css';
+import '../../node_modules/angular-gridster2/dist/gridster.js';
 
 import AppConfig from './app.config';
 import GlobalInterceptor from './global-interceptor.service';
@@ -66,6 +67,7 @@ angular.module('blocky', [
     blockyLocales,
     blockyToast,
     blockyHome,
+    'angular-gridster2',
     uiRouter])
     .config(AppConfig)
     .factory('globalInterceptor', GlobalInterceptor)

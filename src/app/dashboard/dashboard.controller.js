@@ -15,4 +15,69 @@
  */
 /*@ngInject*/
 export default function DashboardController() {
+    var vm = this
+
+    vm.options = {
+        gridType: 'fit',
+        // itemChangeCallback: itemChange,
+        margin: 10,
+        minCols: 10, // minimum amount of columns in the grid
+        maxCols: 10, // maximum amount of columns in the grid
+        minRows: 10, // minimum amount of rows in the grid
+        maxRows: 10, // maximum amount of rows in the grid
+        outerMargin: true,
+        draggable: {
+            enabled: true,
+            // stop: eventStop
+        },
+        resizable: {
+            enabled: true,
+            // stop: eventStop
+        }
+    };
+
+    vm.widget = [{
+        type: 'Button'
+    }, {
+        type: 'Switch'
+    }]
+
+    vm.dashboard = [{
+            type: 'Button',
+            cols: 2,
+            rows: 2,
+            y: 0,
+            x: 0
+        },
+        {
+            type: 'Switch',
+            cols: 2,
+            rows: 1,
+            y: 0,
+            x: 2
+        }
+    ];
+
+    vm.addWidget = addWidget
+
+    function addWidget(params) {
+        if (params === 'Button') {
+            vm.dashboard.push({
+                name: 'Button',
+                cols: 2,
+                rows: 2,
+                y: 0,
+                x: 0
+            });
+        }
+        if (params === 'Switch') {
+            vm.dashboard.push({
+                name: 'Switch',
+                cols: 2,
+                rows: 1,
+                y: 0,
+                x: 0
+            });
+        }
+    }
 }

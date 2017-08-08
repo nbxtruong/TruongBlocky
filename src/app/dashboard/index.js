@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 import uiRouter from 'angular-ui-router';
+import './dashboard.scss';
 
 import DashboardRoutes from './dashboard.routes';
 import DashboardController from './dashboard.controller';
