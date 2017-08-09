@@ -23,10 +23,16 @@ export default function DashboardController() {
         gridType: 'fit',
         // itemChangeCallback: itemChange,
         margin: 10,
-        minCols: 10, // minimum amount of columns in the grid
-        maxCols: 10, // maximum amount of columns in the grid
-        minRows: 10, // minimum amount of rows in the grid
-        maxRows: 10, // maximum amount of rows in the grid
+        minCols: 10,
+        maxCols: 10,
+        minRows: 10,
+        maxRows: 10,
+        maxItemCols: 50,
+        maxItemRows: 50,
+        minItemCols: 1,
+        minItemRows: 2,
+        mobileBreakpoint: 0,
+        compactType: 'compactLeft&Up',
         outerMargin: true,
         draggable: {
             enabled: true,
@@ -39,22 +45,22 @@ export default function DashboardController() {
     };
 
     vm.widget = [{
-        type: 'Button'
+        type: 'button'
     }, {
-        type: 'Switch'
+        type: 'switch'
     }]
 
     vm.dashboard = [{
-            type: 'Button',
-            cols: 2,
+            type: 'button',
+            cols: 1,
             rows: 2,
             y: 0,
             x: 0
         },
         {
-            type: 'Switch',
-            cols: 2,
-            rows: 1,
+            type: 'switch',
+            cols: 1,
+            rows: 2,
             y: 0,
             x: 2
         }
@@ -65,22 +71,22 @@ export default function DashboardController() {
     vm.removeWidget = removeWidget
 
     function addWidget(params) {
-        if (params === 'Button') {
+        if (params === 'button') {
             vm.dashboard.push({
-                name: 'Button',
+                type: 'button',
                 cols: 2,
                 rows: 2,
                 y: 0,
                 x: 0
             })
         }
-        if (params === 'Switch') {
+        if (params === 'switch') {
             vm.dashboard.push({
-                name: 'Switch',
+                type: 'switch',
                 cols: 2,
                 rows: 1,
                 y: 0,
-                x: 0
+                x: 2
             })
         }
     }
