@@ -16,6 +16,8 @@
 /*@ngInject*/
 export default function DashboardController() {
     var vm = this
+    vm.commanderStatus = false
+    vm.selectWidget
 
     vm.options = {
         gridType: 'fit',
@@ -59,6 +61,8 @@ export default function DashboardController() {
     ];
 
     vm.addWidget = addWidget
+    vm.commanderCenter = commanderCenter
+    vm.removeWidget = removeWidget
 
     function addWidget(params) {
         if (params === 'Button') {
@@ -68,7 +72,7 @@ export default function DashboardController() {
                 rows: 2,
                 y: 0,
                 x: 0
-            });
+            })
         }
         if (params === 'Switch') {
             vm.dashboard.push({
@@ -77,7 +81,18 @@ export default function DashboardController() {
                 rows: 1,
                 y: 0,
                 x: 0
-            });
+            })
         }
+    }
+
+    function commanderCenter(params) {
+        vm.commanderStatus = !vm.commanderStatus
+        vm.selectWidget = params
+    }
+
+    function removeWidget() {
+        vm.dashboard.splice(vm.selectWidget, 1);
+        vm.commanderStatus = !vm.commanderStatus
+        vm.selectWidge = null
     }
 }

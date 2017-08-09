@@ -13,7 +13,7 @@
 
     <div class="dashboard" flex="50">
         <gridster options="vm.options" dnd-list="list">
-            <gridster-item item="item" ng-repeat="item in vm.dashboard"></gridster-item>
+            <gridster-item item="item" ng-repeat="item in vm.dashboard" ng-click="vm.commanderCenter($index)"></gridster-item>
         </gridster>
     </div>
 
@@ -21,5 +21,8 @@
 
     <!-- Area for commander and trashcan -->
     <div class="commnander" flex="20">
+        <div ng-show="vm.commanderStatus">
+            <button type="button" class="btn btn-default btn-lg" ng-click="vm.removeWidget()">Delete</button>
+        </div>
     </div>
 </div>
