@@ -15,7 +15,7 @@
     <div class="dashboard" flex-xs="100" flex-sm="100" flex="50" md-swipe-right="vm.onSwipeRight()">
         <gridster options="vm.options" dnd-list="list">
             <gridster-item item="item" ng-repeat="item in vm.models.dropzones" ng-click="vm.commanderCenter($index); vm.models.selected = vm.models.dropzones[$index]">
-                <div ng-include="item.type + '.html'"></div>
+                <div ng-include="item.type + '.html'" class="gridDetails"></div>
             </gridster-item>
         </gridster>
     </div>
@@ -85,7 +85,7 @@
             <md-button class="md-raised md-primary" ng-click="vm.saveDashboard()">Primary</md-button>
         </div>
 
-        <!-- Area for template aa-->
+        <!-- Area for template-->
         <!-- Template for a normal button item -->
         <script type="text/ng-template" id="button.html">
             <div class="widgetSize">
@@ -116,11 +116,18 @@
 
         <!-- Template for Indoor CO2 -->
         <script type="text/ng-template" id="sensor.html">
-            <div class="widgetSize squareButton">
-                <h3 class="squareButtonTitle">{{item.name}}</h3>
-                <!-- <i class="material-icons md-18">{{item.icon}}</i> -->
-                <img class="sensorIcon" src="./images/co2.svg">
-                <h4 class="sensorInfo">{{item.value}}ppm</h4>
+            <div layout="column" class="sensor">
+                <div flex="20" class="sensorTitle">
+                    Indoor CO2
+                </div>
+                <div flex="80" layout="row">
+                    <div flex="60" class="sensorImage">
+                        <img class="sensorIcon" src="./images/co2.svg">
+                    </div>
+                    <div flex="40" class="sensorDetail">
+                        Details
+                    </div>
+                </div>
             </div>
         </script>
 

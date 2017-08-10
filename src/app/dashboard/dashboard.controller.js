@@ -48,36 +48,38 @@ export default function DashboardController($log) {
         type: 'button'
     }, {
         type: 'switch'
+    }, {
+        type: 'sensor'
     }]
 
     vm.modelAsJson = [{
-            name: 'Buttonfordemo',
-            type: 'button',
-            clickMessage: {
-                topic: 'openDoor',
-                message: 1
-            },
-            cols: 1,
-            rows: 2,
-            y: 0,
-            x: 0
+        name: 'Buttonfordemo',
+        type: 'button',
+        clickMessage: {
+            topic: 'openDoor',
+            message: 1
         },
-        {
-            name: 'Switchfordemo',
-            type: 'switch',
-            onMessage: {
-                topic: '',
-                message: ''
-            },
-            offMessage: {
-                topic: '',
-                message: ''
-            },
-            cols: 1,
-            rows: 2,
-            y: 0,
-            x: 0
-        }
+        cols: 1,
+        rows: 2,
+        y: 0,
+        x: 0
+    },
+    {
+        name: 'Switchfordemo',
+        type: 'switch',
+        onMessage: {
+            topic: '',
+            message: ''
+        },
+        offMessage: {
+            topic: '',
+            message: ''
+        },
+        cols: 1,
+        rows: 2,
+        y: 0,
+        x: 0
+    }
     ];
 
     vm.models = {
@@ -118,6 +120,20 @@ export default function DashboardController($log) {
                 offMessage: {
                     topic: '',
                     message: ''
+                },
+                cols: 1,
+                rows: 2,
+                y: 0,
+                x: 0
+            })
+        }
+        if (params === 'sensor') {
+            vm.models.dropzones.push({
+                name: 'Indoor CO2',
+                type: 'sensor',
+                clickMessage: {
+                    topic: 'openDoor',
+                    message: 1
                 },
                 cols: 1,
                 rows: 2,

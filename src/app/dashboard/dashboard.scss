@@ -20,3 +20,28 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
+
+.gridDetails {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.sensor {
+    width: 100%;
+    height: 100%;
+    display: block;
+    .sensorTitle {
+        background-color: aquamarine;
+        width: 100%;
+        height: 100%;
+    }
+    .sensorImage {
+        max-height: 100%;
+        max-width: 100%;
+        background-color: green;
+    }
+    .sensorDetail {
+        background-color: red;
+    }
+}

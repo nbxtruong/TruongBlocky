@@ -47,6 +47,7 @@ import 'angular-carousel/dist/angular-carousel.min.css';
 import '../scss/main.scss';
 import '../../node_modules/angular-gridster2/dist/gridster.css';
 import '../../node_modules/angular-gridster2/dist/gridster.js';
+import '../../node_modules/ng-fittext/dist/ng-FitText.min.js'
 
 import AppConfig from './app.config';
 import GlobalInterceptor from './global-interceptor.service';
@@ -68,6 +69,7 @@ angular.module('blocky', [
     blockyToast,
     blockyHome,
     'angular-gridster2',
+    'ngFitText',
     uiRouter])
     .config(AppConfig)
     .factory('globalInterceptor', GlobalInterceptor)
