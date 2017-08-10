@@ -20,17 +20,18 @@
         </gridster>
     </div>
 
-    <!-- <div md-swipe-right="vm.onSwipeRight()">
-      <h3>truongskfajfsjdlkfsdlkfjd</h3>
-    </div> -->
+    <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left">
+        <ul>
+            <li ng-repeat="item in vm.widget">
+                <button type="button" class="btn btn-default btn-lg" ng-click="vm.addWidget(item.type); vm.closeSideNav()">{{item.type}}</button>
+            </li>
+        </ul>
+    </md-sidenav>
 
     <div flex="5" hide-xs hide-sm></div>
 
     <!-- Area for commander and trashcan -->
     <div class="commnander" flex="20" hide-xs hide-sm>
-        <!-- <div ng-show="vm.commanderStatus">
-            <button type="button" class="btn btn-default btn-lg" ng-click="vm.removeWidget()">Delete</button>
-        </div> -->
         <div ng-if="vm.models.selected">
             <h4>Configuration</h4>
             <div ng-if="vm.models.selected.type=='button'">
