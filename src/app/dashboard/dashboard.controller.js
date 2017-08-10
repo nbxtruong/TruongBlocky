@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /*@ngInject*/
-export default function DashboardController() {
+export default function DashboardController($log) {
     var vm = this
     vm.commanderStatus = false
     vm.selectWidget
@@ -23,8 +23,8 @@ export default function DashboardController() {
         gridType: 'fit',
         // itemChangeCallback: itemChange,
         margin: 10,
-        minCols: 10,
-        maxCols: 10,
+        minCols: 2,
+        maxCols: 2,
         minRows: 10,
         maxRows: 10,
         maxItemCols: 50,
@@ -50,45 +50,85 @@ export default function DashboardController() {
         type: 'switch'
     }]
 
-    vm.dashboard = [{
+    vm.modelAsJson = [{
+            name: 'Buttonfordemo',
             type: 'button',
+            clickMessage: {
+                topic: 'openDoor',
+                message: 1
+            },
             cols: 1,
             rows: 2,
             y: 0,
             x: 0
         },
         {
+            name: 'Switchfordemo',
             type: 'switch',
+            onMessage: {
+                topic: '',
+                message: ''
+            },
+            offMessage: {
+                topic: '',
+                message: ''
+            },
             cols: 1,
             rows: 2,
             y: 0,
-            x: 2
+            x: 0
         }
     ];
+
+    vm.models = {
+        selected: null,
+        templates: vm.widget,
+        dropzones: vm.modelAsJson
+    }
 
     vm.addWidget = addWidget
     vm.commanderCenter = commanderCenter
     vm.removeWidget = removeWidget
+    vm.saveDashboard = saveDashboard
+    vm.onSwipeRight = onSwipeRight
 
     function addWidget(params) {
         if (params === 'button') {
-            vm.dashboard.push({
+            vm.models.dropzones.push({
+                name: 'Buttonfordemo',
                 type: 'button',
-                cols: 2,
+                clickMessage: {
+                    topic: 'openDoor',
+                    message: 1
+                },
+                cols: 1,
                 rows: 2,
                 y: 0,
                 x: 0
             })
         }
         if (params === 'switch') {
-            vm.dashboard.push({
+            vm.models.dropzones.push({
+                name: 'Switchfordemo',
                 type: 'switch',
-                cols: 2,
-                rows: 1,
+                onMessage: {
+                    topic: '',
+                    message: ''
+                },
+                offMessage: {
+                    topic: '',
+                    message: ''
+                },
+                cols: 1,
+                rows: 2,
                 y: 0,
-                x: 2
+                x: 0
             })
         }
+    }
+
+    function saveDashboard() {
+        $log.log(vm.models.dropzones)
     }
 
     function commanderCenter(params) {
@@ -100,5 +140,9 @@ export default function DashboardController() {
         vm.dashboard.splice(vm.selectWidget, 1);
         vm.commanderStatus = !vm.commanderStatus
         vm.selectWidge = null
+    }
+
+    function onSwipeRight() {
+        $log.log(vm.models.dropzones)
     }
 }

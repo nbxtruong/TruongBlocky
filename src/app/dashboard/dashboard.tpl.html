@@ -11,98 +11,155 @@
 
     <div flex="5" hide-xs hide-sm></div>
 
-    <div class="dashboard" flex-xs="100" flex-sm="100" flex="50">
+    <!-- Area for dashboard -->
+    <div class="dashboard" flex-xs="100" flex-sm="100" flex="50" md-swipe-right="vm.onSwipeRight()">
         <gridster options="vm.options" dnd-list="list">
-            <gridster-item item="item" ng-repeat="item in vm.dashboard" ng-click="vm.commanderCenter($index)">
+            <gridster-item item="item" ng-repeat="item in vm.models.dropzones" ng-click="vm.commanderCenter($index); vm.models.selected = vm.models.dropzones[$index]">
                 <div ng-include="item.type + '.html'"></div>
             </gridster-item>
         </gridster>
     </div>
 
+    <!-- <div md-swipe-right="vm.onSwipeRight()">
+      <h3>truongskfajfsjdlkfsdlkfjd</h3>
+    </div> -->
+
     <div flex="5" hide-xs hide-sm></div>
 
     <!-- Area for commander and trashcan -->
     <div class="commnander" flex="20" hide-xs hide-sm>
-        <div ng-show="vm.commanderStatus">
+        <!-- <div ng-show="vm.commanderStatus">
             <button type="button" class="btn btn-default btn-lg" ng-click="vm.removeWidget()">Delete</button>
-        </div>
-    </div>
+        </div> -->
+        <div ng-if="vm.models.selected">
+            <h4>Configuration</h4>
+            <div ng-if="vm.models.selected.type=='button'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.models.selected.name" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>When clicked, send:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.models.selected.clickMessage.topic" style="margin-bottom: 5px" />
+                <div>message:</div>
+                <input type="text" ng-model="vm.models.selected.clickMessage.message" />
+                <div><b>Icon:</b></div>
+                <select ng-model="vm.models.selected.icon">
+                    <option value="accessible">accessible</option>
+                    <option value="account_balance">account_balance</option>
+                    <option value="backup">backup</option>
+                    <option value="build">build</option>
+                </select>
+            </div>
 
-    <!-- Area for template -->
-    <!-- Template for a normal button item -->
-    <script type="text/ng-template" id="button.html">
-        <div class="widgetSize">
-            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-            <md-button id="button_{{item.id}}" class="button md-raised md-primary" ng-click="vm.widgetAction(item)">
+            <div ng-if="vm.models.selected.type=='switch'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.models.selected.name" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>When switched ON, send:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.models.selected.onMessage.topic" style="margin-bottom: 5px" />
+                <div>message:</div>
+                <input type="text" ng-model="vm.models.selected.onMessage.message" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>When switched OFF, send:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.models.selected.offMessage.topic" style="margin-bottom: 5px" />
+                <div>message:</div>
+                <input type="text" ng-model="vm.models.selected.offMessage.message" />
+            </div>
+
+            <div ng-if="vm.models.selected.type=='slider'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.models.selected.name" style="margin-bottom: 5px" />
+                <br>
+                <div>Min value:</div>
+                <input type="text" ng-model="vm.models.selected.min" style="margin-bottom: 5px" />
+                <br>
+                <div>Max value:</div>
+                <input type="text" ng-model="vm.models.selected.max" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>When value changed, send:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.models.selected.changedMessage.topic" style="margin-bottom: 5px" />
+            </div>
+            <md-button class="md-raised md-primary" ng-click="vm.saveDashboard()">Primary</md-button>
+        </div>
+
+        <!-- Area for template -->
+        <!-- Template for a normal button item -->
+        <script type="text/ng-template" id="button.html">
+            <div class="widgetSize">
+                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                <md-button id="button_{{item.id}}" class="button md-raised md-primary" ng-click="vm.widgetAction(item)">
+                    {{item.name}}
+                </md-button>
+            </div>
+        </script>
+
+        <!-- Template for a normal switch item -->
+        <script type="text/ng-template" id="switch.html">
+            <md-switch class="md-primary" ng-model="item.value" id="switch_{{item.id}}" aria-label="{{item.name}}" ng-change="vm.widgetAction(item)">
                 {{item.name}}
-            </md-button>
-        </div>
-    </script>
+            </md-switch>
+        </script>
 
-    <!-- Template for a normal switch item -->
-    <script type="text/ng-template" id="switch.html">
-        <md-switch class="md-primary" ng-model="item.value" id="switch_{{item.id}}" aria-label="{{item.name}}" ng-change="vm.widgetAction(item)">
-            {{item.name}}
-        </md-switch>
-    </script>
-
-    <!-- Template for a normal slider item -->
-    <script type="text/ng-template" id="slider.html">
-        <md-slider-container>
-            <div flex="10" layout layout-align="center center">
-                <span class="md-body-1">{{item.name}}</span>
-            </div>
-            <md-slider flex ng-model="item.value" id="slider_{{item.id}}" min="{{item.min}}" max="{{item.max}}" aria-label="blue" class="md-primary"
-                ng-click="vm.widgetAction(item)"></md-slider>
-        </md-slider-container>
-    </script>
-
-    <!-- Template for Indoor CO2 -->
-    <script type="text/ng-template" id="sensor.html">
-        <div class="widgetSize squareButton">
-            <h3 class="squareButtonTitle">{{item.name}}</h3>
-            <!-- <i class="material-icons md-18">{{item.icon}}</i> -->
-            <img class="sensorIcon" src="./images/co2.svg">
-            <h4 class="sensorInfo">{{item.value}}ppm</h4>
-        </div>
-    </script>
-
-    <!-- Template for on off device -->
-    <script type="text/ng-template" id="deviceOnOff.html">
-        <div class="widgetSize squareButton" ng-click="vm.widgetAction(item); vm.deviceOnOffAction()">
-            <h3 class="squareButtonTitle">{{item.name}}</h3>
-            <div ng-hide="vm.deviceOnOff"><img class="sensorIcon" src="./images/lightOn.svg"></div>
-            <div ng-show="vm.deviceOnOff"><img class="sensorIcon" src="./images/lightOff.svg"></div>
-            <div class="buttonOnOff">
-                <div>On</div>
-                <div class="circleOut">
-                    <div ng-hide="vm.deviceOnOff">
-                        <div class="circleIn"></div>
-                    </div>
-                    <div ng-show="vm.deviceOnOff"></div>
+        <!-- Template for a normal slider item -->
+        <script type="text/ng-template" id="slider.html">
+            <md-slider-container>
+                <div flex="10" layout layout-align="center center">
+                    <span class="md-body-1">{{item.name}}</span>
                 </div>
-                <div>Off</div>
+                <md-slider flex ng-model="item.value" id="slider_{{item.id}}" min="{{item.min}}" max="{{item.max}}" aria-label="blue" class="md-primary"
+                    ng-click="vm.widgetAction(item)"></md-slider>
+            </md-slider-container>
+        </script>
+
+        <!-- Template for Indoor CO2 -->
+        <script type="text/ng-template" id="sensor.html">
+            <div class="widgetSize squareButton">
+                <h3 class="squareButtonTitle">{{item.name}}</h3>
+                <!-- <i class="material-icons md-18">{{item.icon}}</i> -->
+                <img class="sensorIcon" src="./images/co2.svg">
+                <h4 class="sensorInfo">{{item.value}}ppm</h4>
             </div>
-        </div>
-    </script>
+        </script>
 
-    <!-- Template for switch device -->
-    <script type="text/ng-template" id="deviceSwitch.html">
-        <div class="widgetSize squareButton" ng-click="vm.widgetAction(item); vm.deviceSwitchAction()">
-            <h3 class="squareButtonTitle">{{item.name}}</h3>
-            <div ng-hide="vm.deviceSwitch"><img class="sensorIcon" src="./images/lightOn.svg"></div>
-            <div ng-show="vm.deviceSwitch"><img class="sensorIcon" src="./images/lightOff.svg"></div>
-            <div ng-hide="vm.deviceSwitch"><img class="sensorIcon" src="./images/switchOn.svg"></div>
-            <div ng-show="vm.deviceSwitch"><img class="sensorIcon" src="./images/switchOff.svg"></div>
-        </div>
-    </script>
+        <!-- Template for on off device -->
+        <script type="text/ng-template" id="deviceOnOff.html">
+            <div class="widgetSize squareButton" ng-click="vm.widgetAction(item); vm.deviceOnOffAction()">
+                <h3 class="squareButtonTitle">{{item.name}}</h3>
+                <div ng-hide="vm.deviceOnOff"><img class="sensorIcon" src="./images/lightOn.svg"></div>
+                <div ng-show="vm.deviceOnOff"><img class="sensorIcon" src="./images/lightOff.svg"></div>
+                <div class="buttonOnOff">
+                    <div>On</div>
+                    <div class="circleOut">
+                        <div ng-hide="vm.deviceOnOff">
+                            <div class="circleIn"></div>
+                        </div>
+                        <div ng-show="vm.deviceOnOff"></div>
+                    </div>
+                    <div>Off</div>
+                </div>
+            </div>
+        </script>
 
-    <!-- Template for monitoring -->
-    <script type="text/ng-template" id="motionDetect.html">
-        <div class="widgetSize squareButton">
-            <h3 class="squareButtonTitle">{{item.name}}</h3>
-            <img class="motionIcon" src="./images/walk.svg">
-            <h3 class="squareButtonTitle">{{item.value}} Minutes ago</h3>
-        </div>
-    </script>
-</div>
+        <!-- Template for switch device -->
+        <script type="text/ng-template" id="deviceSwitch.html">
+            <div class="widgetSize squareButton" ng-click="vm.widgetAction(item); vm.deviceSwitchAction()">
+                <h3 class="squareButtonTitle">{{item.name}}</h3>
+                <div ng-hide="vm.deviceSwitch"><img class="sensorIcon" src="./images/lightOn.svg"></div>
+                <div ng-show="vm.deviceSwitch"><img class="sensorIcon" src="./images/lightOff.svg"></div>
+                <div ng-hide="vm.deviceSwitch"><img class="sensorIcon" src="./images/switchOn.svg"></div>
+                <div ng-show="vm.deviceSwitch"><img class="sensorIcon" src="./images/switchOff.svg"></div>
+            </div>
+        </script>
+
+        <!-- Template for monitoring -->
+        <script type="text/ng-template" id="motionDetect.html">
+            <div class="widgetSize squareButton">
+                <h3 class="squareButtonTitle">{{item.name}}</h3>
+                <img class="motionIcon" src="./images/walk.svg">
+                <h3 class="squareButtonTitle">{{item.value}} Minutes ago</h3>
+            </div>
+        </script>
+    </div>
