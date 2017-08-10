@@ -25,6 +25,7 @@
     "angular-gridster": "^0.13.14",
     "angular-hotkeys": "^1.7.0",
     "angular-jwt": "^0.1.9",
+    "angular-long-press": "^0.3.2",
     "angular-material": "^1.1.4",
     "angular-material-data-table": "^0.10.10",
     "angular-material-icons": "^0.7.1",

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /*@ngInject*/
-export default function DashboardController($log, $mdSidenav) {
+export default function DashboardController($log, $mdSidenav, $window) {
     var vm = this
     vm.commanderStatus = false
     vm.selectWidget
@@ -90,7 +90,8 @@ export default function DashboardController($log, $mdSidenav) {
     vm.commanderCenter = commanderCenter
     vm.removeWidget = removeWidget
     vm.saveDashboard = saveDashboard
-    vm.onSwipeRight = onSwipeRight('left')
+    vm.onSwipeLeft = onSwipe('left')
+    vm.onSwipeRight = onSwipe('right')
     vm.closeSideNav = closeSideNav
 
     function addWidget(params) {
@@ -129,6 +130,9 @@ export default function DashboardController($log, $mdSidenav) {
     }
 
     function saveDashboard() {
+        // vm.options.minCols = 4;
+        // vm.options.maxCols = 4;
+        // vm.options.api.optionsChanged();
         $log.log(vm.models.dropzones)
     }
 
@@ -143,7 +147,7 @@ export default function DashboardController($log, $mdSidenav) {
         vm.selectWidge = null
     }
 
-    function onSwipeRight(navID) {
+    function onSwipe(navID) {
         return function () {
             // Component lookup should always be available since we are not using `ng-if`
             $mdSidenav(navID)
@@ -157,4 +161,8 @@ export default function DashboardController($log, $mdSidenav) {
     function closeSideNav() {
         $mdSidenav('left').close()
     }
+
+    $window.onresize = function () {
+        $log.log($window.screen.width);
+    };
 }

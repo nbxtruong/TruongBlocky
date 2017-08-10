@@ -37,6 +37,7 @@ import 'angular-carousel';
 import blockyLocales from './locale/locale.constant';
 import blockyToast from './services/toast';
 import blockyHome from './layout';
+import 'angular-long-press'
 
 import 'typeface-roboto';
 import 'font-awesome/css/font-awesome.min.css';
@@ -53,22 +54,24 @@ import GlobalInterceptor from './global-interceptor.service';
 import AppRun from './app.run';
 
 angular.module('blocky', [
-    ngMaterial,
-    ngMdIcons,
-    ngCookies,
-    'pascalprecht.translate',
-    ngSanitize,
-    ngAnimate,
-    angularJwt,
-    'dndLists',
-    mdDataTable,
-    ngTouch,
-    'angular-carousel',
-    blockyLocales,
-    blockyToast,
-    blockyHome,
-    'angular-gridster2',
-    uiRouter])
+        ngMaterial,
+        ngMdIcons,
+        ngCookies,
+        'pascalprecht.translate',
+        ngSanitize,
+        ngAnimate,
+        angularJwt,
+        'dndLists',
+        mdDataTable,
+        ngTouch,
+        'angular-carousel',
+        blockyLocales,
+        blockyToast,
+        blockyHome,
+        'angular-gridster2',
+        'pr.longpress',
+        uiRouter
+    ])
     .config(AppConfig)
     .factory('globalInterceptor', GlobalInterceptor)
     .run(AppRun);
