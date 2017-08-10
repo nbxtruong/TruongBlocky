@@ -17,7 +17,6 @@
 export default function DashboardController($log, $mdSidenav, $window) {
     var vm = this
     vm.commanderStatus = false
-    vm.selectWidget
 
     vm.options = {
         gridType: 'fit',
@@ -31,6 +30,7 @@ export default function DashboardController($log, $mdSidenav, $window) {
         maxItemRows: 50,
         minItemCols: 1,
         minItemRows: 2,
+        swap: true,
         mobileBreakpoint: 0,
         compactType: 'compactLeft&Up',
         outerMargin: true,
@@ -87,11 +87,10 @@ export default function DashboardController($log, $mdSidenav, $window) {
     }
 
     vm.addWidget = addWidget
-    vm.commanderCenter = commanderCenter
     vm.removeWidget = removeWidget
     vm.saveDashboard = saveDashboard
-    vm.onSwipeLeft = onSwipe('left')
-    vm.onSwipeRight = onSwipe('right')
+    vm.onSwipeLeft = wipeAction('left')
+    vm.onSwipeRight = wipeAction('right')
     vm.closeSideNav = closeSideNav
 
     function addWidget(params) {
@@ -136,18 +135,11 @@ export default function DashboardController($log, $mdSidenav, $window) {
         $log.log(vm.models.dropzones)
     }
 
-    function commanderCenter(params) {
-        vm.commanderStatus = !vm.commanderStatus
-        vm.selectWidget = params
-    }
-
     function removeWidget() {
-        vm.dashboard.splice(vm.selectWidget, 1);
-        vm.commanderStatus = !vm.commanderStatus
-        vm.selectWidge = null
+        vm.models.dropzones.splice(vm.models.selected, 1);
     }
 
-    function onSwipe(navID) {
+    function wipeAction(navID) {
         return function () {
             // Component lookup should always be available since we are not using `ng-if`
             $mdSidenav(navID)
@@ -160,6 +152,7 @@ export default function DashboardController($log, $mdSidenav, $window) {
 
     function closeSideNav() {
         $mdSidenav('left').close()
+        $mdSidenav('right').close()
     }
 
     $window.onresize = function () {
