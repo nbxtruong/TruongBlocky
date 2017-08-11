@@ -19,20 +19,24 @@ export default function DashboardController($log, $mdSidenav, $window) {
     vm.commanderStatus = false
 
     vm.options = {
-        gridType: 'fit',
+        gridType: 'scrollVertical',
         // itemChangeCallback: itemChange,
-        margin: 10,
-        minCols: 2,
-        maxCols: 2,
+        margin: 2,
+        minCols: 8,
+        maxCols: 8,
         minRows: 10,
-        maxRows: 10,
+        maxRows: 50,
         maxItemCols: 50,
         maxItemRows: 50,
         minItemCols: 1,
         minItemRows: 2,
         swap: true,
+        pushItems: true,
+        displayGrid: '',
         mobileBreakpoint: 0,
-        compactType: 'compactLeft&Up',
+        fixedColWidth: 0,
+        fixedRowHeight: 0,
+        // compactType: 'compactLeft&Up',
         outerMargin: true,
         draggable: {
             enabled: true,
@@ -42,7 +46,7 @@ export default function DashboardController($log, $mdSidenav, $window) {
             enabled: true,
             // stop: eventStop
         }
-    };
+    }
 
     vm.widget = [{
         type: 'button'
@@ -57,7 +61,7 @@ export default function DashboardController($log, $mdSidenav, $window) {
                 topic: 'openDoor',
                 message: 1
             },
-            cols: 1,
+            cols: 2,
             rows: 2,
             y: 0,
             x: 0
@@ -73,12 +77,12 @@ export default function DashboardController($log, $mdSidenav, $window) {
                 topic: '',
                 message: ''
             },
-            cols: 1,
+            cols: 2,
             rows: 2,
             y: 0,
             x: 0
         }
-    ];
+    ]
 
     vm.models = {
         selected: null,
@@ -102,7 +106,7 @@ export default function DashboardController($log, $mdSidenav, $window) {
                     topic: 'openDoor',
                     message: 1
                 },
-                cols: 1,
+                cols: 2,
                 rows: 2,
                 y: 0,
                 x: 0
@@ -120,7 +124,7 @@ export default function DashboardController($log, $mdSidenav, $window) {
                     topic: '',
                     message: ''
                 },
-                cols: 1,
+                cols: 2,
                 rows: 2,
                 y: 0,
                 x: 0
@@ -129,14 +133,14 @@ export default function DashboardController($log, $mdSidenav, $window) {
     }
 
     function saveDashboard() {
-        // vm.options.minCols = 4;
-        // vm.options.maxCols = 4;
-        // vm.options.api.optionsChanged();
-        $log.log(vm.models.dropzones)
+        vm.options.minCols = 4;
+        vm.options.maxCols = 4;
+        vm.options.api.optionsChanged();
+        $log.log(vm.models);
     }
 
     function removeWidget() {
-        vm.models.dropzones.splice(vm.models.selected, 1);
+        vm.models.dropzones.splice(vm.models.selected, 1)
     }
 
     function wipeAction(navID) {
@@ -145,9 +149,9 @@ export default function DashboardController($log, $mdSidenav, $window) {
             $mdSidenav(navID)
                 .toggle()
                 .then(function () {
-                    $log.debug("toggle " + navID + " is done");
-                });
-        };
+                    $log.debug("toggle " + navID + " is done")
+                })
+        }
     }
 
     function closeSideNav() {
@@ -156,6 +160,24 @@ export default function DashboardController($log, $mdSidenav, $window) {
     }
 
     $window.onresize = function () {
-        $log.log($window.screen.width);
-    };
+        // $log.log($window.innerWidth)
+        // vm.options.minCols = 4
+        // vm.options.maxCols = 4
+        // vm.options.api.optionsChanged()
+        // if ($window.innerWidt > 1280) {
+        //     vm.options.minCols = 8
+        //     vm.options.maxCols = 8
+        //     vm.options.api.optionsChanged()
+        // }
+        // if ($window.innerWidt <= 1280) {
+        //     vm.options.minCols = 4
+        //     vm.options.maxCols = 4
+        //     vm.options.api.optionsChanged()
+        // }
+        // if ($window.innerWidt <= 840) {
+        //     vm.options.minCols = 2
+        //     vm.options.maxCols = 2
+        //     vm.options.api.optionsChanged()
+        // }
+    }
 }

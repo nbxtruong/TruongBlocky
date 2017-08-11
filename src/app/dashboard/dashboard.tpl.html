@@ -13,7 +13,7 @@
     <div flex="5" hide-xs hide-sm></div>
 
     <!-- Area for dashboard -->
-    <div class="dashboard" flex="50" hide-xs hide-sm>
+    <div flex="50" hide-xs hide-sm>
         <gridster options="vm.options" dnd-list="list">
             <gridster-item item="item" ng-repeat="item in vm.models.dropzones" ng-click="vm.models.selected = vm.models.dropzones[$index]">
                 <div ng-include="item.type + '.html'"></div>
@@ -22,9 +22,9 @@
     </div>
 
     <!-- Area for dashboar mobile UI -->
-    <div class="dashboard" flex-xs="100" flex-sm="100" md-swipe-right="vm.onSwipeLeft()">
+    <div flex-xs="100" flex-sm="100" md-swipe-right="vm.onSwipeLeft()">
         <gridster options="vm.options" dnd-list="list">
-            <gridster-item item="item" ng-repeat="item in vm.models.dropzones" on-long-press="vm.onSwipeRight(); vm.models.selected = vm.models.dropzones[$index]">
+            <gridster-item item="item" ng-repeat="item in vm.models.dropzones" ng-click="vm.onSwipeRight(); vm.models.selected = vm.models.dropzones[$index]">
                 <div ng-include="item.type + '.html'"></div>
             </gridster-item>
         </gridster>
@@ -93,7 +93,7 @@
                 <div>to topic:</div>
                 <input type="text" ng-model="vm.models.selected.changedMessage.topic" style="margin-bottom: 5px" />
             </div>
-            <md-button class="md-raised md-primary" ng-click="vm.saveDashboard()">Primary</md-button>
+            <md-button class="md-raised md-primary" ng-click="vm.saveDashboard()">Save</md-button>
             <md-button class="md-raised md-primary" ng-click="vm.removeWidget(); vm.closeSideNav()">Remove</md-button>
         </div>
     </md-sidenav>
@@ -154,7 +154,7 @@
                 <div>to topic:</div>
                 <input type="text" ng-model="vm.models.selected.changedMessage.topic" style="margin-bottom: 5px" />
             </div>
-            <md-button class="md-raised md-primary" ng-click="vm.saveDashboard()">Primary</md-button>
+            <md-button class="md-raised md-primary" ng-click="vm.saveDashboard()">Save</md-button>
             <md-button class="md-raised md-primary" ng-click="vm.removeWidget()">Remove</md-button>
         </div>
 
