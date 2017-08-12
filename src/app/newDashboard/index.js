@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 import uiRouter from 'angular-ui-router';
+import './dashboard.scss';
 
-import GridsterRoutes from './gridster.routes';
-import GridsterController from './gridster.controller';
+import DashboardRoutes from './dashboard.routes';
+import DashboardController from './dashboard.controller';
 
-export default angular.module('blocky.gridster', [
+export default angular.module('blocky.dashboard', [
     uiRouter
 ])
-    .config(GridsterRoutes)
-    .controller('GridsterController', GridsterController)
+    .config(DashboardRoutes)
+    .controller('DashboardController', DashboardController)
     .name;

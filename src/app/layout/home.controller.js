@@ -58,7 +58,7 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
             $window.location.href = vm.domain + "/#/landing";
         }
         if (params === "dashBoard") {
-            $window.location.href = vm.domain + "/#/dashboard";
+            $window.location.href = vm.domain + "/#/newDashboard";
         }
         if (params === "examples") {
             $window.location.href = vm.domain + "/#/examples";
