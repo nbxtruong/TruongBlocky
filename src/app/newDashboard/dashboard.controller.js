@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /*@ngInject*/
-export default function DashboardController($log) {
+export default function DashboardController($log, $mdSidenav) {
     var vm = this
 
     vm.options = {
@@ -106,7 +106,7 @@ export default function DashboardController($log) {
         }
     ]
 
-    vm.selected
+    vm.selected = null
     vm.dashboardIndex = 0
     vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
     vm.showWidgetOption = true
@@ -117,12 +117,14 @@ export default function DashboardController($log) {
     vm.nextDashboard = nextDashboard
     vm.backDashboard = backDashboard
     vm.switchMode = switchMode
+    vm.longPressAction = longPressAction('left')
+    vm.longPressOptions = longPressAction('right')
 
-    $log.log((vm.listDashboard[vm.dashboardIndex])[0].name)
+    // $log.log((vm.listDashboard[vm.dashboardIndex])[0].name)
 
     function addWidget(type) {
         if (type === 'button') {
-            (vm.listDashboard[0])[0].templates.push({
+            (vm.listDashboard[vm.dashboardIndex])[0].templates.push({
                 name: 'buttonDemo',
                 type: 'button',
                 clickMessage: {
@@ -136,7 +138,7 @@ export default function DashboardController($log) {
             })
         }
         if (type === 'switch') {
-            (vm.listDashboard[0])[0].templates.push({
+            (vm.listDashboard[vm.dashboardIndex])[0].templates.push({
                 name: 'switchDemo',
                 type: 'switch',
                 onMessage: {
@@ -156,14 +158,16 @@ export default function DashboardController($log) {
     }
 
     function saveDashboard() {
-        $log.log(vm.selected)
+        $log.log(vm.selected = (vm.listDashboard[vm.dashboardIndex])[0])
     }
 
     function removeWidget() {
-        (vm.listDashboard[0])[0].templates.splice(vm.selected, 1)
+        var indexWidget = (vm.listDashboard[vm.dashboardIndex])[0].templates.indexOf(vm.selected);
+        (vm.listDashboard[vm.dashboardIndex])[0].templates.splice(indexWidget, 1)
     }
 
     function nextDashboard() {
+        $log.log('I wipe left')
         if (vm.dashboardIndex < Object.keys(vm.listDashboard[0]).length) {
             vm.dashboardIndex = vm.dashboardIndex + 1
             vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
@@ -171,6 +175,7 @@ export default function DashboardController($log) {
     }
 
     function backDashboard() {
+        $log.log('I wipe right')
         if (vm.dashboardIndex > 0) {
             vm.dashboardIndex = vm.dashboardIndex - 1
             vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
@@ -182,5 +187,16 @@ export default function DashboardController($log) {
         vm.options.resizable.enabled = !vm.options.resizable.enabled
         vm.showWidgetOption = !vm.showWidgetOption
         vm.options.api.optionsChanged()
+    }
+
+    function longPressAction(navID) {
+        return function () {
+            // Component lookup should always be available since we are not using `ng-if`
+            $mdSidenav(navID)
+                .toggle()
+                .then(function () {
+                    $log.debug("toggle " + navID + " is done")
+                })
+        }
     }
 }

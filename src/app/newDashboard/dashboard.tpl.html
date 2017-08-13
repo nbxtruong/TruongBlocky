@@ -11,14 +11,27 @@
         </ol>
     </div>
 
+    <!-- Area widgets for mobile UI -->
+    <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left">
+        <h4>Widget list</h4>
+        <md-divider></md-divider>
+        <ol>
+            <li ng-repeat="item in vm.widgets">
+                <button type="button" class="btn btn-default btn-lg" ng-click="vm.addWidget(item.type)">{{item.type}}</button>
+            </li>
+        </ol>
+    </md-sidenav>
+
     <!-- Area for DnD -->
-    <div flex-xs="100" flex-sm="100" flex="70" layout="column" layout-align="start center" style="padding-left: 0px; padding-right: 0px; padding-bottom: 0px; padding-top: 0px;">
+    <div flex-xs="100" flex-sm="100" flex="70" layout="column" layout-align="start center" md-swipe-left="vm.nextDashboard()"
+        md-swipe-right="vm.backDashboard()" style="padding-left: 0px; padding-right: 0px; padding-bottom: 0px; padding-top: 0px;">
         <div layout="row" layout-align="center center">
             <h4 style="margin-bottom: 0px; margin-top: 0px;">{{vm.dashboardName}}</h4>
-            <ng-md-icon icon="mode_edit" ng-click="vm.switchMode()"></ng-md-icon>
+            <ng-md-icon icon="youtube_searched_for" ng-click="vm.switchMode()"></ng-md-icon>
         </div>
-        <gridster options="vm.options">
-            <gridster-item item="item" ng-repeat="item in (vm.listDashboard[vm.dashboardIndex])[0].templates" ng-click="vm.selected = (vm.listDashboard[vm.dashboardIndex])[0].templates[$index]"></gridster-item>
+        <gridster options="vm.options" on-long-press="vm.longPressAction()" long-press-duration="3000">
+            <gridster-item item="item" ng-repeat="item in (vm.listDashboard[vm.dashboardIndex])[0].templates" ng-click="vm.selected = (vm.listDashboard[vm.dashboardIndex])[0].templates[$index]"
+                on-long-press="vm.longPressOptions()" long-press-duration="3000"></gridster-item>
         </gridster>
     </div>
 
@@ -81,4 +94,63 @@
             <md-button class="md-raised md-primary" ng-click="vm.removeWidget()">Remove</md-button>
         </div>
     </div>
+
+    <!-- Area option for mobile UI -->
+    <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="right">
+        <h4>Configuration</h4>
+        <md-divider></md-divider>
+        <div ng-if="vm.selected">
+            <div ng-if="vm.selected.type=='button'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>When clicked, send:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.selected.clickMessage.topic" style="margin-bottom: 5px" />
+                <div>message:</div>
+                <input type="text" ng-model="vm.selected.clickMessage.message" />
+                <div><b>Icon:</b></div>
+                <select ng-model="vm.selected.icon">
+                        <option value="accessible">accessible</option>
+                        <option value="account_balance">account_balance</option>
+                        <option value="backup">backup</option>
+                        <option value="build">build</option>
+                    </select>
+            </div>
+
+            <div ng-if="vm.selected.type=='switch'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>When switched ON, send:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.selected.onMessage.topic" style="margin-bottom: 5px" />
+                <div>message:</div>
+                <input type="text" ng-model="vm.selected.onMessage.message" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>When switched OFF, send:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.selected.offMessage.topic" style="margin-bottom: 5px" />
+                <div>message:</div>
+                <input type="text" ng-model="vm.selected.offMessage.message" />
+            </div>
+
+            <div ng-if="vm.selected=='slider'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
+                <br>
+                <div>Min value:</div>
+                <input type="text" ng-model="vm.selected.min" style="margin-bottom: 5px" />
+                <br>
+                <div>Max value:</div>
+                <input type="text" ng-model="vm.selected.max" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>When value changed, send:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.selected.changedMessage.topic" style="margin-bottom: 5px" />
+            </div>
+            <md-button class="md-raised md-primary" ng-click="vm.saveDashboard()">Save</md-button>
+            <md-button class="md-raised md-primary" ng-click="vm.removeWidget()">Remove</md-button>
+        </div>
+    </md-sidenav>
 </div>
