@@ -23,7 +23,18 @@
     </md-sidenav>
 
     <!-- Area for DnD -->
-    <div flex-xs="100" flex-sm="100" flex="70" layout="column" layout-align="start center" md-swipe-left="vm.nextDashboard()"
+    <div flex="70" hide-xs hide-sm layout="column" layout-align="start center" style="padding-left: 0px; padding-right: 0px; padding-bottom: 0px; padding-top: 0px;">
+        <div layout="row" layout-align="center center">
+            <h4 style="margin-bottom: 0px; margin-top: 0px;">{{vm.dashboardName}}</h4>
+            <ng-md-icon icon="youtube_searched_for" ng-click="vm.switchMode()"></ng-md-icon>
+        </div>
+        <gridster options="vm.options">
+            <gridster-item item="item" ng-repeat="item in (vm.listDashboard[vm.dashboardIndex])[0].templates" ng-click="vm.selected = (vm.listDashboard[vm.dashboardIndex])[0].templates[$index]"></gridster-item>
+        </gridster>
+    </div>
+
+    <!-- Area DnD for mobile UI -->
+    <div flex-xs="100" flex-sm="100" hide-md hide-lg layout="column" layout-align="start center" md-swipe-left="vm.nextDashboard()"
         md-swipe-right="vm.backDashboard()" style="padding-left: 0px; padding-right: 0px; padding-bottom: 0px; padding-top: 0px;">
         <div layout="row" layout-align="center center">
             <h4 style="margin-bottom: 0px; margin-top: 0px;">{{vm.dashboardName}}</h4>

@@ -158,7 +158,9 @@ export default function DashboardController($log, $mdSidenav) {
     }
 
     function saveDashboard() {
-        $log.log(vm.selected = (vm.listDashboard[vm.dashboardIndex])[0])
+        // $log.log(vm.selected = (vm.listDashboard[vm.dashboardIndex])[0])
+        var jsonData = angular.toJson(vm.selected)
+        $log.log(jsonData)
     }
 
     function removeWidget() {
@@ -167,7 +169,6 @@ export default function DashboardController($log, $mdSidenav) {
     }
 
     function nextDashboard() {
-        $log.log('I wipe left')
         if (vm.dashboardIndex < Object.keys(vm.listDashboard[0]).length) {
             vm.dashboardIndex = vm.dashboardIndex + 1
             vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
@@ -175,7 +176,6 @@ export default function DashboardController($log, $mdSidenav) {
     }
 
     function backDashboard() {
-        $log.log('I wipe right')
         if (vm.dashboardIndex > 0) {
             vm.dashboardIndex = vm.dashboardIndex - 1
             vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
@@ -189,13 +189,13 @@ export default function DashboardController($log, $mdSidenav) {
         vm.options.api.optionsChanged()
     }
 
-    function longPressAction(navID) {
+    function longPressAction(position) {
         return function () {
             // Component lookup should always be available since we are not using `ng-if`
-            $mdSidenav(navID)
+            $mdSidenav(position)
                 .toggle()
                 .then(function () {
-                    $log.debug("toggle " + navID + " is done")
+                    $log.debug("toggle " + position + " is done")
                 })
         }
     }
