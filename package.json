@@ -45,6 +45,7 @@
     "compass-sass-mixins": "^0.12.7",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
+    "ngtouch": "^1.0.1",
     "sass-material-colors": "0.0.5",
     "typeface-roboto": "0.0.29"
   },

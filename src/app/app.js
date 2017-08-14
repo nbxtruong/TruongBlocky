@@ -48,10 +48,12 @@ import 'angular-carousel/dist/angular-carousel.min.css';
 import '../scss/main.scss';
 import '../../node_modules/angular-gridster2/dist/gridster.css';
 import '../../node_modules/angular-gridster2/dist/gridster.js';
+import '../../node_modules/ngtouch/src/ngTouch.js';
 
 import AppConfig from './app.config';
 import GlobalInterceptor from './global-interceptor.service';
 import AppRun from './app.run';
+
 
 angular.module('blocky', [
         ngMaterial,
@@ -70,6 +72,7 @@ angular.module('blocky', [
         blockyHome,
         'angular-gridster2',
         'pr.longpress',
+        'ngTouch',
         uiRouter
     ])
     .config(AppConfig)

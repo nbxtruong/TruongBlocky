@@ -29,7 +29,9 @@
             <ng-md-icon icon="youtube_searched_for" ng-click="vm.switchMode()"></ng-md-icon>
         </div>
         <gridster options="vm.options">
-            <gridster-item item="item" ng-repeat="item in (vm.listDashboard[vm.dashboardIndex])[0].templates" ng-click="vm.selected = (vm.listDashboard[vm.dashboardIndex])[0].templates[$index]"></gridster-item>
+            <gridster-item item="item" ng-repeat="item in (vm.listDashboard[vm.dashboardIndex])[0].templates" ng-click="vm.selected = (vm.listDashboard[vm.dashboardIndex])[0].templates[$index]">
+                <div ng-include="item.type + '.html'"></div>
+            </gridster-item>
         </gridster>
     </div>
 
@@ -40,9 +42,11 @@
             <h4 style="margin-bottom: 0px; margin-top: 0px;">{{vm.dashboardName}}</h4>
             <ng-md-icon icon="youtube_searched_for" ng-click="vm.switchMode()"></ng-md-icon>
         </div>
-        <gridster options="vm.options" on-long-press="vm.longPressAction()" long-press-duration="3000">
-            <gridster-item item="item" ng-repeat="item in (vm.listDashboard[vm.dashboardIndex])[0].templates" ng-click="vm.selected = (vm.listDashboard[vm.dashboardIndex])[0].templates[$index]"
-                on-long-press="vm.longPressOptions()" long-press-duration="3000"></gridster-item>
+        <gridster options="vm.mobileOptions" on-long-press="vm.longPressAction()" long-press-duration="3000">
+            <gridster-item item="item" ng-repeat="item in (vm.listDashboard[vm.dashboardIndex])[0].templates" ng-touchstart="vm.selected = (vm.listDashboard[vm.dashboardIndex])[0].templates[$index]"
+                on-long-press="vm.longPressOptions()" long-press-duration="3000">
+                <div ng-include="item.type + '.html'"></div>
+            </gridster-item>
         </gridster>
     </div>
 
@@ -164,4 +168,22 @@
             <md-button class="md-raised md-primary" ng-click="vm.removeWidget()">Remove</md-button>
         </div>
     </md-sidenav>
+
+    <!-- Area for template -->
+    <!-- Template for a normal button item -->
+    <script type="text/ng-template" id="button.html">
+        <div class="widgetSize">
+            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+            <md-button id="button_{{item.id}}" class="button md-raised md-primary" ng-click="vm.widgetAction(item)">
+                {{item.name}}
+            </md-button>
+        </div>
+    </script>
+
+    <!-- Template for a normal switch item -->
+    <script type="text/ng-template" id="switch.html">
+        <md-switch class="md-primary" ng-model="item.value" id="switch_{{item.id}}" aria-label="{{item.name}}" ng-change="vm.widgetAction(item)">
+            {{item.name}}
+        </md-switch>
+    </script>
 </div>

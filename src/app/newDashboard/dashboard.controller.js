@@ -40,6 +40,29 @@ export default function DashboardController($log, $mdSidenav) {
         }
     };
 
+    vm.mobileOptions = {
+        gridType: 'scrollVertical',
+        // itemChangeCallback: itemChange,
+        margin: 2,
+        minCols: 8,
+        maxCols: 8,
+        minRows: 10,
+        maxRows: 50,
+        mobileBreakpoint: 0,
+        outerMargin: true,
+        swap: true,
+        pushItems: true,
+        // displayGrid: '',
+        draggable: {
+            enabled: true,
+            //   stop: eventStop
+        },
+        resizable: {
+            enabled: true,
+            //   stop: eventStop
+        }
+    };
+
     var dashboard0 = [{
         name: 'Phong Khach',
         templates: [{
@@ -185,8 +208,13 @@ export default function DashboardController($log, $mdSidenav) {
     function switchMode() {
         vm.options.draggable.enabled = !vm.options.draggable.enabled
         vm.options.resizable.enabled = !vm.options.resizable.enabled
-        vm.showWidgetOption = !vm.showWidgetOption
         vm.options.api.optionsChanged()
+
+        vm.mobileOptions.draggable.enabled = !vm.mobileOptions.draggable.enabled
+        vm.mobileOptions.resizable.enabled = !vm.mobileOptions.resizable.enabled
+        vm.mobileOptions.api.optionsChanged()
+
+        vm.showWidgetOption = !vm.showWidgetOption
     }
 
     function longPressAction(position) {
