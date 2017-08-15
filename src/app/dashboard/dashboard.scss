@@ -27,21 +27,91 @@
     display: block;
 }
 
-.sensor {
-    width: 100%;
+//Make by Tuan
+
+.button {
+    //align-items: center;
+    //text-align: center;
     height: 100%;
-    display: block;
-    .sensorTitle {
+    //width: 100%;
+
+    .name {
+        max-height: 30px;
+        min-height: 25px;
         background-color: aquamarine;
-        width: 100%;
+        font-size: 20px;
+        color: blue;
+    }
+
+    .image {
+        display: block;
+        min-height: 100%;
+    }
+}
+
+.display {
+    height: 100%;
+    width: 100%;
+    display: block;
+
+    .name {
+        max-height: 30px;
+        min-height: 25px;
+        background-color: aquamarine;
+        font-size: 20px;
+        color: blue;
+    }
+
+    .image {
+        display: block;
+        min-height: 100%;
+    }
+
+    .status {
         height: 100%;
+        width: 100%;
+        vertical-align: middle;
+        background-color: yellowgreen;
+        font-size: 40px;
+        color: red;
+        background-size:contain;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .statusText {
+            max-width: 100%;
+        }
     }
-    .sensorImage {
-        max-height: 100%;
-        max-width: 100%;
-        background-color: green;
+}
+
+.slider {
+    //align-items: center;
+    //text-align: center;
+    height: 100%;
+    //width: 100%;
+    vertical-align: middle;
+
+    .name {
+        max-height: 30px;
+        min-height: 25px;
+        background-color: aquamarine;
+        font-size: 20px;
+        color: blue;
     }
-    .sensorDetail {
-        background-color: red;
+
+    .image {
+        padding-left: 15px;
+        max-height: 90%;
+        max-width: 90%;
+        padding-bottom: 30%;
+        vertical-align: middle;
+        align-self: center;
     }
+}
+
+.handle-e , .handle-ne, .handle-n, .handle-nw, .handle-w, .handle-sw, .handle-s, .handle-se {
+    width: 20px !important;
 }

@@ -18,30 +18,33 @@ export default function DashboardController($log) {
     var vm = this
     vm.commanderStatus = false
     vm.selectWidget
+    //vm.eventStop = eventStop
+    vm.baseUrl = "./src/app/dashboard/images/"
 
     vm.options = {
         gridType: 'fit',
         // itemChangeCallback: itemChange,
-        margin: 10,
-        minCols: 2,
-        maxCols: 2,
+        margin: 1,
+        minCols: 8,
+        maxCols: 8,
         minRows: 10,
         maxRows: 10,
         maxItemCols: 50,
         maxItemRows: 50,
-        minItemCols: 1,
-        minItemRows: 2,
         mobileBreakpoint: 0,
-        compactType: 'compactLeft&Up',
+        //itemResizeCallback: vm.eventStop(),
+        //compactType: 'compactLeft&Up',
         outerMargin: true,
         draggable: {
             enabled: true,
-            // stop: eventStop
+            //stop: vm.eventStop(vm.selectWidget)
         },
         resizable: {
             enabled: true,
-            // stop: eventStop
-        }
+            //start: eventStart(),
+            //stop: $window.alert("Start!")
+        },
+        pushItems: true
     };
 
     vm.widget = [{
@@ -49,23 +52,29 @@ export default function DashboardController($log) {
     }, {
         type: 'switch'
     }, {
-        type: 'sensor'
+        type: 'display'
+    }, {
+        type: 'slider'
     }]
 
     vm.modelAsJson = [{
-        name: 'Buttonfordemo',
+        name: 'Air Conditioner',
         type: 'button',
         clickMessage: {
-            topic: 'openDoor',
+            topic: 'turnOn',
             message: 1
         },
-        cols: 1,
+        cols: 2,
         rows: 2,
         y: 0,
-        x: 0
+        x: 0,
+        minItemCols: 2,
+        minItemRows: 2,
+        image: 'light',
+        status: true
     },
     {
-        name: 'Switchfordemo',
+        name: 'Bedroom Light',
         type: 'switch',
         onMessage: {
             topic: '',
@@ -75,10 +84,13 @@ export default function DashboardController($log) {
             topic: '',
             message: ''
         },
-        cols: 1,
+        cols: 2,
         rows: 2,
         y: 0,
-        x: 0
+        x: 0,
+        minItemCols: 2,
+        image: "switch",
+        status: false
     }
     ];
 
@@ -103,10 +115,13 @@ export default function DashboardController($log) {
                     topic: 'openDoor',
                     message: 1
                 },
-                cols: 1,
+                cols: 2,
                 rows: 2,
                 y: 0,
-                x: 0
+                x: 0,
+                minItemCols: 2,
+                image: "light",
+                status: false
             })
         }
         if (params === 'switch') {
@@ -121,30 +136,50 @@ export default function DashboardController($log) {
                     topic: '',
                     message: ''
                 },
-                cols: 1,
+                cols: 2,
                 rows: 2,
                 y: 0,
-                x: 0
+                x: 0,
+                minItemCols: 2,
+                image: "switch",
+                status: false
             })
         }
-        if (params === 'sensor') {
+        if (params === 'display') {
             vm.models.dropzones.push({
                 name: 'Indoor CO2',
-                type: 'sensor',
-                clickMessage: {
-                    topic: 'openDoor',
-                    message: 1
-                },
-                cols: 1,
+                image: 'co2',
+                type: 'display',
+                cols: 2,
                 rows: 2,
                 y: 0,
-                x: 0
+                x: 0,
+                minItemCols: 2,
+                minItemRows: 2,
+                status: 611 + 'ppm'
+            })
+        }
+        if (params === 'slider') {
+            vm.models.dropzones.push({
+                name: 'Window Curtain',
+                image: 'co2',
+                type: 'slider',
+                cols: 2,
+                rows: 2,
+                y: 0,
+                x: 0,
+                minItemCols: 2,
+                minItemRows: 2,
+                status: 45
             })
         }
     }
 
     function saveDashboard() {
-        $log.log(vm.models.dropzones)
+        vm.options.maxCols = 10;
+        vm.options.minCols = 10;
+        vm.options.api.optionsChanged();
+        $log.log(vm.models.dropzones);
     }
 
     function commanderCenter(params) {
@@ -155,10 +190,30 @@ export default function DashboardController($log) {
     function removeWidget() {
         vm.dashboard.splice(vm.selectWidget, 1);
         vm.commanderStatus = !vm.commanderStatus
-        vm.selectWidge = null
+        vm.selectWidget = null
     }
 
     function onSwipeRight() {
         $log.log(vm.models.dropzones)
     }
+
+    //Calculate Font Size for text in widget
+    //vm.fontSize = 30;
+    // function eventStop() {
+    //     // if (vm.itemResize.emit(vm.state.item)) {
+
+    //     // }
+    //     $window.alert("TvA");
+    // }
+
+    // function eventStart() {
+    //     //$window.alert("Start!")
+    // }
+
+    vm.changeStatus = function () {
+        if (vm.models.selected.type == 'button' || vm.models.selected.type == 'switch') {
+            vm.models.selected.status = !vm.models.selected.status;
+        }
+    }
+
 }
