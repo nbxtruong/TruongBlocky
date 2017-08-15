@@ -163,6 +163,7 @@ export default function DashboardController($log, $mdSidenav) {
     vm.nextDashboard = nextDashboard
     vm.backDashboard = backDashboard
     vm.switchMode = switchMode
+    vm.closeSideNav = closeSideNav
     vm.longPressAction = longPressAction('left')
     vm.longPressOptions = longPressAction('right')
 
@@ -248,5 +249,10 @@ export default function DashboardController($log, $mdSidenav) {
                     $log.debug("toggle " + position + " is done")
                 })
         }
+    }
+
+    function closeSideNav() {
+        $mdSidenav('left').close()
+        $mdSidenav('right').close()
     }
 }
