@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /*@ngInject*/
-export default function DashboardController($log, $mdSidenav) {
+export default function DashboardController($log, $mdSidenav, $mdDialog) {
     var vm = this
 
     vm.options = {
@@ -164,6 +164,7 @@ export default function DashboardController($log, $mdSidenav) {
     vm.backDashboard = backDashboard
     vm.switchMode = switchMode
     vm.closeSideNav = closeSideNav
+    vm.createDashboard = createDashboard
     vm.longPressAction = longPressAction('left')
     vm.longPressOptions = longPressAction('right')
 
@@ -206,7 +207,7 @@ export default function DashboardController($log, $mdSidenav) {
 
     function saveDashboard() {
         // $log.log(vm.selected = (vm.listDashboard[vm.dashboardIndex])[0])
-        var jsonData = angular.toJson(vm.selected)
+        var jsonData = angular.toJson(vm.listDashboard)
         $log.log(jsonData)
     }
 
@@ -216,10 +217,14 @@ export default function DashboardController($log, $mdSidenav) {
     }
 
     function nextDashboard() {
-        if (vm.dashboardIndex < Object.keys(vm.listDashboard[0]).length) {
+        var end = vm.listDashboard.length
+        var start = vm.dashboardIndex + 1
+        if (start < end) {
             vm.dashboardIndex = vm.dashboardIndex + 1
             vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
+            $log.log(vm.dashboardIndex)
         }
+        $log.log(vm.listDashboard.length)
     }
 
     function backDashboard() {
@@ -249,6 +254,57 @@ export default function DashboardController($log, $mdSidenav) {
                     $log.debug("toggle " + position + " is done")
                 })
         }
+    }
+
+    function createDashboard(event) {
+        var confirm = $mdDialog.prompt()
+            .title('What would you name your new Dashboard?')
+            .textContent('Bowser is a common name.')
+            .placeholder('Dashboard name')
+            .ariaLabel('Dog name')
+            .initialValue('')
+            .targetEvent(event)
+            .ok('Okay!')
+            .cancel('No');
+
+        $mdDialog.show(confirm).then(function (result) {
+            vm.listDashboard.push(
+                [{
+                    name: result,
+                    templates: [{
+                        name: 'buttonDemo',
+                        type: 'button',
+                        clickMessage: {
+                            topic: 'Boom',
+                            message: '1'
+                        },
+                        cols: 1,
+                        rows: 2,
+                        y: 0,
+                        x: 0
+                    }, {
+                        name: 'switchDemo',
+                        type: 'switch',
+                        onMessage: {
+                            topic: 'mo den',
+                            message: '1'
+                        },
+                        offMessage: {
+                            topic: 'tat den',
+                            message: '0'
+                        },
+                        cols: 2,
+                        rows: 1,
+                        y: 0,
+                        x: 0
+                    }],
+                }]
+            );
+            vm.dashboardIndex = (vm.listDashboard.length) - 1
+            vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
+        }, function () {
+            vm.status = 'You didn\'t name your dashboard.';
+        });
     }
 
     function closeSideNav() {

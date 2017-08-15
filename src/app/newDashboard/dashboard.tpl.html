@@ -29,6 +29,7 @@
                     <ng-md-icon icon="undo" ng-click="vm.backDashboard()"></ng-md-icon>
                 </div>
                 <div layout="row">
+                    <ng-md-icon ng-show="vm.showWidgetOption" icon="add" ng-click="vm.createDashboard($event)"></ng-md-icon>
                     <h4 style="margin-bottom: 0px; margin-top: 0px;">{{vm.dashboardName}}</h4>
                     <ng-md-icon ng-show="vm.showWidgetOption" icon="youtube_searched_for" ng-click="vm.switchMode()"></ng-md-icon>
                     <ng-md-icon ng-hide="vm.showWidgetOption" icon="edit" ng-click="vm.switchMode()"></ng-md-icon>
@@ -48,6 +49,7 @@
     <!-- Area DnD for mobile UI -->
     <div flex-xs="100" flex-sm="100" hide-md hide-lg layout="column" layout-align="start center" style="padding-left: 0px; padding-right: 0px; padding-bottom: 0px; padding-top: 0px;">
         <div layout="row" layout-align="center center">
+            <ng-md-icon ng-show="vm.showWidgetOption" icon="add" ng-click="vm.createDashboard($event)"></ng-md-icon>
             <h4 style="margin-bottom: 0px; margin-top: 0px;">{{vm.dashboardName}}</h4>
             <ng-md-icon ng-show="vm.showWidgetOption" icon="youtube_searched_for" ng-click="vm.switchMode()"></ng-md-icon>
             <ng-md-icon ng-hide="vm.showWidgetOption" icon="edit" ng-click="vm.switchMode()"></ng-md-icon>
