@@ -165,6 +165,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     vm.switchMode = switchMode
     vm.closeSideNav = closeSideNav
     vm.createDashboard = createDashboard
+    vm.removeDashboard = removeDashboard
     vm.longPressAction = longPressAction('left')
     vm.longPressOptions = longPressAction('right')
 
@@ -305,6 +306,11 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
         }, function () {
             vm.status = 'You didn\'t name your dashboard.';
         });
+    }
+
+    function removeDashboard() {
+        vm.listDashboard.splice(vm.dashboardIndex, 1)
+        vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
     }
 
     function closeSideNav() {
