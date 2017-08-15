@@ -31,3 +31,8 @@ $allAreaBorder: groove;
     padding-right: 0px;
     padding-left: 0px;
 }
+
+.handle-e , .handle-ne, .handle-n, .handle-nw, .handle-w, .handle-sw, .handle-s, .handle-se {
+    width: 25px !important;
+    height: 25px !important;
+}
