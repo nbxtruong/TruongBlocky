@@ -34,6 +34,15 @@
                     <h4 style="margin-bottom: 0px; margin-top: 0px;">{{vm.dashboardName}}</h4>
                     <ng-md-icon ng-show="vm.showWidgetOption" icon="youtube_searched_for" ng-click="vm.switchMode()"></ng-md-icon>
                     <ng-md-icon ng-hide="vm.showWidgetOption" icon="edit" ng-click="vm.switchMode()"></ng-md-icon>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>State</label>
+                        <md-select ng-model="selectedItem" ng-change="vm.handleClick(selectedItem)">
+                            <md-option ng-repeat="state in vm.dashboard" value="{{state.abbrev}}">
+                                {{state.abbrev}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
                 </div>
                 <div>
                     <ng-md-icon icon="redo" ng-click="vm.nextDashboard()"></ng-md-icon>

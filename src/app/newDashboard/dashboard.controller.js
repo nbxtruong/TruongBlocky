@@ -25,6 +25,8 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
         maxCols: 8,
         minRows: 10,
         maxRows: 50,
+        // minItemCols: 2,
+        // minItemRows: 2,
         mobileBreakpoint: 0,
         outerMargin: true,
         swap: true,
@@ -87,7 +89,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     };
 
     var dashboard0 = [{
-        name: 'Phong Khach',
+        name: 'PhongKhach',
         templates: [{
             name: 'buttonDemo',
             type: 'button',
@@ -118,7 +120,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     }]
 
     var dashboard1 = [{
-        name: 'Phong Ngu',
+        name: 'PhongNgu',
         templates: [{
             name: 'switchDemo',
             type: 'switch',
@@ -156,6 +158,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     vm.dashboardIndex = 0
     vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
     vm.showWidgetOption = true
+    var list = ''
 
     vm.saveDashboard = saveDashboard
     vm.addWidget = addWidget
@@ -166,8 +169,40 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     vm.closeSideNav = closeSideNav
     vm.createDashboard = createDashboard
     vm.removeDashboard = removeDashboard
+    vm.selectListDashboard = selectListDashboard
+    vm.handleClick = handleClick
     vm.longPressAction = longPressAction('left')
     vm.longPressOptions = longPressAction('right')
+
+    vm.selectListDashboard()
+
+    function selectListDashboard() {
+        for (var index = 0; index < vm.listDashboard.length; index++) {
+            // $log.log((vm.listDashboard[index])[0].name)
+            list = list.concat((vm.listDashboard[index])[0].name);
+            list = list.concat(' ')
+        }
+
+        list = list.trimRight();
+
+        vm.dashboard = (list).split(' ').map(function (state) {
+            return {
+                abbrev: state
+            };
+        });
+        // $log.log(vm.dashboard)
+    }
+
+    function handleClick(value) {
+        var array = vm.dashboard
+        var attr = 'abbrev'
+        for (var i = 0; i < array.length; i += 1) {
+            if (array[i][attr] === value) {
+                vm.dashboardIndex = i;
+                vm.dashboardName = (vm.listDashboard[i])[0].name;
+            }
+        }
+    }
 
     // $log.log((vm.listDashboard[vm.dashboardIndex])[0].name)
 
@@ -223,9 +258,9 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
         if (start < end) {
             vm.dashboardIndex = vm.dashboardIndex + 1
             vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
-            $log.log(vm.dashboardIndex)
+            // $log.log(vm.dashboardIndex)
         }
-        $log.log(vm.listDashboard.length)
+        // $log.log(vm.listDashboard.length)
     }
 
     function backDashboard() {
