@@ -158,7 +158,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     vm.dashboardIndex = 0
     vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
     vm.showWidgetOption = true
-    var list = ''
+    vm.list = ''
 
     vm.saveDashboard = saveDashboard
     vm.addWidget = addWidget
@@ -177,15 +177,16 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     vm.selectListDashboard()
 
     function selectListDashboard() {
+        vm.list = '';
         for (var index = 0; index < vm.listDashboard.length; index++) {
             // $log.log((vm.listDashboard[index])[0].name)
-            list = list.concat((vm.listDashboard[index])[0].name);
-            list = list.concat(' ')
+            vm.list = vm.list.concat((vm.listDashboard[index])[0].name);
+            vm.list = vm.list.concat(' ');
         }
 
-        list = list.trimRight();
+        vm.list = vm.list.trimRight();
 
-        vm.dashboard = (list).split(' ').map(function (state) {
+        vm.dashboard = (vm.list).split(' ').map(function (state) {
             return {
                 abbrev: state
             };
@@ -338,6 +339,8 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
             );
             vm.dashboardIndex = (vm.listDashboard.length) - 1
             vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
+            vm.selectListDashboard()
+            vm.list = null
         }, function () {
             vm.status = 'You didn\'t name your dashboard.';
         });
@@ -346,6 +349,8 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     function removeDashboard() {
         vm.listDashboard.splice(vm.dashboardIndex, 1)
         vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
+        vm.selectListDashboard()
+        vm.list = null
     }
 
     function closeSideNav() {
