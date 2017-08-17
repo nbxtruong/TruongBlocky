@@ -37,7 +37,7 @@
 
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>State</label>
-                        <md-select ng-model="selectedItem" ng-change="vm.handleClick(selectedItem)">
+                        <md-select ng-model="vm.selectedItem" ng-change="vm.handleClick(vm.selectedItem)">
                             <md-option ng-repeat="state in vm.dashboard" value="{{state.abbrev}}">
                                 {{state.abbrev}}
                             </md-option>

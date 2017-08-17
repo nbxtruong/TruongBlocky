@@ -189,6 +189,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
     vm.showWidgetOption = true
     vm.list = ''
+    vm.selectedItem = (vm.listDashboard[vm.dashboardIndex])[0].name
 
     vm.saveDashboard = saveDashboard
     vm.addWidget = addWidget
@@ -281,7 +282,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
 
     function removeWidget() {
         var indexWidget = (vm.listDashboard[vm.dashboardIndex])[0].templates.indexOf(vm.selected);
-        (vm.listDashboard[vm.dashboardIndex])[0].templates.splice(indexWidget, 1)
+        (vm.listDashboard[vm.dashboardIndex])[0].templates.splice(indexWidget, 1);
     }
 
     function nextDashboard() {
@@ -372,6 +373,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
             vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
             vm.selectListDashboard()
             vm.list = null
+            vm.selectedItem = (vm.listDashboard[vm.dashboardIndex])[0].name
         }, function () {
             vm.status = 'You didn\'t name your dashboard.';
         });
@@ -379,9 +381,11 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
 
     function removeDashboard() {
         vm.listDashboard.splice(vm.dashboardIndex, 1)
-        vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
-        vm.selectListDashboard()
+        vm.dashboardName = (vm.listDashboard[vm.dashboardIndex - 1])[0].name
+        vm.dashboardIndex = vm.dashboardIndex - 1
         vm.list = null
+        vm.selectListDashboard()
+        vm.selectedItem = (vm.listDashboard[vm.dashboardIndex])[0].name
     }
 
     function closeSideNav() {

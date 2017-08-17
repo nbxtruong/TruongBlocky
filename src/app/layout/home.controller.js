@@ -27,6 +27,7 @@ import addLogoutTemplate from './logout.tpl.html'
 /*@ngInject*/
 export default function HomeController($scope, $mdDialog, $log, $document, $window, $state) {
     var vm = this
+    var imagePath = 'img/list/60.jpeg'
 
     vm.username
     vm.password
@@ -122,5 +123,15 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
     function userLogout() {
         $log.log("You logout now.")
         vm.loginStatus = !vm.loginStatus
+    }
+
+    $scope.todos = [];
+    for (var i = 0; i < 15; i++) {
+        $scope.todos.push({
+            face: imagePath,
+            what: "Brunch this weekend?",
+            who: "Min Li Chan",
+            notes: "I'll be in your neighborhood doing errands."
+        });
     }
 }
