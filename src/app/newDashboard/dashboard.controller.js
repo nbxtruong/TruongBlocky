@@ -39,6 +39,16 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
         resizable: {
             enabled: false,
             //   stop: eventStop
+            handles: {
+                s: false,
+                e: false,
+                n: false,
+                w: false,
+                se: true,
+                ne: false,
+                sw: false,
+                nw: false
+            },
         }
     };
 
@@ -62,6 +72,16 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
         resizable: {
             enabled: false,
             //   stop: eventStop
+            handles: {
+                s: false,
+                e: false,
+                n: false,
+                w: false,
+                se: true,
+                ne: false,
+                sw: false,
+                nw: false
+            },
         }
     };
 
@@ -85,6 +105,16 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
         resizable: {
             enabled: true,
             //   stop: eventStop
+            handles: {
+                s: false,
+                e: false,
+                n: false,
+                w: false,
+                se: true,
+                ne: false,
+                sw: false,
+                nw: false
+            },
         }
     };
 
@@ -296,10 +326,10 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
 
     function createDashboard(event) {
         var confirm = $mdDialog.prompt()
-            .title('What would you name your new Dashboard?')
-            .textContent('Bowser is a common name.')
+            .title('Choose new for Dashboard.')
+            // .textContent('Bowser is a common name.')
             .placeholder('Dashboard name')
-            .ariaLabel('Dog name')
+            .ariaLabel('Dashboard name')
             .initialValue('')
             .targetEvent(event)
             .ok('Okay!')
