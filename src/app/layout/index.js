@@ -23,14 +23,14 @@ import HomeController from './home.controller';
 import blockyLanding from '../landing';
 import blockyProfile from '../profile';
 import blockyDashboard from '../dashboard';
-import blockyGridster from '../gridster';
+import blockyNewDashboard from '../newDashboard';
 
 export default angular.module('blocky.home', [
     uiRouter,
     blockyLanding,
     blockyDashboard,
     blockyProfile,
-    blockyGridster
+    blockyNewDashboard
 ])
     .config(HomeRoutes)
     .controller('HomeController', HomeController)

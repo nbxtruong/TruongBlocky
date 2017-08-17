@@ -17,7 +17,7 @@ import uiRouter from 'angular-ui-router';
 import './dashboard.scss';
 
 import DashboardRoutes from './dashboard.routes';
-import DashboardController from './dashboard.controller';
+import DashboardController from './dashboard.controller.js';
 
 export default angular.module('blocky.dashboard', [
     uiRouter

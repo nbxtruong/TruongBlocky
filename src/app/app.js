@@ -37,6 +37,7 @@ import 'angular-carousel';
 import blockyLocales from './locale/locale.constant';
 import blockyToast from './services/toast';
 import blockyHome from './layout';
+import 'angular-long-press'
 
 import 'typeface-roboto';
 import 'font-awesome/css/font-awesome.min.css';
@@ -48,29 +49,34 @@ import '../scss/main.scss';
 import '../../node_modules/angular-gridster2/dist/gridster.css';
 import '../../node_modules/angular-gridster2/dist/gridster.js';
 import '../../node_modules/ng-fittext/dist/ng-FitText.min.js'
+import '../../node_modules/ngtouch/src/ngTouch.js';
 
 import AppConfig from './app.config';
 import GlobalInterceptor from './global-interceptor.service';
 import AppRun from './app.run';
 
+
 angular.module('blocky', [
-    ngMaterial,
-    ngMdIcons,
-    ngCookies,
-    'pascalprecht.translate',
-    ngSanitize,
-    ngAnimate,
-    angularJwt,
-    'dndLists',
-    mdDataTable,
-    ngTouch,
-    'angular-carousel',
-    blockyLocales,
-    blockyToast,
-    blockyHome,
-    'angular-gridster2',
-    'ngFitText',
-    uiRouter])
+        ngMaterial,
+        ngMdIcons,
+        ngCookies,
+        'pascalprecht.translate',
+        ngSanitize,
+        ngAnimate,
+        angularJwt,
+        'dndLists',
+        mdDataTable,
+        ngTouch,
+        'angular-carousel',
+        blockyLocales,
+        blockyToast,
+        blockyHome,
+        'angular-gridster2',
+        'pr.longpress',
+        'ngTouch',
+        'ngFitText',
+        uiRouter
+    ])
     .config(AppConfig)
     .factory('globalInterceptor', GlobalInterceptor)
     .run(AppRun);

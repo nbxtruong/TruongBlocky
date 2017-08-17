@@ -14,26 +14,32 @@
  * limitations under the License.
  */
 /*@ngInject*/
-export default function DashboardController($log) {
+export default function DashboardController($log, $mdSidenav, $window) {
     var vm = this
     vm.commanderStatus = false
-    vm.selectWidget
+    vm.selectWidget = null
     //vm.eventStop = eventStop
     vm.baseUrl = "./src/app/dashboard/images/"
 
     vm.options = {
-        gridType: 'fit',
+        gridType: 'scrollVertical',
         // itemChangeCallback: itemChange,
-        margin: 1,
+        margin: 2,
         minCols: 8,
         maxCols: 8,
         minRows: 10,
-        maxRows: 10,
+        maxRows: 50,
         maxItemCols: 50,
         maxItemRows: 50,
+        minItemCols: 1,
+        minItemRows: 2,
+        swap: true,
+        pushItems: true,
+        displayGrid: '',
         mobileBreakpoint: 0,
-        //itemResizeCallback: vm.eventStop(),
-        //compactType: 'compactLeft&Up',
+        fixedColWidth: 0,
+        fixedRowHeight: 0,
+        // compactType: 'compactLeft&Up',
         outerMargin: true,
         draggable: {
             enabled: true,
@@ -43,8 +49,7 @@ export default function DashboardController($log) {
             enabled: true,
             //start: eventStart(),
             //stop: $window.alert("Start!")
-        },
-        pushItems: true
+        }
     };
 
     vm.widget = [{
@@ -58,41 +63,34 @@ export default function DashboardController($log) {
     }]
 
     vm.modelAsJson = [{
-        name: 'Air Conditioner',
-        type: 'button',
-        clickMessage: {
-            topic: 'turnOn',
-            message: 1
+            name: 'Buttonfordemo',
+            type: 'button',
+            clickMessage: {
+                topic: 'openDoor',
+                message: 1
+            },
+            cols: 2,
+            rows: 2,
+            y: 0,
+            x: 0
         },
-        cols: 2,
-        rows: 2,
-        y: 0,
-        x: 0,
-        minItemCols: 2,
-        minItemRows: 2,
-        image: 'light',
-        status: true
-    },
-    {
-        name: 'Bedroom Light',
-        type: 'switch',
-        onMessage: {
-            topic: '',
-            message: ''
-        },
-        offMessage: {
-            topic: '',
-            message: ''
-        },
-        cols: 2,
-        rows: 2,
-        y: 0,
-        x: 0,
-        minItemCols: 2,
-        image: "switch",
-        status: false
-    }
-    ];
+        {
+            name: 'Switchfordemo',
+            type: 'switch',
+            onMessage: {
+                topic: '',
+                message: ''
+            },
+            offMessage: {
+                topic: '',
+                message: ''
+            },
+            cols: 2,
+            rows: 2,
+            y: 0,
+            x: 0
+        }
+    ]
 
     vm.models = {
         selected: null,
@@ -101,10 +99,11 @@ export default function DashboardController($log) {
     }
 
     vm.addWidget = addWidget
-    vm.commanderCenter = commanderCenter
     vm.removeWidget = removeWidget
     vm.saveDashboard = saveDashboard
-    vm.onSwipeRight = onSwipeRight
+    vm.onSwipeLeft = wipeAction('left')
+    vm.onSwipeRight = wipeAction('right')
+    vm.closeSideNav = closeSideNav
 
     function addWidget(params) {
         if (params === 'button') {
@@ -176,25 +175,52 @@ export default function DashboardController($log) {
     }
 
     function saveDashboard() {
-        vm.options.maxCols = 10;
-        vm.options.minCols = 10;
+        vm.options.minCols = 4;
+        vm.options.maxCols = 4;
         vm.options.api.optionsChanged();
-        $log.log(vm.models.dropzones);
-    }
-
-    function commanderCenter(params) {
-        vm.commanderStatus = !vm.commanderStatus
-        vm.selectWidget = params
+        $log.log(vm.models);
     }
 
     function removeWidget() {
-        vm.dashboard.splice(vm.selectWidget, 1);
-        vm.commanderStatus = !vm.commanderStatus
-        vm.selectWidget = null
+        vm.models.dropzones.splice(vm.models.selected, 1)
     }
 
-    function onSwipeRight() {
-        $log.log(vm.models.dropzones)
+    function wipeAction(navID) {
+        return function () {
+            // Component lookup should always be available since we are not using `ng-if`
+            $mdSidenav(navID)
+                .toggle()
+                .then(function () {
+                    $log.debug("toggle " + navID + " is done")
+                })
+        }
+    }
+
+    function closeSideNav() {
+        $mdSidenav('left').close()
+        $mdSidenav('right').close()
+    }
+
+    $window.onresize = function () {
+        // $log.log($window.innerWidth)
+        // vm.options.minCols = 4
+        // vm.options.maxCols = 4
+        // vm.options.api.optionsChanged()
+        // if ($window.innerWidt > 1280) {
+        //     vm.options.minCols = 8
+        //     vm.options.maxCols = 8
+        //     vm.options.api.optionsChanged()
+        // }
+        // if ($window.innerWidt <= 1280) {
+        //     vm.options.minCols = 4
+        //     vm.options.maxCols = 4
+        //     vm.options.api.optionsChanged()
+        // }
+        // if ($window.innerWidt <= 840) {
+        //     vm.options.minCols = 2
+        //     vm.options.maxCols = 2
+        //     vm.options.api.optionsChanged()
+        // }
     }
 
     //Calculate Font Size for text in widget

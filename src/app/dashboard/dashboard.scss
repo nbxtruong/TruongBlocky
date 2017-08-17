@@ -1,17 +1,20 @@
+$allAreaBorder: groove;
 .widget {
-    background-color: red;
+    // background-color: red;
+    border-style: $allAreaBorder;
 }
 
-.dashboard {
-    background-color: green;
-}
-
+// .dashboard {
+//     background-color: green;
+// }
 .commnander {
-    background-color: yellow;
+    // background-color: #FFFF00;
+    border-style: $allAreaBorder;
 }
 
 .swipedemoBasicUsage .demo-swipe {
-  padding: 20px 10px; }
+    padding: 20px 10px;
+}
 
 .swipedemoBasicUsage .no-select {
   -webkit-touch-callout: none;

@@ -15,22 +15,22 @@
  */
 /* eslint-disable import/no-unresolved, import/default */
 
-import gridsterTemplate from './gridster.tpl.html';
+import dashboardTemplate from './dashboard.tpl.html';
 
 /* eslint-enable import/no-unresolved, import/default */
 
 /*@ngInject*/
-export default function GridsterRoutes($stateProvider) {
+export default function DashboardRoutes($stateProvider) {
 
     $stateProvider
-        .state('home.gridster', {
-            url: '/gridster',
+        .state('home.newDashboard', {
+            url: '/newDashboard',
             module: 'public',
             views: {
                 "content@home": {
-                    templateUrl: gridsterTemplate,
+                    templateUrl: dashboardTemplate,
                     controllerAs: 'vm',
-                    controller: 'GridsterController'
+                    controller: 'DashboardController'
                 }
             },
             data: {

@@ -43,7 +43,7 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
     vm.userLogout = userLogout
     vm.navibarSelect = navibarSelect
 
-    vm.domain = "http://localhost:8080"
+    vm.domain = "http://172.16.3.108:3000"
 
     vm.userMenu = [{
         name: "Profile",
@@ -58,7 +58,7 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
             $window.location.href = vm.domain + "/#/landing";
         }
         if (params === "dashBoard") {
-            $window.location.href = vm.domain + "/#/dashboard";
+            $window.location.href = vm.domain + "/#/newDashboard";
         }
         if (params === "examples") {
             $window.location.href = vm.domain + "/#/examples";

@@ -1,0 +1,38 @@
+$allAreaBorder: groove;
+.widget {
+    // background-color: red;
+    border-style: $allAreaBorder;
+}
+
+// .dashboard {
+//     background-color: green;
+// }
+.commnander {
+    // background-color: #FFFF00;
+    border-style: $allAreaBorder;
+}
+
+.swipedemoBasicUsage .demo-swipe {
+    padding: 20px 10px;
+}
+
+.swipedemoBasicUsage .no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.noPading {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.handle-e , .handle-ne, .handle-n, .handle-nw, .handle-w, .handle-sw, .handle-s, .handle-se {
+    width: 25px !important;
+    height: 25px !important;
+}
