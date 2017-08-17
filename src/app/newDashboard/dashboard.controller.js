@@ -97,7 +97,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
                 topic: 'Boom',
                 message: '1'
             },
-            cols: 1,
+            cols: 2,
             rows: 2,
             y: 0,
             x: 0
@@ -113,7 +113,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
                 message: '0'
             },
             cols: 2,
-            rows: 1,
+            rows: 2,
             y: 0,
             x: 0
         }],
@@ -133,7 +133,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
                 message: '0'
             },
             cols: 2,
-            rows: 1,
+            rows: 2,
             y: 0,
             x: 0
         }],
@@ -174,6 +174,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     vm.longPressAction = longPressAction('left')
     vm.longPressOptions = longPressAction('right')
 
+    //Update selected-box for everytimes
     vm.selectListDashboard()
 
     function selectListDashboard() {
@@ -216,7 +217,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
                     topic: 'Boom',
                     message: '1'
                 },
-                cols: 1,
+                cols: 2,
                 rows: 2,
                 y: 0,
                 x: 0
@@ -235,7 +236,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
                     message: '0'
                 },
                 cols: 2,
-                rows: 1,
+                rows: 2,
                 y: 0,
                 x: 0
             })
