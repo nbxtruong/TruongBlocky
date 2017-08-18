@@ -1,9 +1,13 @@
-<md-subheader>
+<md-subheader id="subheader">
     <div layout="row" layout-align="space-between center">
-        <div>
-            Dashboard Name
+        <div flex="30">
+            <md-select ng-model="">
+                <label>Dashboard name</label>
+                <md-option value="">Dashboard 1</md-option>
+                <md-option value="">Dashboard 2</md-option>
+            </md-select>
         </div>
-        <div layout="row">
+        <div flex="30" layout="row">
             <div flex>
                 <ng-md-icon ng-show="vm.showWidgetOption" icon="youtube_searched_for" ng-click="vm.switchMode()"></ng-md-icon>
                 <ng-md-icon ng-hide="vm.showWidgetOption" icon="edit" ng-click="vm.switchMode()"></ng-md-icon>
