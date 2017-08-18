@@ -52,7 +52,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
         }
     };
 
-    vm.mobileViewOptions = {
+    vm.mobileOptions = {
         gridType: 'scrollVertical',
         // itemChangeCallback: itemChange,
         margin: 2,
@@ -71,39 +71,6 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
         },
         resizable: {
             enabled: false,
-            //   stop: eventStop
-            handles: {
-                s: false,
-                e: false,
-                n: false,
-                w: false,
-                se: true,
-                ne: false,
-                sw: false,
-                nw: false
-            },
-        }
-    };
-
-    vm.mobileEditOptions = {
-        gridType: 'scrollVertical',
-        // itemChangeCallback: itemChange,
-        margin: 2,
-        minCols: 8,
-        maxCols: 8,
-        minRows: 10,
-        maxRows: 50,
-        mobileBreakpoint: 0,
-        outerMargin: true,
-        swap: true,
-        pushItems: true,
-        // displayGrid: '',
-        draggable: {
-            enabled: true,
-            //   stop: eventStop
-        },
-        resizable: {
-            enabled: true,
             //   stop: eventStop
             handles: {
                 s: false,
@@ -202,8 +169,8 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     vm.removeDashboard = removeDashboard
     vm.selectListDashboard = selectListDashboard
     vm.handleClick = handleClick
-    vm.longPressAction = longPressAction('left')
-    vm.longPressOptions = longPressAction('right')
+    vm.navBarLeft = navBarPosition('left')
+    vm.navBarRight = navBarPosition('right')
 
     //Update selected-box for everytimes
     vm.selectListDashboard()
@@ -288,7 +255,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     function nextDashboard() {
         var end = vm.listDashboard.length
         var start = vm.dashboardIndex + 1
-        if (start < end) {
+        if ((start < end) && (vm.showWidgetOption === true)) {
             vm.dashboardIndex = vm.dashboardIndex + 1
             vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
             // $log.log(vm.dashboardIndex)
@@ -297,24 +264,37 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     }
 
     function backDashboard() {
-        if (vm.dashboardIndex > 0) {
+        if ((vm.dashboardIndex > 0) && (vm.showWidgetOption === true)) {
             vm.dashboardIndex = vm.dashboardIndex - 1
             vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
         }
     }
 
     function switchMode() {
-        vm.options.draggable.enabled = !vm.options.draggable.enabled
-        vm.options.resizable.enabled = !vm.options.resizable.enabled
-
-        vm.options.api.optionsChanged()
-        vm.mobileViewOptions.api.optionsChanged()
-        vm.mobileEditOptions.api.optionsChanged()
-
         vm.showWidgetOption = !vm.showWidgetOption
+
+        if (vm.showWidgetOption === false) {
+            vm.mobileOptions.draggable.enabled = !vm.mobileOptions.draggable.enabled
+            vm.mobileOptions.resizable.enabled = !vm.mobileOptions.resizable.enabled
+            vm.mobileOptions.api.optionsChanged()
+
+            vm.options.draggable.enabled = !vm.options.draggable.enabled
+            vm.options.resizable.enabled = !vm.options.resizable.enabled
+            vm.options.api.optionsChanged()
+        }
+        if (vm.showWidgetOption === true) {
+            vm.mobileOptions.draggable.enabled = !vm.mobileOptions.draggable.enabled
+            vm.mobileOptions.resizable.enabled = !vm.mobileOptions.resizable.enabled
+            vm.mobileOptions.api.optionsChanged()
+
+            vm.options.draggable.enabled = !vm.options.draggable.enabled
+            vm.options.resizable.enabled = !vm.options.resizable.enabled
+            vm.options.api.optionsChanged()
+        }
     }
 
-    function longPressAction(position) {
+    function navBarPosition(position) {
+        $log.log(vm.showWidgetOption)
         return function () {
             // Component lookup should always be available since we are not using `ng-if`
             $mdSidenav(position)

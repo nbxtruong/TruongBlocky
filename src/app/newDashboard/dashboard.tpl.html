@@ -59,6 +59,7 @@
     <!-- Area DnD for mobile UI -->
     <div flex-xs="100" flex-sm="100" hide-md hide-lg layout="column" layout-align="start center" style="padding-left: 0px; padding-right: 0px; padding-bottom: 0px; padding-top: 0px;">
         <div layout="row" layout-align="center center">
+            <ng-md-icon ng-show="vm.showWidgetOption" icon="toc" ng-click="vm.navBarLeft()"></ng-md-icon>
             <ng-md-icon ng-show="vm.showWidgetOption" icon="remove" ng-click="vm.removeDashboard()"></ng-md-icon>
             <ng-md-icon ng-show="vm.showWidgetOption" icon="add" ng-click="vm.createDashboard($event)"></ng-md-icon>
             <h4 style="margin-bottom: 0px; margin-top: 0px;">{{vm.dashboardName}}</h4>
@@ -66,15 +67,9 @@
             <ng-md-icon ng-hide="vm.showWidgetOption" icon="edit" ng-click="vm.switchMode()"></ng-md-icon>
         </div>
 
-        <gridster ng-show="vm.showWidgetOption" options="vm.mobileViewOptions" md-swipe-left="vm.nextDashboard()" md-swipe-right="vm.backDashboard()">
-            <gridster-item item="item" ng-repeat="item in (vm.listDashboard[vm.dashboardIndex])[0].templates" ng-touchstart="vm.selected = (vm.listDashboard[vm.dashboardIndex])[0].templates[$index]">
-                <div ng-include="item.type + '.html'"></div>
-            </gridster-item>
-        </gridster>
-
-        <gridster ng-hide="vm.showWidgetOption" options="vm.mobileEditOptions" on-long-press="vm.longPressAction()" long-press-duration="3000">
+        <gridster options="vm.mobileOptions" md-swipe-left="vm.nextDashboard()" md-swipe-right="vm.backDashboard()">
             <gridster-item item="item" ng-repeat="item in (vm.listDashboard[vm.dashboardIndex])[0].templates" ng-touchstart="vm.selected = (vm.listDashboard[vm.dashboardIndex])[0].templates[$index]"
-                on-long-press="vm.longPressOptions()" long-press-duration="3000">
+                on-long-press="vm.navBarRight()" long-press-duration="2000">
                 <div ng-include="item.type + '.html'"></div>
             </gridster-item>
         </gridster>
@@ -141,7 +136,7 @@
     </div>
 
     <!-- Area option for mobile UI -->
-    <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="right">
+    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
         <h4>Configuration</h4>
         <md-divider></md-divider>
         <div ng-if="vm.selected">
