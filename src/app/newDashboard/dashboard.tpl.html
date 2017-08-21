@@ -97,6 +97,7 @@
                     <option value="backup">backup</option>
                     <option value="build">build</option>
                 </select>
+                <input colorpicker type="text" ng-model="vm.colorCode" />
             </div>
 
             <div ng-if="vm.selected.type=='switch'">
@@ -197,7 +198,7 @@
     <!-- Area for template -->
     <!-- Template for a normal button item -->
     <script type="text/ng-template" id="button.html">
-        <div class="widgetSize">
+        <div class="widgetSize" style="background-color: {{vm.colorCode}};">
             <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
             <md-button id="button_{{item.id}}" class="button md-raised md-primary" ng-click="vm.widgetAction(item)">
                 {{item.name}}

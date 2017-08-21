@@ -153,10 +153,11 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
 
     vm.selected = null
     vm.dashboardIndex = 0
-    vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
     vm.showWidgetOption = true
     vm.list = ''
+    vm.colorCode
     vm.selectedItem = (vm.listDashboard[vm.dashboardIndex])[0].name
+    vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
 
     vm.saveDashboard = saveDashboard
     vm.addWidget = addWidget
@@ -243,8 +244,8 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
 
     function saveDashboard() {
         // $log.log(vm.selected = (vm.listDashboard[vm.dashboardIndex])[0])
-        var jsonData = angular.toJson(vm.listDashboard)
-        $log.log(jsonData)
+        // var jsonData = angular.toJson(vm.listDashboard)
+        $log.log(vm.colorCode)
     }
 
     function removeWidget() {

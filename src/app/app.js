@@ -50,6 +50,9 @@ import '../../node_modules/angular-gridster2/dist/gridster.css';
 import '../../node_modules/angular-gridster2/dist/gridster.js';
 import '../../node_modules/ngtouch/src/ngTouch.js';
 
+import 'angular-bootstrap-colorpicker/css/colorpicker.css';
+import 'angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js';
+
 import AppConfig from './app.config';
 import GlobalInterceptor from './global-interceptor.service';
 import AppRun from './app.run';
@@ -73,6 +76,7 @@ angular.module('blocky', [
         'angular-gridster2',
         'pr.longpress',
         'ngTouch',
+        'colorpicker.module',
         uiRouter
     ])
     .config(AppConfig)
