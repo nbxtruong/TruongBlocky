@@ -156,6 +156,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     vm.showWidgetOption = true
     vm.list = ''
     vm.colorCode
+    vm.valuegauge = 50
     vm.selectedItem = (vm.listDashboard[vm.dashboardIndex])[0].name
     vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
 

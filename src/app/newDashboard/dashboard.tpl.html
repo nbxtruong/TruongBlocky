@@ -203,6 +203,7 @@
             <md-button id="button_{{item.id}}" class="button md-raised md-primary" ng-click="vm.widgetAction(item)">
                 {{item.name}}
             </md-button>
+            <ng-gauge size="200" type="arch" thick="5" min="0" max="120" value="vm.valuegauge" cap="round" label="Power"  foreground-color="#ffcc66" background-color="rgba(255,255,255, 0.4)" append="%"></ng-gauge>
         </div>
     </script>
 

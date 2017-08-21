@@ -52,6 +52,7 @@ import '../../node_modules/ngtouch/src/ngTouch.js';
 
 import 'angular-bootstrap-colorpicker/css/colorpicker.css';
 import 'angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js';
+import 'angularjs-gauge/dist/angularjs-gauge.min.js';
 
 import AppConfig from './app.config';
 import GlobalInterceptor from './global-interceptor.service';
@@ -77,6 +78,7 @@ angular.module('blocky', [
         'pr.longpress',
         'ngTouch',
         'colorpicker.module',
+        'angularjs-gauge',
         uiRouter
     ])
     .config(AppConfig)
