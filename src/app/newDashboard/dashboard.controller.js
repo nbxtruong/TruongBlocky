@@ -334,7 +334,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     }
 
     function navBarPosition(position) {
-        $log.log(vm.showWidgetOption)
+        // $log.log(vm.showWidgetOption)
         return function () {
             // Component lookup should always be available since we are not using `ng-if`
             $mdSidenav(position)
