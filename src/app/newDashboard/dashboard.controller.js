@@ -90,6 +90,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
         templates: [{
             name: 'buttonDemo',
             type: 'button',
+            backgroundColor: '#6b553b',
             clickMessage: {
                 topic: 'Boom',
                 message: '1'
@@ -101,6 +102,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
         }, {
             name: 'switchDemo',
             type: 'switch',
+            backgroundColor: '#bf65bc',
             onMessage: {
                 topic: 'mo den',
                 message: '1'
@@ -109,6 +111,18 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
                 topic: 'tat den',
                 message: '0'
             },
+            cols: 2,
+            rows: 2,
+            y: 0,
+            x: 0
+        }, {
+            name: 'gaugeDemo',
+            type: 'gauge',
+            backgroundColor: '#bf65bc',
+            value: '75',
+            label: 'power',
+            append: '%',
+            topic: 'powerAllHouse',
             cols: 2,
             rows: 2,
             y: 0,
@@ -148,6 +162,10 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
         {
             name: 'switchDemo',
             type: 'switch'
+        },
+        {
+            name: 'gaugeDemo',
+            type: 'guage'
         }
     ]
 
@@ -155,7 +173,6 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     vm.dashboardIndex = 0
     vm.showWidgetOption = true
     vm.list = ''
-    vm.colorCode
     vm.valuegauge = 50
     vm.selectedItem = (vm.listDashboard[vm.dashboardIndex])[0].name
     vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
@@ -241,12 +258,27 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
                 x: 0
             })
         }
+        if (type === 'guage') {
+            (vm.listDashboard[vm.dashboardIndex])[0].templates.push({
+                name: 'gaugeDemo',
+                type: 'gauge',
+                backgroundColor: '#bf65bc',
+                value: '75',
+                label: 'power',
+                append: '%',
+                topic: 'powerAllHouse',
+                cols: 2,
+                rows: 2,
+                y: 0,
+                x: 0
+            })
+        }
     }
 
     function saveDashboard() {
         // $log.log(vm.selected = (vm.listDashboard[vm.dashboardIndex])[0])
         // var jsonData = angular.toJson(vm.listDashboard)
-        $log.log(vm.colorCode)
+        $log.log(vm.selected.type)
     }
 
     function removeWidget() {

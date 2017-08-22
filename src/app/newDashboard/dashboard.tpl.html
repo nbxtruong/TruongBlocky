@@ -97,7 +97,19 @@
                     <option value="backup">backup</option>
                     <option value="build">build</option>
                 </select>
-                <input colorpicker type="text" ng-model="vm.colorCode" />
+                <div>choose color:</div>
+                <input colorpicker type="text" ng-model="vm.selected.backgroundColor" />
+            </div>
+
+            <div ng-if="vm.selected.type=='gauge'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>When clicked, send:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.selected.topic" style="margin-bottom: 5px" />
+                <div>choose color:</div>
+                <input colorpicker type="text" ng-model="vm.selected.backgroundColor" />
             </div>
 
             <div ng-if="vm.selected.type=='switch'">
@@ -115,6 +127,7 @@
                 <input type="text" ng-model="vm.selected.offMessage.topic" style="margin-bottom: 5px" />
                 <div>message:</div>
                 <input type="text" ng-model="vm.selected.offMessage.message" />
+                <input colorpicker type="text" ng-model="vm.selected.backgroundColor" />
             </div>
 
             <div ng-if="vm.selected=='slider'">
@@ -152,11 +165,20 @@
                 <input type="text" ng-model="vm.selected.clickMessage.message" />
                 <div><b>Icon:</b></div>
                 <select ng-model="vm.selected.icon">
-                        <option value="accessible">accessible</option>
-                        <option value="account_balance">account_balance</option>
-                        <option value="backup">backup</option>
-                        <option value="build">build</option>
-                    </select>
+                    <option value="accessible">accessible</option>
+                    <option value="account_balance">account_balance</option>
+                    <option value="backup">backup</option>
+                    <option value="build">build</option>
+                </select>
+            </div>
+
+            <div ng-if="vm.selected.type=='guage'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>When clicked, send:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.selected.topic" style="margin-bottom: 5px" />
             </div>
 
             <div ng-if="vm.selected.type=='switch'">
@@ -198,18 +220,26 @@
     <!-- Area for template -->
     <!-- Template for a normal button item -->
     <script type="text/ng-template" id="button.html">
-        <div class="widgetSize" style="background-color: {{vm.colorCode}};">
+        <div class="widgetSize" style="background-color: {{item.backgroundColor}};">
             <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
             <md-button id="button_{{item.id}}" class="button md-raised md-primary" ng-click="vm.widgetAction(item)">
                 {{item.name}}
             </md-button>
-            <ng-gauge size="200" type="arch" thick="5" min="0" max="120" value="vm.valuegauge" cap="round" label="Power"  foreground-color="#ffcc66" background-color="rgba(255,255,255, 0.4)" append="%"></ng-gauge>
+        </div>
+    </script>
+
+    <!-- Template for a normal gauge item -->
+    <script type="text/ng-template" id="gauge.html">
+        <div class="widgetSize" style="background-color: {{item.backgroundColor}};">
+            <ng-gauge size="200" type="arch" thick="30" min="0" max="120" value="item.value" cap="round" label="{{item.label}}" foreground-color="#ffcc66"
+                background-color="rgba(255,255,255, 0.4)" append="{{item.append}}"></ng-gauge>
         </div>
     </script>
 
     <!-- Template for a normal switch item -->
     <script type="text/ng-template" id="switch.html">
-        <md-switch class="md-primary" ng-model="item.value" id="switch_{{item.id}}" aria-label="{{item.name}}" ng-change="vm.widgetAction(item)">
+        <md-switch class="md-primary" ng-model="item.value" id="switch_{{item.id}}" aria-label="{{item.name}}" ng-change="vm.widgetAction(item)"
+            style="background-color: {{item.backgroundColor}};">
             {{item.name}}
         </md-switch>
     </script>
