@@ -254,7 +254,8 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
             (vm.listDashboard[vm.dashboardIndex])[0].templates.push({
                 name: 'gaugeDemo',
                 type: 'gauge',
-                backgroundColor: '#bf65bc',
+                foregroundColor: '#bf65bc',
+                backgroundColor: '#48df5e',
                 value: '50',
                 label: 'power',
                 append: '%',
@@ -288,6 +289,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     function removeWidget() {
         var indexWidget = (vm.listDashboard[vm.dashboardIndex])[0].templates.indexOf(vm.selected);
         (vm.listDashboard[vm.dashboardIndex])[0].templates.splice(indexWidget, 1);
+        vm.selected = null
     }
 
     function nextDashboard() {
