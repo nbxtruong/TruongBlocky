@@ -115,18 +115,6 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
             rows: 2,
             y: 0,
             x: 0
-        }, {
-            name: 'gaugeDemo',
-            type: 'gauge',
-            backgroundColor: '#bf65bc',
-            value: '75',
-            label: 'power',
-            append: '%',
-            topic: 'powerAllHouse',
-            cols: 2,
-            rows: 2,
-            y: 0,
-            x: 0
         }],
     }]
 
@@ -166,6 +154,10 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
         {
             name: 'gaugeDemo',
             type: 'guage'
+        },
+        {
+            name: 'webcamDemo',
+            type: 'webcam'
         }
     ]
 
@@ -263,10 +255,22 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
                 name: 'gaugeDemo',
                 type: 'gauge',
                 backgroundColor: '#bf65bc',
-                value: '75',
+                value: '50',
                 label: 'power',
                 append: '%',
                 topic: 'powerAllHouse',
+                cols: 2,
+                rows: 2,
+                y: 0,
+                x: 0
+            })
+        }
+        if (type === 'webcam') {
+            (vm.listDashboard[vm.dashboardIndex])[0].templates.push({
+                name: 'webcamDemo',
+                type: 'webcam',
+                backgroundColor: '#bd77bc',
+                topic: 'webcam1',
                 cols: 2,
                 rows: 2,
                 y: 0,
