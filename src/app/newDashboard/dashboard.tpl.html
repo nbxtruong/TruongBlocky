@@ -258,8 +258,8 @@
     <!-- Template for a normal line chart -->
     <script type="text/ng-template" id="linerChart.html">
         <div class="widgetSize">
-            <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="LineChartOptions"
-                chart-dataset-override="datasetOverride" chart-click="onClick">
+            <canvas id="line" class="chart chart-line" chart-data="item.data" chart-labels="item.labels" chart-series="item.series" chart-options="vm.LineChartOptions"
+                chart-dataset-override="vm.datasetOverride" chart-click="vm.onClick">
             </canvas>
         </div>
     </script>
@@ -267,7 +267,7 @@
     <!-- Template for a normal gauge item -->
     <script type="text/ng-template" id="gauge.html">
         <div class="widgetSize">
-            <ng-gauge size="210" type="arch" thick="30" min="0" max="100" value="item.value" cap="round" label="{{item.label}}" foreground-color="{{item.foregroundColor}}"
+            <ng-gauge size="262" type="arch" thick="30" min="0" max="100" value="item.value" cap="round" label="{{item.label}}" foreground-color="{{item.foregroundColor}}"
                 background-color="{{item.backgroundColor}}" append="{{item.append}}"></ng-gauge>
         </div>
     </script>

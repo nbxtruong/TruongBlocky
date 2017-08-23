@@ -14,25 +14,25 @@
  * limitations under the License.
  */
 /*@ngInject*/
-export default function DashboardController($log, $mdSidenav, $mdDialog, $scope) {
+export default function DashboardController($log, $mdSidenav, $mdDialog) {
     var vm = this
 
     // for line chart
-    $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-    $scope.series = ['Series A', 'Series B'];
-    $scope.data = [
-        [65, 59, 80, 81, 56, 55, 40],
-        [28, 48, 40, 19, 86, 27, 90]
-    ];
-    $scope.onClick = function (points, evt) {
+    // vm.labels = ["January", "February", "March", "April", "May", "June", "July"];
+    // vm.series = ['Series A', 'Series B'];
+    // vm.data = [
+    //     [65, 59, 80, 81, 56, 55, 40],
+    //     [28, 48, 40, 19, 86, 27, 90]
+    // ];
+    vm.onClick = function (points, evt) {
         $log.log(points, evt);
     };
-    $scope.datasetOverride = [{
+    vm.datasetOverride = [{
         yAxisID: 'y-axis-1'
     }, {
         yAxisID: 'y-axis-2'
     }];
-    $scope.LineChartOptions = {
+    vm.LineChartOptions = {
         scales: {
             yAxes: [{
                     id: 'y-axis-1',
@@ -312,6 +312,8 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $scope)
                 topic: 'webcam1',
                 cols: 2,
                 rows: 2,
+                minItemCols: 2,
+                minItemRows: 2,
                 y: 0,
                 x: 0
             })
@@ -322,8 +324,16 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $scope)
                 type: 'linerChart',
                 backgroundColor: '#bd77bc',
                 topic: 'linerChart1',
+                labels : ["January", "February", "March", "April", "May", "June", "July"],
+                series : ['Series A', 'Series B'],
+                data : [
+                    [65, 59, 80, 81, 56, 55, 40],
+                    [28, 48, 40, 19, 86, 27, 90]
+                ],
                 cols: 4,
                 rows: 2,
+                minItemCols: 4,
+                minItemRows: 2,
                 y: 0,
                 x: 0
             })
