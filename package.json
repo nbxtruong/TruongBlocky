@@ -20,6 +20,7 @@
     "angular-aria": "1.5.8",
     "angular-bootstrap-colorpicker": "^3.0.31",
     "angular-carousel": "^1.0.2",
+    "angular-chart.js": "^1.1.1",
     "angular-cookies": "1.5.8",
     "angular-drag-and-drop-lists": "^2.1.0",
     "angular-fullscreen": "git://github.com/fabiobiondi/angular-fullscreen.git#master",

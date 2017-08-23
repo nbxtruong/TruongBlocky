@@ -14,9 +14,43 @@
  * limitations under the License.
  */
 /*@ngInject*/
-export default function DashboardController($log, $mdSidenav, $mdDialog) {
+export default function DashboardController($log, $mdSidenav, $mdDialog, $scope) {
     var vm = this
 
+    // for line chart
+    $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+    $scope.series = ['Series A', 'Series B'];
+    $scope.data = [
+        [65, 59, 80, 81, 56, 55, 40],
+        [28, 48, 40, 19, 86, 27, 90]
+    ];
+    $scope.onClick = function (points, evt) {
+        $log.log(points, evt);
+    };
+    $scope.datasetOverride = [{
+        yAxisID: 'y-axis-1'
+    }, {
+        yAxisID: 'y-axis-2'
+    }];
+    $scope.LineChartOptions = {
+        scales: {
+            yAxes: [{
+                    id: 'y-axis-1',
+                    type: 'linear',
+                    display: true,
+                    position: 'left'
+                },
+                {
+                    id: 'y-axis-2',
+                    type: 'linear',
+                    display: true,
+                    position: 'right'
+                }
+            ]
+        }
+    }
+
+    // for griter
     vm.options = {
         gridType: 'scrollVertical',
         // itemChangeCallback: itemChange,
@@ -158,6 +192,10 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
         {
             name: 'webcamDemo',
             type: 'webcam'
+        },
+        {
+            name: 'linerChartDemo',
+            type: 'linerChart'
         }
     ]
 
@@ -273,6 +311,18 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
                 backgroundColor: '#bd77bc',
                 topic: 'webcam1',
                 cols: 2,
+                rows: 2,
+                y: 0,
+                x: 0
+            })
+        }
+        if (type === 'linerChart') {
+            (vm.listDashboard[vm.dashboardIndex])[0].templates.push({
+                name: 'linerChartDemo',
+                type: 'linerChart',
+                backgroundColor: '#bd77bc',
+                topic: 'linerChart1',
+                cols: 4,
                 rows: 2,
                 y: 0,
                 x: 0

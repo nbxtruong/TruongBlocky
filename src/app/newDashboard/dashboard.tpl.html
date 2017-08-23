@@ -250,8 +250,17 @@
 
     <!-- Template for a normal webcam -->
     <script type="text/ng-template" id="webcam.html">
-        <div class="widgetSize" style="background-color: {{item.backgroundColor}};">
+        <div class="widgetSize">
             <webcam></webcam>
+        </div>
+    </script>
+
+    <!-- Template for a normal line chart -->
+    <script type="text/ng-template" id="linerChart.html">
+        <div class="widgetSize">
+            <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="LineChartOptions"
+                chart-dataset-override="datasetOverride" chart-click="onClick">
+            </canvas>
         </div>
     </script>
 
