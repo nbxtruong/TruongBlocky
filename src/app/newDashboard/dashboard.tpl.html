@@ -117,6 +117,24 @@
                 <input colorpicker type="text" ng-model="vm.selected.backgroundColor" />
             </div>
 
+            <div ng-if="vm.selected.type=='webcam'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>Setup the topic:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.selected.topic" style="margin-bottom: 5px" />
+            </div>
+
+            <div ng-if="vm.selected.type=='linerChart'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>Setup the topic:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.selected.topic" style="margin-bottom: 5px" />
+            </div>
+
             <div ng-if="vm.selected.type=='switch'">
                 <div><b>Name:</b></div>
                 <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
@@ -193,6 +211,15 @@
             </div>
 
             <div ng-if="vm.selected.type=='webcam'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>When clicked, send:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.selected.topic" style="margin-bottom: 5px" />
+            </div>
+
+            <div ng-if="vm.selected.type=='linerChart'">
                 <div><b>Name:</b></div>
                 <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
                 <br><br>
