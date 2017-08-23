@@ -39,5 +39,5 @@ export default function HomeRoutes($stateProvider, $mdThemingProvider) {
 
     $mdThemingProvider.theme('default')
         .primaryPalette('cyan')
-        .accentPalette('cyan');
+        .accentPalette('cyan')
 }

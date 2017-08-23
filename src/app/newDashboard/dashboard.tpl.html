@@ -1,11 +1,14 @@
 <md-subheader id="subheader">
-    <div layout="row" layout-align="space-between center">
-        <div flex="30">
-            <md-select ng-model="">
-                <label>Dashboard name</label>
-                <md-option value="">Dashboard 1</md-option>
-                <md-option value="">Dashboard 2</md-option>
-            </md-select>
+    <div id="shContent" layout="row" layout-align="space-between center">
+        <div flex="20">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Dashboard</label>
+                <md-select ng-model="vm.selectedItem" ng-change="vm.handleClick(vm.selectedItem)">
+                    <md-option ng-repeat="state in vm.dashboard" value="{{state.abbrev}}">
+                        {{state.abbrev}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
         </div>
         <div flex="30" layout="row">
             <div flex>
@@ -52,19 +55,21 @@
         <div layout="row" layout-align="center center">
             <div layout="row" layout-align="space-between center" style=" width: 731.350px; ">
                 <div>
-                    <ng-md-icon icon="undo" ng-click="vm.backDashboard()"></ng-md-icon>
+                    <!-- <ng-md-icon icon="undo" ng-click="vm.backDashboard()"></ng-md-icon> -->
                 </div>
                 <div layout="row">
-                    <h4 style="margin-bottom: 0px; margin-top: 0px;">{{vm.dashboardName}}</h4>
+                    <!-- <h4 style="margin-bottom: 0px; margin-top: 0px;">{{vm.dashboardName}}</h4>
+                    <ng-md-icon ng-show="vm.showWidgetOption" icon="youtube_searched_for" ng-click="vm.switchMode()"></ng-md-icon>
+                    <ng-md-icon ng-hide="vm.showWidgetOption" icon="edit" ng-click="vm.switchMode()"></ng-md-icon> -->
                 </div>
                 <div>
-                    <ng-md-icon icon="redo" ng-click="vm.nextDashboard()"></ng-md-icon>
+                    <!-- <ng-md-icon icon="redo" ng-click="vm.nextDashboard()"></ng-md-icon> -->
                 </div>
             </div>
         </div>
         <gridster options="vm.options">
-            <gridster-item item="item" ng-repeat="item in (vm.listDashboard[vm.dashboardIndex])[0].templates" ng-click="vm.selected = (vm.listDashboard[vm.dashboardIndex])[0].templates[$index]">
-                <div ng-include="item.type + '.html'"></div>
+            <gridster-item item="item" ng-repeat="item in (vm.listDashboard[vm.dashboardIndex])[0].templates" ng-click="vm.selected = (vm.listDashboard[vm.dashboardIndex])[0].templates[$index]; vm.changeStatus(vm.selected)">
+                <div ng-include="item.type + '.html'" layout-fill></div>
             </gridster-item>
         </gridster>
     </div>
@@ -72,23 +77,23 @@
     <!-- Area DnD for mobile UI -->
     <div flex-xs="100" flex-sm="100" hide-md hide-lg layout="column" layout-align="start center" style="padding-left: 0px; padding-right: 0px; padding-bottom: 0px; padding-top: 0px;">
         <div layout="row" layout-align="center center">
-            <ng-md-icon ng-show="vm.showWidgetOption" icon="remove" ng-click="vm.removeDashboard()"></ng-md-icon>
+            <!-- <ng-md-icon ng-show="vm.showWidgetOption" icon="remove" ng-click="vm.removeDashboard()"></ng-md-icon>
             <ng-md-icon ng-show="vm.showWidgetOption" icon="add" ng-click="vm.createDashboard($event)"></ng-md-icon>
             <h4 style="margin-bottom: 0px; margin-top: 0px;">{{vm.dashboardName}}</h4>
             <ng-md-icon ng-show="vm.showWidgetOption" icon="youtube_searched_for" ng-click="vm.switchMode()"></ng-md-icon>
-            <ng-md-icon ng-hide="vm.showWidgetOption" icon="edit" ng-click="vm.switchMode()"></ng-md-icon>
+            <ng-md-icon ng-hide="vm.showWidgetOption" icon="edit" ng-click="vm.switchMode()"></ng-md-icon> -->
         </div>
 
         <gridster ng-show="vm.showWidgetOption" options="vm.mobileViewOptions" md-swipe-left="vm.nextDashboard()" md-swipe-right="vm.backDashboard()">
             <gridster-item item="item" ng-repeat="item in (vm.listDashboard[vm.dashboardIndex])[0].templates" ng-touchstart="vm.selected = (vm.listDashboard[vm.dashboardIndex])[0].templates[$index]">
-                <div ng-include="item.type + '.html'"></div>
+                <div ng-include="item.type + '.html'" layout-fill></div>
             </gridster-item>
         </gridster>
 
         <gridster ng-hide="vm.showWidgetOption" options="vm.mobileEditOptions" on-long-press="vm.longPressAction()" long-press-duration="3000">
             <gridster-item item="item" ng-repeat="item in (vm.listDashboard[vm.dashboardIndex])[0].templates" ng-touchstart="vm.selected = (vm.listDashboard[vm.dashboardIndex])[0].templates[$index]"
                 on-long-press="vm.longPressOptions()" long-press-duration="3000">
-                <div ng-include="item.type + '.html'"></div>
+                <div ng-include="item.type + '.html'" layout-fill></div>
             </gridster-item>
         </gridster>
 
@@ -109,12 +114,43 @@
                 <div>message:</div>
                 <input type="text" ng-model="vm.selected.clickMessage.message" />
                 <div><b>Icon:</b></div>
-                <select ng-model="vm.selected.icon">
-                    <option value="accessible">accessible</option>
-                    <option value="account_balance">account_balance</option>
-                    <option value="backup">backup</option>
-                    <option value="build">build</option>
-                </select>
+                <br>
+                <!-- <select ng-model="vm.selected.image">
+                    <option value="light"><i class="fa fa-bar-chart"></i></option>
+                    <option value="switch"><i class="fa fa-microchip"></option>
+                    <option value="bulb"><i class="fa fa-quora"></option>
+                </select> -->
+                <!-- <md-select ng-model="vm.selected.image">
+                    <label>Selected Image: <i class="fa {{vm.selected.image}}" style="color: black;"></i></label>
+                    <div layout="row">
+                        <div flex layout="column">
+                            <md-option ng-repeat="icon in vm.iconsList" ng-show="$index%3===0" ng-hide="$index%3!==0" value="{{icon.abbrev}}" aria-hidden="true">
+                                <i class="fa {{icon.abbrev}}" style="color: black;">
+                            </md-option>
+                        </div>
+                        <div flex layout="column">
+                            <md-option ng-repeat="icon in vm.iconsList" ng-show="$index%3===1" ng-hide="$index%3!==1" value="{{icon.abbrev}}" aria-hidden="true">
+                                <i class="fa {{icon.abbrev}}" style="color: black;">
+                            </md-option>
+                        </div>
+                        <div flex layout="column">
+                            <md-option ng-repeat="icon in vm.iconsList" ng-show="$index%3===2" ng-hide="$index%3!==2" value="{{icon.abbrev}}" aria-hidden="true">
+                                <i class="fa {{icon.abbrev}}" style="color: black;">
+                            </md-option>
+                        </div>
+                    </div>
+                </md-select> -->
+                <md-select ng-model="vm.selected.image">
+                    <label>Selected Image: <i class="fa {{vm.selected.image}}" style="color: black;"></i></label>
+                    <br>
+                    <div layout="row" layout-wrap>
+                        <div flex="33" ng-repeat="icon in vm.iconsList" class="option">
+                            <md-option value="{{icon.abbrev}}" aria-hidden="true">
+                                <i class="fa {{icon.abbrev}}" style="color: black;">
+                            </md-option>
+                        </div>
+                    </div>
+                </md-select>
             </div>
 
             <div ng-if="vm.selected.type=='switch'">
@@ -168,12 +204,14 @@
                 <div>message:</div>
                 <input type="text" ng-model="vm.selected.clickMessage.message" />
                 <div><b>Icon:</b></div>
-                <select ng-model="vm.selected.icon">
+                <!-- <select ng-model="vm.selected.icon">
                         <option value="accessible">accessible</option>
                         <option value="account_balance">account_balance</option>
                         <option value="backup">backup</option>
                         <option value="build">build</option>
-                    </select>
+                </select> -->
+                <br>
+                <md-button class="md-raised md-warn" ng-click="">Change Image</md-button>
             </div>
 
             <div ng-if="vm.selected.type=='switch'">
@@ -193,15 +231,9 @@
                 <input type="text" ng-model="vm.selected.offMessage.message" />
             </div>
 
-            <div ng-if="vm.selected=='slider'">
+            <div ng-if="vm.selected.type=='slider'">
                 <div><b>Name:</b></div>
                 <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
-                <br>
-                <div>Min value:</div>
-                <input type="text" ng-model="vm.selected.min" style="margin-bottom: 5px" />
-                <br>
-                <div>Max value:</div>
-                <input type="text" ng-model="vm.selected.max" style="margin-bottom: 5px" />
                 <br><br>
                 <div style="margin-bottom: 5px"><b>When value changed, send:</b></div>
                 <div>to topic:</div>
@@ -215,18 +247,65 @@
     <!-- Area for template -->
     <!-- Template for a normal button item -->
     <script type="text/ng-template" id="button.html">
-        <div class="widgetSize">
-            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-            <md-button id="button_{{item.id}}" class="button md-raised md-primary" ng-click="vm.widgetAction(item)">
+        <div layout="column" class="button" layout-fill>
+            <div flex class="name" layout-align="center center">
                 {{item.name}}
-            </md-button>
+            </div>
+            <div flex>
+            <!-- <img ng-show="item.status" class="image" src={{vm.baseUrl}}{{item.image}}On.svg>
+                <img ng-hide="item.status" class="image" src={{vm.baseUrl}}{{item.image}}Off.svg> -->
+                <i class="fa {{item.image}} fa-fw widgetImage" style="font-size: 60px; align-self: center;"></i>
+                <div class="resizeMark"></div>
+            </div>
         </div>
     </script>
 
     <!-- Template for a normal switch item -->
     <script type="text/ng-template" id="switch.html">
-        <md-switch class="md-primary" ng-model="item.value" id="switch_{{item.id}}" aria-label="{{item.name}}" ng-change="vm.widgetAction(item)">
-            {{item.name}}
-        </md-switch>
+        <div layout="column" class="button" layout-fill>
+            <div flex class="name" layout-align="center center">
+                {{item.name}}
+            </div>
+            <div flex layout-fill>
+                <img ng-show="item.status" class="image" src={{vm.baseUrl}}{{item.image}}On.svg>
+                <img ng-hide="item.status" class="image" src={{vm.baseUrl}}{{item.image}}Off.svg>
+                <div class="resizeMark"></div>
+            </div>
+        </div>
+    </script>
+
+    <!-- Template for a normal slider item -->
+    <script type="text/ng-template" id="slider.html">
+        <div layout="column" class="slider">
+            <div flex class="name" layout-align="center center">
+                {{item.name}}
+            </div>
+            <div flex layout-fill class="infor" layout-align="center center">
+                {{item.status}}
+                <br/>
+                <span style="font-size: 15px;">Percent</span>
+            </div>
+            <div flex="20">
+                <md-slider-container class="image">
+                    <md-slider flex ng-model="item.status" min="0" max="100" aria-label="blue" class="md-warn slider"></md-slider>
+                </md-slider-container>
+                <div class="resizeMark"></div>
+            </div>
+        </div>
+    </script>
+
+    <!-- Template for Display -->
+    <script type="text/ng-template" id="display.html">
+        <div layout="column" class="display">
+            <div flex class="name">
+                {{item.name}}
+            </div>
+            <div flex class="status" style="background-image: url({{vm.baseUrl}}{{item.image}}.svg)">
+                <div layout-align="center center" class="statusText">
+                    {{item.status}}
+                </div>
+                <div class="resizeMark"></div>
+            </div>
+        </div>
     </script>
 </div>

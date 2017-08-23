@@ -32,7 +32,170 @@ $allAreaBorder: groove;
     padding-left: 0px;
 }
 
-.handle-e , .handle-ne, .handle-n, .handle-nw, .handle-w, .handle-sw, .handle-s, .handle-se {
+.handle-se {
     width: 25px !important;
     height: 25px !important;
+}
+
+// #subheader {
+//     padding-left: 0px;
+//     padding-top: 0px;
+//     padding-right: 0px;
+//     padding-bottom: 0px;
+//     margin: 0px !important;
+
+//     #shContent {
+//         margin: 0 !important;
+//         font-size: 15px;
+//         padding-left: 0px !important;
+//         padding-top: 0px !important;
+//         padding-right: 0px !important;
+//         padding-bottom: 0px !important;
+//     }
+// }
+
+.md-subheader-inner {
+    display: block;
+    padding: 0px 0px 0px 10px !important;
+}
+
+//Make by Tuan
+
+.button {
+    min-height: 100%;
+    min-width: 100%;
+    background-color: #4db8ff;
+    //object-fit: fill;
+    //display: flex;
+
+    .name {
+        max-height: 30px;
+        min-height: 25px;
+        font-size: 20px;
+        color: red;
+        border-bottom: 1px solid lightblue;
+        //background-color: pink;
+    }
+
+    .image {
+        display: block;
+        min-height: 100%;
+        //background-color: yellowgreen;
+    }
+}
+
+.display {
+    height: 100%;
+    width: 100%;
+    display: block;
+    background-color: #4db8ff;
+
+    .name {
+        max-height: 30px;
+        min-height: 25px;
+        //background-color: aquamarine;
+        font-size: 20px;
+        color: red;
+        border-bottom: 1px solid lightblue;
+    }
+
+    .image {
+        display: block;
+        min-height: 100%;
+    }
+
+    .status {
+        height: 100%;
+        width: 100%;
+        vertical-align: middle;
+        //background-color: yellowgreen;
+        font-size: 40px;
+        color: red;
+        background-size:contain;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .statusText {
+            max-width: 100%;
+        }
+    }
+}
+
+.slider {
+    height: 100%;
+    width: 100%;
+    display: block;
+    background-color: #4db8ff;  
+
+    .name {
+        max-height: 30px;
+        min-height: 25px;
+        //background-color: aquamarine;
+        font-size: 20px;
+        color: red;
+        border-bottom: 1px solid lightblue;
+    }
+
+    .infor {
+        height: 100%;
+        width: 100%;
+        vertical-align: middle;
+        //background-color: yellowgreen;
+        font-size: 40px;
+        color: red;
+        background-size:contain;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .image {
+        padding-left: 15px;
+        max-height: 90%;
+        max-width: 90%;
+        padding-bottom: 30%;
+        vertical-align: middle;
+        align-self: center;
+        min-height: 1px !important;
+        min-width: 1px !important;
+    }
+
+    .slider {
+        max-width: calc(100% - 15px) !important;
+        max-height: calc(100% - 15px) !important;
+        min-height: 1px !important;
+        min-width: 1px !important;
+    }
+}
+
+.button:hover, .button:focus, .display:hover, .display:focus, .slider:hover, .slider:focus {
+    border-right: 3px solid lightblue;
+    border-bottom: 3px solid lightblue;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+    text-shadow: 1px 1px 2px lightblue, 0 0 4px lightblue; 
+}
+
+.resizeMark {
+    width: 0;
+	height: 0;
+	border-bottom: 10px solid gray;
+    border-left: 10px solid transparent;
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+}
+
+.widgetImage {
+    font-size: 48px;
+    color: black;
+    align-self: center;
+}
+
+.option {
+    width: 15px !important;
 }

@@ -22,13 +22,13 @@ import HomeController from './home.controller';
 
 import blockyLanding from '../landing';
 import blockyProfile from '../profile';
-import blockyDashboard from '../dashboard';
+//import blockyDashboard from '../dashboard';
 import blockyNewDashboard from '../newDashboard';
 
 export default angular.module('blocky.home', [
     uiRouter,
     blockyLanding,
-    blockyDashboard,
+    //blockyDashboard,
     blockyProfile,
     blockyNewDashboard
 ])

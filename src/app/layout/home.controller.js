@@ -25,10 +25,10 @@ import addLoginTemplate from './login.tpl.html'
 import addLogoutTemplate from './logout.tpl.html'
 
 /*@ngInject*/
-export default function HomeController($scope, $mdDialog, $log, $document, $window) {
-    var imagePath = 'img/list/60.jpeg';
-
+export default function HomeController($scope, $mdDialog, $log, $document, $window, $state) {
     var vm = this
+    var imagePath = 'img/list/60.jpeg'
+
     vm.username
     vm.password
     vm.loginStatus = true
@@ -43,7 +43,7 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
     vm.userLogout = userLogout
     vm.navibarSelect = navibarSelect
 
-    vm.domain = "http://172.16.3.108:3000"
+    vm.domain = "http://10.100.1.113:3000"
 
     vm.userMenu = [{
         name: "Profile",
@@ -55,16 +55,20 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
 
     function navibarSelect(params) {
         if (params === "codingLab") {
-            $window.location.href = vm.domain + "/#/landing";
+            // $window.location.href = vm.domain + "/#/landing"
+            $state.go('home.landing')
         }
         if (params === "dashBoard") {
-            $window.location.href = vm.domain + "/#/newDashboard";
+            // $window.location.href = vm.domain + "/#/newDashboard"
+            $state.go('home.newDashboard')
         }
         if (params === "examples") {
-            $window.location.href = vm.domain + "/#/examples";
+            // $window.location.href = vm.domain + "/#/examples"
+            $state.go('')
         }
         if (params === "community") {
-            $window.location.href = vm.domain + "/#/community";
+            // $window.location.href = vm.domain + "/#/community"
+            $state.go('')
         }
     }
 
@@ -80,7 +84,7 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
                     fullscreen: true,
                     scope: angular.extend($scope.$new(), {
                         close: function () {
-                            $mdDialog.cancel();
+                            $mdDialog.cancel()
                         }
                     })
                 })
@@ -97,14 +101,15 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
                     fullscreen: true,
                     scope: angular.extend($scope.$new(), {
                         close: function () {
-                            $mdDialog.cancel();
+                            $mdDialog.cancel()
                         }
                     })
                 })
                 .then(function () {}, function () {})
         }
         if (params === "Profile") {
-            $window.location.href = vm.domain + "/#/profile";
+            // $window.location.href = vm.domain + "/#/profile"
+            $state.go('home.profile')
         }
     }
 
@@ -130,5 +135,3 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
         });
     }
 }
-
-/* eslint-enable angular/angularelement */
