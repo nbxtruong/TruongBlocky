@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /*@ngInject*/
-export default function DashboardController($log, $mdSidenav, $mdDialog) {
+export default function DashboardController($log, $mdSidenav, $mdDialog, $scope) {
     var vm = this
 
     // for line chart
@@ -49,6 +49,16 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
             ]
         }
     }
+
+    // Dynamic Chart
+    $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"];
+    $scope.data = [300, 500, 100, 40, 120];
+    $scope.type = 'polarArea';
+
+    $scope.toggle = function () {
+        $scope.type = $scope.type === 'polarArea' ?
+            'pie' : 'polarArea';
+    };
 
     // for griter
     vm.options = {
@@ -121,35 +131,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
 
     var dashboard0 = [{
         name: 'PhongKhach',
-        templates: [{
-            name: 'buttonDemo',
-            type: 'button',
-            backgroundColor: '#6b553b',
-            clickMessage: {
-                topic: 'Boom',
-                message: '1'
-            },
-            cols: 2,
-            rows: 2,
-            y: 0,
-            x: 0
-        }, {
-            name: 'switchDemo',
-            type: 'switch',
-            backgroundColor: '#bf65bc',
-            onMessage: {
-                topic: 'mo den',
-                message: '1'
-            },
-            offMessage: {
-                topic: 'tat den',
-                message: '0'
-            },
-            cols: 2,
-            rows: 2,
-            y: 0,
-            x: 0
-        }],
+        templates: [],
     }]
 
     var dashboard1 = [{
@@ -300,6 +282,8 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
                 topic: 'powerAllHouse',
                 cols: 2,
                 rows: 2,
+                minItemCols: 2,
+                minItemRows: 2,
                 y: 0,
                 x: 0
             })
@@ -324,9 +308,9 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
                 type: 'linerChart',
                 backgroundColor: '#bd77bc',
                 topic: 'linerChart1',
-                labels : ["January", "February", "March", "April", "May", "June", "July"],
-                series : ['Series A', 'Series B'],
-                data : [
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                series: ['Series A', 'Series B'],
+                data: [
                     [65, 59, 80, 81, 56, 55, 40],
                     [28, 48, 40, 19, 86, 27, 90]
                 ],

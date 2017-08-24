@@ -284,9 +284,12 @@
 
     <!-- Template for a normal line chart -->
     <script type="text/ng-template" id="linerChart.html">
-        <div class="widgetSize">
-            <canvas id="line" class="chart chart-line" chart-data="item.data" chart-labels="item.labels" chart-series="item.series" chart-options="vm.LineChartOptions"
+        <div class="widgetSize" layout="column" layout-align="center center">
+            <!-- <canvas id="line" class="chart chart-line" chart-data="item.data" chart-labels="item.labels" chart-series="item.series" chart-options="vm.LineChartOptions"
                 chart-dataset-override="vm.datasetOverride" chart-click="vm.onClick">
+            </canvas> -->
+
+            <canvas id="base" class="chart-base" chart-type="type" chart-data="data" chart-labels="labels" chart-click="toggle">
             </canvas>
         </div>
     </script>
