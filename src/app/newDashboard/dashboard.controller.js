@@ -14,51 +14,26 @@
  * limitations under the License.
  */
 /*@ngInject*/
-export default function DashboardController($log, $mdSidenav, $mdDialog, $scope) {
+export default function DashboardController($log, $mdSidenav, $mdDialog) {
     var vm = this
 
     // for line chart
-    // vm.labels = ["January", "February", "March", "April", "May", "June", "July"];
-    // vm.series = ['Series A', 'Series B'];
-    // vm.data = [
-    //     [65, 59, 80, 81, 56, 55, 40],
-    //     [28, 48, 40, 19, 86, 27, 90]
-    // ];
     vm.onClick = function (points, evt) {
         $log.log(points, evt);
     };
     vm.datasetOverride = [{
         yAxisID: 'y-axis-1'
-    }, {
-        yAxisID: 'y-axis-2'
     }];
     vm.LineChartOptions = {
         scales: {
             yAxes: [{
-                    id: 'y-axis-1',
-                    type: 'linear',
-                    display: true,
-                    position: 'left'
-                },
-                {
-                    id: 'y-axis-2',
-                    type: 'linear',
-                    display: true,
-                    position: 'right'
-                }
-            ]
+                id: 'y-axis-1',
+                type: 'linear',
+                display: true,
+                position: 'left'
+            }]
         }
     }
-
-    // Dynamic Chart
-    $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"];
-    $scope.data = [300, 500, 100, 40, 120];
-    $scope.type = 'polarArea';
-
-    $scope.toggle = function () {
-        $scope.type = $scope.type === 'polarArea' ?
-            'pie' : 'polarArea';
-    };
 
     // for griter
     vm.options = {
@@ -178,6 +153,10 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $scope)
         {
             name: 'linerChartDemo',
             type: 'linerChart'
+        },
+        {
+            name: 'dynamicChartDemo',
+            type: 'dynamicChart'
         }
     ]
 
@@ -309,11 +288,27 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $scope)
                 backgroundColor: '#bd77bc',
                 topic: 'linerChart1',
                 labels: ["January", "February", "March", "April", "May", "June", "July"],
-                series: ['Series A', 'Series B'],
+                series: ['Series A'],
                 data: [
-                    [65, 59, 80, 81, 56, 55, 40],
-                    [28, 48, 40, 19, 86, 27, 90]
+                    [65, 59, 80, 81, 56, 55, 40]
                 ],
+                cols: 4,
+                rows: 2,
+                minItemCols: 4,
+                minItemRows: 2,
+                y: 0,
+                x: 0
+            })
+        }
+        if (type === 'dynamicChart') {
+            (vm.listDashboard[vm.dashboardIndex])[0].templates.push({
+                name: 'dynamicChartDemo',
+                type: 'dynamicChart',
+                backgroundColor: '#bd77bc',
+                topic: 'dynamicChart1',
+                labels: ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"],
+                data: [300, 400, 180, 200, 220],
+                mainType: 'radar',
                 cols: 4,
                 rows: 2,
                 minItemCols: 4,

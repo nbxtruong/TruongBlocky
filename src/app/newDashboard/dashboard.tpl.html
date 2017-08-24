@@ -135,6 +135,24 @@
                 <input type="text" ng-model="vm.selected.topic" style="margin-bottom: 5px" />
             </div>
 
+            <div ng-if="vm.selected.type=='dynamicChart'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>Setup the topic:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.selected.topic" style="margin-bottom: 5px" />
+                <div><b>Types of chart:</b></div>
+                <select ng-model="vm.selected.mainType">
+                    <option value="line">line chart</option>
+                    <option value="bar">bar chart</option>
+                    <option value="doughnut">Doughnut Chart</option>
+                    <option value="radar">Radar Chart</option>
+                    <option value="polarArea">Polar Area Chart</option>
+                    <option value="horizontalBar">Horizontal Bar Chart</option>
+                </select>
+            </div>
+
             <div ng-if="vm.selected.type=='switch'">
                 <div><b>Name:</b></div>
                 <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
@@ -284,12 +302,17 @@
 
     <!-- Template for a normal line chart -->
     <script type="text/ng-template" id="linerChart.html">
-        <div class="widgetSize" layout="column" layout-align="center center">
-            <!-- <canvas id="line" class="chart chart-line" chart-data="item.data" chart-labels="item.labels" chart-series="item.series" chart-options="vm.LineChartOptions"
+        <div class="widgetSize">
+            <canvas id="line" class="chart chart-line" chart-data="item.data" chart-labels="item.labels" chart-series="item.series" chart-options="vm.LineChartOptions"
                 chart-dataset-override="vm.datasetOverride" chart-click="vm.onClick">
-            </canvas> -->
+            </canvas>
+        </div>
+    </script>
 
-            <canvas id="base" class="chart-base" chart-type="type" chart-data="data" chart-labels="labels" chart-click="toggle">
+    <!-- Template for a normal Dynamic Chart -->
+    <script type="text/ng-template" id="dynamicChart.html">
+        <div class="widgetSize">
+            <canvas id="base" class="chart chart-base" chart-type="item.mainType" chart-data="item.data" chart-labels="item.labels">
             </canvas>
         </div>
     </script>
