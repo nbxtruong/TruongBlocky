@@ -16,10 +16,10 @@
 /*@ngInject*/
 //import chooseImageTemplate from './chooseImage.tpl.html'
 
-export default function DashboardController($log, $mdSidenav, $mdDialog) {
+export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSelect) {
     var vm = this
 
-    vm.baseUrl = 'http://10.100.1.113:3000/src/app/newDashboard/images/';
+    vm.baseUrl = 'http://172.16.3.108:3000/src/app/newDashboard/images/';
 
     vm.options = {
         gridType: 'scrollVertical',
@@ -229,9 +229,11 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     }
     ]
 
-    vm.iconsList = ('fa-bath fa-eercast fa-etsy fa-grav fa-imdb fa-linode fa-car fa-microchip fa-quora'+
-    ' fa-ravelry fa-telegram fa-anchor fa-area-chart fa-ban fa-battery fa-bomb fa-bell fa-plane fa-tree ' + 
-    'fa-superpowers fa-blind fa-mobile')
+    vm.iconsList = ('fa-bath fa-eercast fa-etsy fa-grav fa-imdb fa-linode fa-car fa-microchip fa-quora' +
+        ' fa-ravelry fa-telegram fa-anchor fa-area-chart fa-ban fa-battery fa-bomb fa-bell fa-plane fa-tree ' +
+        'fa-superpowers fa-blind fa-mobile fa-free-code-camp fa-podcast fa-meetup fa-snowflake-o fa-archive ' +
+        'fa-bed fa-bicycle fa-bluetooth fa-bolt fa-bug fa-bullhorn fa-cc fa-cubes fa-coffee fa-deaf fa-fighter-jet' +
+        ' fa-fire fa-gavel fa-globe fa-heartbeat fa-lemon-o fa-leaf fa-key fa-paw fa-road fa-space-shuttle')
         .split(' ').map(function (icon) {
             return {
                 abbrev: icon
@@ -258,6 +260,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
     vm.handleClick = handleClick
     vm.longPressAction = longPressAction('left')
     vm.longPressOptions = longPressAction('right')
+    vm.closeDropdown = closeDropdown
 
     //vm.chooseImage = chooseImage();
 
@@ -486,6 +489,10 @@ export default function DashboardController($log, $mdSidenav, $mdDialog) {
                 vm.selected.status = !vm.selected.status;
             }
         }
+    }
+
+    function closeDropdown() {
+        $mdSelect.hide();
     }
 
     // function chooseImage() {

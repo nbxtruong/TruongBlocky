@@ -115,37 +115,12 @@
                 <input type="text" ng-model="vm.selected.clickMessage.message" />
                 <div><b>Icon:</b></div>
                 <br>
-                <!-- <select ng-model="vm.selected.image">
-                    <option value="light"><i class="fa fa-bar-chart"></i></option>
-                    <option value="switch"><i class="fa fa-microchip"></option>
-                    <option value="bulb"><i class="fa fa-quora"></option>
-                </select> -->
-                <!-- <md-select ng-model="vm.selected.image">
-                    <label>Selected Image: <i class="fa {{vm.selected.image}}" style="color: black;"></i></label>
-                    <div layout="row">
-                        <div flex layout="column">
-                            <md-option ng-repeat="icon in vm.iconsList" ng-show="$index%3===0" ng-hide="$index%3!==0" value="{{icon.abbrev}}" aria-hidden="true">
-                                <i class="fa {{icon.abbrev}}" style="color: black;">
-                            </md-option>
-                        </div>
-                        <div flex layout="column">
-                            <md-option ng-repeat="icon in vm.iconsList" ng-show="$index%3===1" ng-hide="$index%3!==1" value="{{icon.abbrev}}" aria-hidden="true">
-                                <i class="fa {{icon.abbrev}}" style="color: black;">
-                            </md-option>
-                        </div>
-                        <div flex layout="column">
-                            <md-option ng-repeat="icon in vm.iconsList" ng-show="$index%3===2" ng-hide="$index%3!==2" value="{{icon.abbrev}}" aria-hidden="true">
-                                <i class="fa {{icon.abbrev}}" style="color: black;">
-                            </md-option>
-                        </div>
-                    </div>
-                </md-select> -->
                 <md-select ng-model="vm.selected.image">
                     <label>Selected Image: <i class="fa {{vm.selected.image}}" style="color: black;"></i></label>
                     <br>
-                    <div layout="row" layout-wrap>
-                        <div flex="33" ng-repeat="icon in vm.iconsList" class="option">
-                            <md-option value="{{icon.abbrev}}" aria-hidden="true">
+                    <div layout="row"  style="width: 320px;" layout-wrap>
+                        <div flex="12" ng-repeat="icon in vm.iconsList" ng-click="vm.closeDropdown()">
+                            <md-option class="option" value="{{icon.abbrev}}" aria-hidden="true">
                                 <i class="fa {{icon.abbrev}}" style="color: black;">
                             </md-option>
                         </div>
@@ -190,7 +165,7 @@
     </div>
 
     <!-- Area option for mobile UI -->
-    <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="right">
+    <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="right" style="background-color: white !important;">
         <h4>Configuration</h4>
         <md-divider></md-divider>
         <div ng-if="vm.selected">
@@ -247,11 +222,12 @@
     <!-- Area for template -->
     <!-- Template for a normal button item -->
     <script type="text/ng-template" id="button.html">
-        <div layout="column" class="button" layout-fill>
-            <div flex class="name" layout-align="center center">
+        <div layout="column" class="button" layout-fill layout-align="center center">
+            <div flex class="name">
                 {{item.name}}
             </div>
-            <div flex>
+            <br>
+            <div flex layout-align="center center">
             <!-- <img ng-show="item.status" class="image" src={{vm.baseUrl}}{{item.image}}On.svg>
                 <img ng-hide="item.status" class="image" src={{vm.baseUrl}}{{item.image}}Off.svg> -->
                 <i class="fa {{item.image}} fa-fw widgetImage" style="font-size: 60px; align-self: center;"></i>
@@ -262,8 +238,8 @@
 
     <!-- Template for a normal switch item -->
     <script type="text/ng-template" id="switch.html">
-        <div layout="column" class="button" layout-fill>
-            <div flex class="name" layout-align="center center">
+        <div layout="column" class="button" layout-fill  layout-align="center center">
+            <div flex class="name">
                 {{item.name}}
             </div>
             <div flex layout-fill>
@@ -286,8 +262,8 @@
                 <span style="font-size: 15px;">Percent</span>
             </div>
             <div flex="20">
-                <md-slider-container class="image">
-                    <md-slider flex ng-model="item.status" min="0" max="100" aria-label="blue" class="md-warn slider"></md-slider>
+                <md-slider-container>
+                    <md-slider flex ng-model="item.status" min="0" max="100" aria-label="blue" class="slider"></md-slider>
                 </md-slider-container>
                 <div class="resizeMark"></div>
             </div>

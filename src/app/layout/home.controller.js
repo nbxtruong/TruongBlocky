@@ -43,7 +43,7 @@ export default function HomeController($scope, $mdDialog, $log, $document, $wind
     vm.userLogout = userLogout
     vm.navibarSelect = navibarSelect
 
-    vm.domain = "http://10.100.1.113:3000"
+    vm.domain = "http://172.16.3.108:3000"
 
     vm.userMenu = [{
         name: "Profile",

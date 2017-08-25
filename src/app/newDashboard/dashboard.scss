@@ -64,16 +64,17 @@ $allAreaBorder: groove;
 .button {
     min-height: 100%;
     min-width: 100%;
-    background-color: #4db8ff;
+    background-color: gray;
     //object-fit: fill;
     //display: flex;
+    vertical-align: middle;
 
     .name {
         max-height: 30px;
         min-height: 25px;
         font-size: 20px;
-        color: red;
-        border-bottom: 1px solid lightblue;
+        color: white;
+        //border-bottom: 1px solid lightblue;
         //background-color: pink;
     }
 
@@ -88,20 +89,20 @@ $allAreaBorder: groove;
     height: 100%;
     width: 100%;
     display: block;
-    background-color: #4db8ff;
+    background-color: gray;
 
     .name {
         max-height: 30px;
         min-height: 25px;
         //background-color: aquamarine;
         font-size: 20px;
-        color: red;
-        border-bottom: 1px solid lightblue;
+        color: white;
     }
 
     .image {
         display: block;
         min-height: 100%;
+        opacity: 0.2;
     }
 
     .status {
@@ -110,7 +111,7 @@ $allAreaBorder: groove;
         vertical-align: middle;
         //background-color: yellowgreen;
         font-size: 40px;
-        color: red;
+        color: rgba(87, 227, 241, 0.77);
         background-size:contain;
         background-repeat: no-repeat;
         background-position: 50% 50%;
@@ -128,15 +129,14 @@ $allAreaBorder: groove;
     height: 100%;
     width: 100%;
     display: block;
-    background-color: #4db8ff;  
+    background-color: gray;  
 
     .name {
         max-height: 30px;
         min-height: 25px;
         //background-color: aquamarine;
         font-size: 20px;
-        color: red;
-        border-bottom: 1px solid lightblue;
+        color: white;
     }
 
     .infor {
@@ -145,7 +145,7 @@ $allAreaBorder: groove;
         vertical-align: middle;
         //background-color: yellowgreen;
         font-size: 40px;
-        color: red;
+        color: rgba(87, 227, 241, 0.77);
         background-size:contain;
         background-repeat: no-repeat;
         background-position: 50% 50%;
@@ -157,7 +157,7 @@ $allAreaBorder: groove;
     .image {
         padding-left: 15px;
         max-height: 90%;
-        max-width: 90%;
+        max-width: 100%;
         padding-bottom: 30%;
         vertical-align: middle;
         align-self: center;
@@ -183,7 +183,7 @@ $allAreaBorder: groove;
 .resizeMark {
     width: 0;
 	height: 0;
-	border-bottom: 10px solid gray;
+	border-bottom: 10px solid white;
     border-left: 10px solid transparent;
     position: absolute;
     bottom: 2px;
@@ -192,10 +192,37 @@ $allAreaBorder: groove;
 
 .widgetImage {
     font-size: 48px;
-    color: black;
+    color: rgba(87, 227, 241, 0.77);
     align-self: center;
 }
 
-.option {
-    width: 15px !important;
+// .option {
+//     width: 15px !important;
+// }
+
+.md-thumb, .md-thumb::after, .md-track {
+    background-color: white !important;
+    border-color: white !important;
 }
+
+.md-track-fill {
+    background-color: aquamarine !important;
+}
+
+.ng-isolate-scope {
+    background-color: black;
+}
+
+.option {
+    width: 25px !important;
+    padding: 0 4px !important;
+    height: 40px !important;
+    border: 1px solid black !important;
+    border-radius: 2px !important;
+    margin: 2px !important;
+}
+
+md-select-menu.md-default-theme md-content md-option:not([disabled]):focus, md-select-menu md-content md-option:not([disabled]):focus, md-select-menu.md-default-theme md-content md-option:not([disabled]):hover, md-select-menu md-content md-option:not([disabled]):hover {
+    background: rgb(179, 176, 176) !important;
+}
+

@@ -10,7 +10,7 @@
     }
   ],
   "scripts": {
-    "start": "webpack-dev-server --open --port 3000 --hot --host 10.100.1.113",
+    "start": "webpack-dev-server --open --port 3000 --hot --host 172.16.3.108",
     "build": "cross-env NODE_ENV=production webpack -p"
   },
   "dependencies": {
