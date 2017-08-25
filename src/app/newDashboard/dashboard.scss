@@ -214,15 +214,18 @@ $allAreaBorder: groove;
 }
 
 .option {
-    width: 25px !important;
+    width: 35px !important;
     padding: 0 4px !important;
     height: 40px !important;
-    border: 1px solid black !important;
+    border: 1px solid #BBB8B8 !important;
     border-radius: 2px !important;
     margin: 2px !important;
 }
 
 md-select-menu.md-default-theme md-content md-option:not([disabled]):focus, md-select-menu md-content md-option:not([disabled]):focus, md-select-menu.md-default-theme md-content md-option:not([disabled]):hover, md-select-menu md-content md-option:not([disabled]):hover {
-    background: rgb(179, 176, 176) !important;
+    background: rgb(212, 212, 212) !important;
 }
 
+.md-select-menu-container, .md-active, .md-clickable {
+    min-width: 0 !important;
+}

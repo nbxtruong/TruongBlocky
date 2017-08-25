@@ -114,13 +114,12 @@
                 <div>message:</div>
                 <input type="text" ng-model="vm.selected.clickMessage.message" />
                 <div><b>Icon:</b></div>
-                <br>
-                <md-select ng-model="vm.selected.image">
-                    <label>Selected Image: <i class="fa {{vm.selected.image}}" style="color: black;"></i></label>
+                <md-select ng-model="vm.selected.image" style="width: 20%">
+                    <md-subheader><b>Selected Image: <i class="fa {{vm.selected.image}}" style="color: black; font-size: 20px;"></i></b></md-subheader>
                     <br>
                     <div layout="row"  style="width: 320px;" layout-wrap>
-                        <div flex="12" ng-repeat="icon in vm.iconsList" ng-click="vm.closeDropdown()">
-                            <md-option class="option" value="{{icon.abbrev}}" aria-hidden="true">
+                        <div flex="12" ng-repeat="icon in vm.iconsList" ng-click="vm.closeDropdown()" layout-align="center center">
+                            <md-option class="option" value="{{icon.abbrev}}" aria-hidden="true" layout-align="center center">
                                 <i class="fa {{icon.abbrev}}" style="color: black;">
                             </md-option>
                         </div>
@@ -179,14 +178,17 @@
                 <div>message:</div>
                 <input type="text" ng-model="vm.selected.clickMessage.message" />
                 <div><b>Icon:</b></div>
-                <!-- <select ng-model="vm.selected.icon">
-                        <option value="accessible">accessible</option>
-                        <option value="account_balance">account_balance</option>
-                        <option value="backup">backup</option>
-                        <option value="build">build</option>
-                </select> -->
-                <br>
-                <md-button class="md-raised md-warn" ng-click="">Change Image</md-button>
+                <md-select ng-model="vm.selected.image" style="width: 20%;">
+                    <label><b>Selected Image: <i class="fa {{vm.selected.image}}" style="color: black;"></i></b></label>
+                    <br>
+                    <div layout="row"  style="width: 210px;" layout-wrap>
+                        <div flex="12" ng-repeat="icon in vm.iconsList" ng-click="vm.closeDropdown()">
+                            <md-option class="option" value="{{icon.abbrev}}" aria-hidden="true" layout-align="center center">
+                                <i class="fa {{icon.abbrev}}" style="color: black;">
+                            </md-option>
+                        </div>
+                    </div>
+                </md-select>
             </div>
 
             <div ng-if="vm.selected.type=='switch'">

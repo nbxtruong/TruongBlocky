@@ -233,7 +233,8 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSele
         ' fa-ravelry fa-telegram fa-anchor fa-area-chart fa-ban fa-battery fa-bomb fa-bell fa-plane fa-tree ' +
         'fa-superpowers fa-blind fa-mobile fa-free-code-camp fa-podcast fa-meetup fa-snowflake-o fa-archive ' +
         'fa-bed fa-bicycle fa-bluetooth fa-bolt fa-bug fa-bullhorn fa-cc fa-cubes fa-coffee fa-deaf fa-fighter-jet' +
-        ' fa-fire fa-gavel fa-globe fa-heartbeat fa-lemon-o fa-leaf fa-key fa-paw fa-road fa-space-shuttle')
+        ' fa-fire fa-gavel fa-globe fa-heartbeat fa-lemon-o fa-leaf fa-key fa-paw fa-road fa-space-shuttle ' +
+        'fa-wheelchair-alt')
         .split(' ').map(function (icon) {
             return {
                 abbrev: icon
