@@ -136,7 +136,9 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSele
             y: 0,
             x: 0,
             image: "fa-quora",
-            status: false
+            status: false,
+            colorOn: '#7FFFD4',
+            colorOff: '#000000'
         }, {
             name: 'switchDemo',
             type: 'switch',
@@ -262,6 +264,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSele
     vm.longPressAction = longPressAction('left')
     vm.longPressOptions = longPressAction('right')
     vm.closeDropdown = closeDropdown
+    vm.getColor = getColor
 
     //vm.chooseImage = chooseImage();
 
@@ -313,7 +316,9 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSele
                 y: 0,
                 x: 0,
                 image: "fa-car",
-                status: false
+                status: false,
+                colorOn: '#33ff33',
+                colorOff: '#000033'
             })
         }
         if (type === 'switch') {
@@ -512,5 +517,13 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSele
     //         })
     //         .then(function () { }, function () { })
     // }
-
+    function getColor(param) {
+        $log.log(param);
+        if (param.status == true) {
+            return param.colorOn;
+        }
+        else {
+            return param.colorOff;
+        }
+    }
 }

@@ -232,7 +232,7 @@
             <div flex layout-align="center center">
             <!-- <img ng-show="item.status" class="image" src={{vm.baseUrl}}{{item.image}}On.svg>
                 <img ng-hide="item.status" class="image" src={{vm.baseUrl}}{{item.image}}Off.svg> -->
-                <i class="fa {{item.image}} fa-fw widgetImage" style="font-size: 60px; align-self: center;"></i>
+                <i class="fa {{item.image}} fa-fw widgetImage" style="font-size: 60px; align-self: center; color: {{vm.getColor(item)}}"></i>
                 <div class="resizeMark"></div>
             </div>
         </div>
