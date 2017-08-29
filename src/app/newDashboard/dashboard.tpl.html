@@ -84,16 +84,10 @@
             <ng-md-icon ng-hide="vm.showWidgetOption" icon="edit" ng-click="vm.switchMode()"></ng-md-icon> -->
         </div>
 
-        <gridster ng-show="vm.showWidgetOption" options="vm.mobileViewOptions" md-swipe-left="vm.nextDashboard()" md-swipe-right="vm.backDashboard()">
-            <gridster-item item="item" ng-repeat="item in (vm.listDashboard[vm.dashboardIndex])[0].templates" ng-touchstart="vm.selected = (vm.listDashboard[vm.dashboardIndex])[0].templates[$index]">
-                <div ng-include="item.type + '.html'" layout-fill></div>
-            </gridster-item>
-        </gridster>
-
-        <gridster ng-hide="vm.showWidgetOption" options="vm.mobileEditOptions" on-long-press="vm.longPressAction()" long-press-duration="3000">
+        <gridster options="vm.mobileOptions" md-swipe-left="vm.nextDashboard()" md-swipe-right="vm.backDashboard()">
             <gridster-item item="item" ng-repeat="item in (vm.listDashboard[vm.dashboardIndex])[0].templates" ng-touchstart="vm.selected = (vm.listDashboard[vm.dashboardIndex])[0].templates[$index]"
-                on-long-press="vm.longPressOptions()" long-press-duration="3000">
-                <div ng-include="item.type + '.html'" layout-fill></div>
+                on-long-press="vm.navBarRight()" long-press-duration="2000">
+                <div ng-include="item.type + '.html'"></div>
             </gridster-item>
         </gridster>
 
@@ -125,6 +119,60 @@
                         </div>
                     </div>
                 </md-select>
+                <div>choose color:</div>
+                <input colorpicker type="text" ng-model="vm.selected.backgroundColor" placeholder="{{vm.selected.backgroundColor}}" />
+            </div>
+
+            <div ng-if="vm.selected.type=='gauge'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
+                <br><br>
+                <div><b>Value:</b></div>
+                <input type="text" ng-model="vm.selected.value" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>When clicked, send:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.selected.topic" style="margin-bottom: 5px" />
+                <div>choose foreground color:</div>
+                <input colorpicker type="text" ng-model="vm.selected.foregroundColor" />
+                <div>choose background color:</div>
+                <input colorpicker type="text" ng-model="vm.selected.backgroundColor" />
+            </div>
+
+            <div ng-if="vm.selected.type=='webcam'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>Setup the topic:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.selected.topic" style="margin-bottom: 5px" />
+            </div>
+
+            <div ng-if="vm.selected.type=='linerChart'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>Setup the topic:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.selected.topic" style="margin-bottom: 5px" />
+            </div>
+
+            <div ng-if="vm.selected.type=='dynamicChart'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>Setup the topic:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.selected.topic" style="margin-bottom: 5px" />
+                <div><b>Types of chart:</b></div>
+                <select ng-model="vm.selected.mainType">
+                    <option value="line">line chart</option>
+                    <option value="bar">bar chart</option>
+                    <option value="doughnut">Doughnut Chart</option>
+                    <option value="radar">Radar Chart</option>
+                    <option value="polarArea">Polar Area Chart</option>
+                    <option value="horizontalBar">Horizontal Bar Chart</option>
+                </select>
             </div>
 
             <div ng-if="vm.selected.type=='switch'">
@@ -142,6 +190,8 @@
                 <input type="text" ng-model="vm.selected.offMessage.topic" style="margin-bottom: 5px" />
                 <div>message:</div>
                 <input type="text" ng-model="vm.selected.offMessage.message" />
+                <div>choose color:</div>
+                <input colorpicker type="text" ng-model="vm.selected.backgroundColor" placeholder="{{vm.selected.backgroundColor}}" />
             </div>
 
             <div ng-if="vm.selected=='slider'">
@@ -164,7 +214,7 @@
     </div>
 
     <!-- Area option for mobile UI -->
-    <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="right" style="background-color: white !important;">
+    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
         <h4>Configuration</h4>
         <md-divider></md-divider>
         <div ng-if="vm.selected">
@@ -189,6 +239,38 @@
                         </div>
                     </div>
                 </md-select>
+            </div>
+
+            <div ng-if="vm.selected.type=='gauge'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
+                <br><br>
+                <div><b>Value:</b></div>
+                <input type="text" ng-model="vm.selected.value" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>When clicked, send:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.selected.topic" style="margin-bottom: 5px" />
+                <div>choose foreground color:</div>
+                <input colorpicker type="text" ng-model="vm.selected.foregroundColor" />
+            </div>
+
+            <div ng-if="vm.selected.type=='webcam'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>When clicked, send:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.selected.topic" style="margin-bottom: 5px" />
+            </div>
+
+            <div ng-if="vm.selected.type=='linerChart'">
+                <div><b>Name:</b></div>
+                <input type="text" ng-model="vm.selected.name" style="margin-bottom: 5px" />
+                <br><br>
+                <div style="margin-bottom: 5px"><b>When clicked, send:</b></div>
+                <div>to topic:</div>
+                <input type="text" ng-model="vm.selected.topic" style="margin-bottom: 5px" />
             </div>
 
             <div ng-if="vm.selected.type=='switch'">
@@ -224,7 +306,7 @@
     <!-- Area for template -->
     <!-- Template for a normal button item -->
     <script type="text/ng-template" id="button.html">
-        <div layout="column" class="button" layout-fill layout-align="center center">
+        <div layout="column" class="button" layout-fill layout-align="center center" style="background-color: {{item.backgroundColor}}">
             <div flex class="name">
                 {{item.name}}
             </div>
@@ -238,9 +320,42 @@
         </div>
     </script>
 
+    <!-- Template for a normal webcam -->
+    <script type="text/ng-template" id="webcam.html">
+        <!-- <div class="widgetSize">
+            <webcam></webcam>
+        </div> -->
+        <h3>Webcam will show your face!!!</h3>
+    </script>
+
+    <!-- Template for a normal line chart -->
+    <script type="text/ng-template" id="linerChart.html">
+        <div class="widgetSize">
+            <canvas id="line" class="chart chart-line" chart-data="item.data" chart-labels="item.labels" chart-series="item.series" chart-options="vm.LineChartOptions"
+                chart-dataset-override="vm.datasetOverride" chart-click="vm.onClick">
+            </canvas>
+        </div>
+    </script>
+
+    <!-- Template for a normal Dynamic Chart -->
+    <script type="text/ng-template" id="dynamicChart.html">
+        <div class="widgetSize">
+            <canvas id="base" class="chart chart-base" chart-type="item.mainType" chart-data="item.data" chart-labels="item.labels">
+            </canvas>
+        </div>
+    </script>
+
+    <!-- Template for a normal gauge item -->
+    <script type="text/ng-template" id="gauge.html">
+        <div class="widgetSize">
+            <ng-gauge size="262" type="arch" thick="30" min="0" max="100" value="item.value" cap="round" label="{{item.label}}" foreground-color="{{item.foregroundColor}}"
+                background-color="{{item.backgroundColor}}" append="{{item.append}}"></ng-gauge>
+        </div>
+    </script>
+
     <!-- Template for a normal switch item -->
     <script type="text/ng-template" id="switch.html">
-        <div layout="column" class="button" layout-fill  layout-align="center center">
+        <div layout="column" class="button" layout-fill  layout-align="center center" style="background-color: {{item.backgroundColor}}">
             <div flex class="name">
                 {{item.name}}
             </div>
@@ -285,5 +400,9 @@
                 <div class="resizeMark"></div>
             </div>
         </div>
+        <md-switch class="md-primary" ng-model="item.value" id="switch_{{item.id}}" aria-label="{{item.name}}" ng-change="vm.widgetAction(item)"
+            style="background-color: {{item.backgroundColor}};">
+            {{item.name}}
+        </md-switch>
     </script>
 </div>

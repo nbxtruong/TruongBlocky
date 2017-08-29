@@ -51,6 +51,11 @@ import '../../node_modules/angular-gridster2/dist/gridster.js';
 import '../../node_modules/ng-fittext/dist/ng-FitText.min.js'
 import '../../node_modules/ngtouch/src/ngTouch.js';
 
+import 'angular-bootstrap-colorpicker/css/colorpicker.css';
+import 'angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js';
+import 'angularjs-gauge/dist/angularjs-gauge.min.js';
+import 'webcam/dist/webcam.min.js';
+
 import AppConfig from './app.config';
 import GlobalInterceptor from './global-interceptor.service';
 import AppRun from './app.run';
@@ -75,6 +80,9 @@ angular.module('blocky', [
         'pr.longpress',
         'ngTouch',
         'ngFitText',
+        'colorpicker.module',
+        'angularjs-gauge',
+        'webcam',
         uiRouter
     ])
     .config(AppConfig)

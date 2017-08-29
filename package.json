@@ -18,7 +18,9 @@
     "angular": "1.5.8",
     "angular-animate": "1.5.8",
     "angular-aria": "1.5.8",
+    "angular-bootstrap-colorpicker": "^3.0.31",
     "angular-carousel": "^1.0.2",
+    "angular-chart.js": "^1.1.1",
     "angular-cookies": "1.5.8",
     "angular-drag-and-drop-lists": "^2.1.0",
     "angular-fullscreen": "git://github.com/fabiobiondi/angular-fullscreen.git#master",
@@ -42,13 +44,15 @@
     "angular-translate-storage-local": "2.15.2",
     "angular-ui-ace": "^0.2.3",
     "angular-ui-router": "^0.3.1",
+    "angularjs-gauge": "^2.1.0",
     "compass-sass-mixins": "^0.12.7",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
     "ng-fittext": "^4.2.3",
     "ngtouch": "^1.0.1",
     "sass-material-colors": "0.0.5",
-    "typeface-roboto": "0.0.29"
+    "typeface-roboto": "0.0.29",
+    "webcam": "^3.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

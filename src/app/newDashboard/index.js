@@ -19,7 +19,11 @@ import './dashboard.scss';
 import DashboardRoutes from './dashboard.routes';
 import DashboardController from './dashboard.controller';
 
+import 'chart.js/dist/Chart.min.js';
+import 'angular-chart.js/dist/angular-chart.min.js';
+
 export default angular.module('blocky.dashboard', [
+    'chart.js',
     uiRouter
 ])
     .config(DashboardRoutes)

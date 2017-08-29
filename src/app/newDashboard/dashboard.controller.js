@@ -21,6 +21,25 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSele
 
     vm.baseUrl = 'http://172.16.3.108:3000/src/app/newDashboard/images/';
 
+    // for line chart
+    vm.onClick = function (points, evt) {
+        $log.log(points, evt);
+    };
+    vm.datasetOverride = [{
+        yAxisID: 'y-axis-1'
+    }];
+    vm.LineChartOptions = {
+        scales: {
+            yAxes: [{
+                id: 'y-axis-1',
+                type: 'linear',
+                display: true,
+                position: 'left'
+            }]
+        }
+    }
+
+    // for griter
     vm.options = {
         gridType: 'scrollVertical',
         // itemChangeCallback: itemChange,
@@ -56,7 +75,7 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSele
         }
     };
 
-    vm.mobileViewOptions = {
+    vm.mobileOptions = {
         gridType: 'scrollVertical',
         // itemChangeCallback: itemChange,
         margin: 2,
@@ -75,39 +94,6 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSele
         },
         resizable: {
             enabled: false,
-            //   stop: eventStop
-            handles: {
-                s: false,
-                e: false,
-                n: false,
-                w: false,
-                se: true,
-                ne: false,
-                sw: false,
-                nw: false
-            },
-        }
-    };
-
-    vm.mobileEditOptions = {
-        gridType: 'scrollVertical',
-        // itemChangeCallback: itemChange,
-        margin: 2,
-        minCols: 8,
-        maxCols: 8,
-        minRows: 10,
-        maxRows: 50,
-        mobileBreakpoint: 0,
-        outerMargin: true,
-        swap: true,
-        pushItems: true,
-        // displayGrid: '',
-        draggable: {
-            enabled: true,
-            //   stop: eventStop
-        },
-        resizable: {
-            enabled: true,
             //   stop: eventStop
             handles: {
                 s: false,
@@ -214,21 +200,29 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSele
     ]
 
     vm.widgets = [{
-        name: 'buttonDemo',
-        type: 'button'
-    },
-    {
-        name: 'switchDemo',
-        type: 'switch'
-    },
-    {
-        name: 'displayDemo',
-        type: 'display'
-    },
-    {
-        name: 'sliderDemo',
-        type: 'slider'
-    }
+            name: 'buttonDemo',
+            type: 'button'
+        },
+        {
+            name: 'switchDemo',
+            type: 'switch'
+        },
+        {
+            name: 'gaugeDemo',
+            type: 'guage'
+        },
+        {
+            name: 'webcamDemo',
+            type: 'webcam'
+        },
+        {
+            name: 'linerChartDemo',
+            type: 'linerChart'
+        },
+        {
+            name: 'dynamicChartDemo',
+            type: 'dynamicChart'
+        }
     ]
 
     vm.iconsList = ('fa-bath fa-eercast fa-etsy fa-grav fa-imdb fa-linode fa-car fa-microchip fa-quora' +
@@ -245,10 +239,11 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSele
 
     vm.selected = null
     vm.dashboardIndex = 0
-    vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
     vm.showWidgetOption = true
     vm.list = ''
+    vm.valuegauge = 50
     vm.selectedItem = (vm.listDashboard[vm.dashboardIndex])[0].name
+    vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
 
     vm.saveDashboard = saveDashboard
     vm.addWidget = addWidget
@@ -261,12 +256,14 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSele
     vm.removeDashboard = removeDashboard
     vm.selectListDashboard = selectListDashboard
     vm.handleClick = handleClick
-    vm.longPressAction = longPressAction('left')
-    vm.longPressOptions = longPressAction('right')
+    // vm.longPressAction = longPressAction('left')
+    // vm.longPressOptions = longPressAction('right')
     vm.closeDropdown = closeDropdown
     vm.getColor = getColor
 
     //vm.chooseImage = chooseImage();
+    vm.navBarLeft = navBarPosition('left')
+    vm.navBarRight = navBarPosition('right')
 
     //Update selected-box for everytimes
     vm.selectListDashboard()
@@ -318,7 +315,8 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSele
                 image: "fa-car",
                 status: false,
                 colorOn: '#33ff33',
-                colorOff: '#000033'
+                colorOff: '#000033',
+                backgroundColor: '#85adad'
             })
         }
         if (type === 'switch') {
@@ -338,7 +336,8 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSele
                 y: 0,
                 x: 0,
                 image: "switch",
-                status: false
+                status: false,
+                backgroundColor: '#85adad'
             })
         }
         if (type === 'display') {
@@ -352,7 +351,8 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSele
                 x: 0,
                 minItemCols: 2,
                 minItemRows: 2,
-                status: 611 + 'ppm'
+                status: 611 + 'ppm',
+                backgroundColor: '#85adad'
             })
         }
         if (type === 'slider') {
@@ -367,6 +367,74 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSele
                 status: 0
             })
         }
+        if (type === 'guage') {
+            (vm.listDashboard[vm.dashboardIndex])[0].templates.push({
+                name: 'gaugeDemo',
+                type: 'gauge',
+                foregroundColor: '#bf65bc',
+                backgroundColor: '#48df5e',
+                value: '50',
+                label: 'power',
+                append: '%',
+                topic: 'powerAllHouse',
+                cols: 2,
+                rows: 2,
+                minItemCols: 2,
+                minItemRows: 2,
+                y: 0,
+                x: 0
+            })
+        }
+        if (type === 'webcam') {
+            (vm.listDashboard[vm.dashboardIndex])[0].templates.push({
+                name: 'webcamDemo',
+                type: 'webcam',
+                backgroundColor: '#bd77bc',
+                topic: 'webcam1',
+                cols: 2,
+                rows: 2,
+                minItemCols: 2,
+                minItemRows: 2,
+                y: 0,
+                x: 0
+            })
+        }
+        if (type === 'linerChart') {
+            (vm.listDashboard[vm.dashboardIndex])[0].templates.push({
+                name: 'linerChartDemo',
+                type: 'linerChart',
+                backgroundColor: '#bd77bc',
+                topic: 'linerChart1',
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                series: ['Series A'],
+                data: [
+                    [65, 59, 80, 81, 56, 55, 40]
+                ],
+                cols: 4,
+                rows: 2,
+                minItemCols: 4,
+                minItemRows: 2,
+                y: 0,
+                x: 0
+            })
+        }
+        if (type === 'dynamicChart') {
+            (vm.listDashboard[vm.dashboardIndex])[0].templates.push({
+                name: 'dynamicChartDemo',
+                type: 'dynamicChart',
+                backgroundColor: '#bd77bc',
+                topic: 'dynamicChart1',
+                labels: ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"],
+                data: [300, 400, 180, 200, 220],
+                mainType: 'radar',
+                cols: 4,
+                rows: 2,
+                minItemCols: 4,
+                minItemRows: 2,
+                y: 0,
+                x: 0
+            })
+        }
     }
 
     function saveDashboard() {
@@ -374,17 +442,20 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSele
         var jsonData = angular.toJson(vm.listDashboard)
         $log.log(jsonData)
         $log.log(vm.iconsList)
+        // var jsonData = angular.toJson(vm.listDashboard)
+        $log.log(vm.selected.type)
     }
 
     function removeWidget() {
         var indexWidget = (vm.listDashboard[vm.dashboardIndex])[0].templates.indexOf(vm.selected);
         (vm.listDashboard[vm.dashboardIndex])[0].templates.splice(indexWidget, 1);
+        vm.selected = null
     }
 
     function nextDashboard() {
         var end = vm.listDashboard.length
         var start = vm.dashboardIndex + 1
-        if (start < end) {
+        if ((start < end) && (vm.showWidgetOption === true)) {
             vm.dashboardIndex = vm.dashboardIndex + 1
             vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
             // $log.log(vm.dashboardIndex)
@@ -393,24 +464,37 @@ export default function DashboardController($log, $mdSidenav, $mdDialog, $mdSele
     }
 
     function backDashboard() {
-        if (vm.dashboardIndex > 0) {
+        if ((vm.dashboardIndex > 0) && (vm.showWidgetOption === true)) {
             vm.dashboardIndex = vm.dashboardIndex - 1
             vm.dashboardName = (vm.listDashboard[vm.dashboardIndex])[0].name
         }
     }
 
     function switchMode() {
-        vm.options.draggable.enabled = !vm.options.draggable.enabled
-        vm.options.resizable.enabled = !vm.options.resizable.enabled
-
-        vm.options.api.optionsChanged()
-        vm.mobileViewOptions.api.optionsChanged()
-        vm.mobileEditOptions.api.optionsChanged()
-
         vm.showWidgetOption = !vm.showWidgetOption
+
+        if (vm.showWidgetOption === false) {
+            vm.mobileOptions.draggable.enabled = !vm.mobileOptions.draggable.enabled
+            vm.mobileOptions.resizable.enabled = !vm.mobileOptions.resizable.enabled
+            vm.mobileOptions.api.optionsChanged()
+
+            vm.options.draggable.enabled = !vm.options.draggable.enabled
+            vm.options.resizable.enabled = !vm.options.resizable.enabled
+            vm.options.api.optionsChanged()
+        }
+        if (vm.showWidgetOption === true) {
+            vm.mobileOptions.draggable.enabled = !vm.mobileOptions.draggable.enabled
+            vm.mobileOptions.resizable.enabled = !vm.mobileOptions.resizable.enabled
+            vm.mobileOptions.api.optionsChanged()
+
+            vm.options.draggable.enabled = !vm.options.draggable.enabled
+            vm.options.resizable.enabled = !vm.options.resizable.enabled
+            vm.options.api.optionsChanged()
+        }
     }
 
-    function longPressAction(position) {
+    function navBarPosition(position) {
+        // $log.log(vm.showWidgetOption)
         return function () {
             // Component lookup should always be available since we are not using `ng-if`
             $mdSidenav(position)
