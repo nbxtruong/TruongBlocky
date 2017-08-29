@@ -51,7 +51,7 @@
         </div>
         <gridster options="vm.options">
             <gridster-item item="item" ng-repeat="item in (vm.listDashboard[vm.dashboardIndex])[0].templates" ng-click="vm.selected = (vm.listDashboard[vm.dashboardIndex])[0].templates[$index]">
-                <div ng-include="item.type + '.html'"></div>
+                <div ng-include="item.type + '.html'" layout-fill></div>
             </gridster-item>
         </gridster>
     </div>
@@ -70,7 +70,7 @@
         <gridster options="vm.mobileOptions" md-swipe-left="vm.nextDashboard()" md-swipe-right="vm.backDashboard()">
             <gridster-item item="item" ng-repeat="item in (vm.listDashboard[vm.dashboardIndex])[0].templates" ng-touchstart="vm.selected = (vm.listDashboard[vm.dashboardIndex])[0].templates[$index]"
                 on-long-press="vm.navBarRight()" long-press-duration="2000">
-                <div ng-include="item.type + '.html'"></div>
+                <div ng-include="item.type + '.html'" layout-fill></div>
             </gridster-item>
         </gridster>
 
@@ -285,7 +285,7 @@
     <!-- Area for template -->
     <!-- Template for a normal button item -->
     <script type="text/ng-template" id="button.html">
-        <div class="widgetSize" style="background-color: {{item.backgroundColor}};">
+        <div class="widgetSize ripple r-raised" r-color="#F44336" r-opacity=".6" layout-fill style="background-color: {{item.backgroundColor}};">
             <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
             <md-button id="button_{{item.id}}" class="button md-raised md-primary" ng-click="vm.widgetAction(item)">
                 {{item.name}}
@@ -295,14 +295,14 @@
 
     <!-- Template for a normal webcam -->
     <script type="text/ng-template" id="webcam.html">
-        <div class="widgetSize">
+        <div class="widgetSize ripple r-raised" r-color="#F44336" r-opacity=".6">
             <webcam></webcam>
         </div>
     </script>
 
     <!-- Template for a normal line chart -->
     <script type="text/ng-template" id="linerChart.html">
-        <div class="widgetSize">
+        <div class="widgetSize ripple r-raised" r-color="#F44336" r-opacity=".6" layout-fill>
             <canvas id="line" class="chart chart-line" chart-data="item.data" chart-labels="item.labels" chart-series="item.series" chart-options="vm.LineChartOptions"
                 chart-dataset-override="vm.datasetOverride" chart-click="vm.onClick">
             </canvas>
@@ -311,7 +311,7 @@
 
     <!-- Template for a normal Dynamic Chart -->
     <script type="text/ng-template" id="dynamicChart.html">
-        <div class="widgetSize">
+        <div class="widgetSize ripple r-raised" r-color="#F44336" r-opacity=".6" layout-fill>
             <canvas id="base" class="chart chart-base" chart-type="item.mainType" chart-data="item.data" chart-labels="item.labels">
             </canvas>
         </div>
@@ -319,7 +319,7 @@
 
     <!-- Template for a normal gauge item -->
     <script type="text/ng-template" id="gauge.html">
-        <div class="widgetSize">
+        <div class="widgetSize ripple r-raised" r-color="#F44336" r-opacity=".6" layout-fill>
             <ng-gauge size="262" type="arch" thick="30" min="0" max="100" value="item.value" cap="round" label="{{item.label}}" foreground-color="{{item.foregroundColor}}"
                 background-color="{{item.backgroundColor}}" append="{{item.append}}"></ng-gauge>
         </div>
@@ -327,7 +327,7 @@
 
     <!-- Template for a normal switch item -->
     <script type="text/ng-template" id="switch.html">
-        <md-switch class="md-primary" ng-model="item.value" id="switch_{{item.id}}" aria-label="{{item.name}}" ng-change="vm.widgetAction(item)"
+        <md-switch class="md-primary ripple r-raised" r-color="#F44336" r-opacity=".6" layout-fill ng-model="item.value" id="switch_{{item.id}}" aria-label="{{item.name}}" ng-change="vm.widgetAction(item)"
             style="background-color: {{item.backgroundColor}};">
             {{item.name}}
         </md-switch>

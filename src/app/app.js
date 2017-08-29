@@ -55,6 +55,9 @@ import 'angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js';
 import 'angularjs-gauge/dist/angularjs-gauge.min.js';
 import 'webcam/dist/webcam.min.js';
 
+import 'ng-ripple/dist/css/ng-ripple.css';
+import 'ng-ripple/dist/js/ng-ripple.js'
+
 import AppConfig from './app.config';
 import GlobalInterceptor from './global-interceptor.service';
 import AppRun from './app.run';
@@ -81,6 +84,7 @@ angular.module('blocky', [
         'colorpicker.module',
         'angularjs-gauge',
         'webcam',
+        'ngRipple',
         uiRouter
     ])
     .config(AppConfig)
